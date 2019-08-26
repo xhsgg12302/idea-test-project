@@ -23,7 +23,7 @@ public class ReplyTo {
 
         // 实例化连接工厂
         connectionFactory = new ActiveMQConnectionFactory(ActiveMQConnection.DEFAULT_USER, ActiveMQConnection.DEFAULT_PASSWORD, ActiveMQConnection.DEFAULT_BROKER_URL);
-        //connectionFactory = new ActiveMQConnectionFactory("admin", "admin", "tcp://111.198.53.224:61616");
+        //connectionFactory = new ActiveMQConnectionFactory("admin", "admin", "tcp://localhost:61616");
 
         connection = connectionFactory.createConnection(); // 通过连接工厂获取连接
         connection.start(); // 启动连接
