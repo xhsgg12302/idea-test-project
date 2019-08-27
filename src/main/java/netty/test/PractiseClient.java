@@ -28,10 +28,10 @@ public class PractiseClient {
                         nioSocketChannel.pipeline().addLast(new StringEncoder());
                     }
                 });
-        Channel channel = bootstrap.connect("127.0.0.1",12302).channel();
-        while(true){
-            channel.writeAndFlush(new Date() + ": hello world!");
-            Thread.sleep(2*1000L);
-        }
+        Channel channel = bootstrap.connect("39.107.88.49",10000).sync().channel();
+        int i = 3362;
+        channel.writeAndFlush(i);
+        Thread.sleep(1000l);
+       // channel.close();
     }
 }

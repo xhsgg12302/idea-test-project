@@ -43,7 +43,7 @@ public class LedRequestMessage {
     /**
      * _12302_2019-08-21
      * <p>
-     *     地址(1)
+     *     地址(1) 地址域为RS485地址，其它通讯方式设为0x01
      * </p>
      */
     private byte address;

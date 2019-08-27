@@ -29,13 +29,12 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class  Component{
 
-    public static Map<String,Object> connectAndPerform(String ip, Integer port ,final Map<String,Object> result ,
+    public static void connectAndPerform(String ip, Integer port ,
                                                        LedRequestMessage ... ledRequestMessages) {
 
-        CommandEntity commandEntity = new CommandEntity();
-
-
-        //commandEntity.setObjs(ledRequestMessages);
+        final CommandEntity commandEntity = new CommandEntity();
+        commandEntity.setObjs(ledRequestMessages);
+        commandEntity.setIndex(0);
 
         EventLoopGroup clientGroup = new NioEventLoopGroup();
         Bootstrap bootstrap = new Bootstrap();
@@ -55,7 +54,14 @@ public class  Component{
                                         @Override
                                         protected void channelRead0(ChannelHandlerContext ctx, LedResponseMessage msg) throws Exception {
                                             System.out.println(msg);
-                                            result.put("msg", msg);
+
+                                            Thread.sleep(50l);
+                                            Object temp = location(commandEntity);
+                                            if(temp instanceof LedRequestMessage){
+                                                ctx.writeAndFlush(temp);
+                                            }else{
+                                                ctx.close();
+                                            }
                                         }
 
                                         @Override
@@ -65,20 +71,23 @@ public class  Component{
                                     });
                         }
                     });
-            ChannelFuture channelFuture = bootstrap.connect(ip, port).sync();
-            Channel channel = channelFuture.channel();
-            channel.writeAndFlush("");
+            Channel channel = bootstrap.connect(ip, port).sync().channel();
+            channel.writeAndFlush(location(commandEntity));
             channel.closeFuture().sync();
         }catch ( Exception e){
             e.printStackTrace();
         } finally {
             clientGroup.shutdownGracefully();
         }
-        return result;
     }
 
-    public synchronized static Object location(Map<Integer,List<Object>> params){
-
-        return null;
+    public static Object location(CommandEntity commandEntity){
+        synchronized(commandEntity){
+            List<Object> cmds = commandEntity.getObjs();
+            int index = commandEntity.getIndex();
+            commandEntity.setIndex(index+1);
+            Object obj = cmds.get(index);
+            return obj;
+        }
     }
 }
