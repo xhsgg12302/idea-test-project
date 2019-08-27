@@ -22,10 +22,10 @@ public class LedReqMessageEncoder extends MessageToByteEncoder<LedRequestMessage
         out.writeByte(msg.getAddress());
         out.writeShort(msg.getRetain());
         out.writeByte(msg.getOperateCode());
-        out.writeShort(msg.getFrameNum());
-        out.writeInt(msg.getAllLength());
+        out.writeShortLE(msg.getFrameNum());
+        out.writeIntLE(msg.getAllLength());
         out.writeShort(msg.getRetain2());
-        out.writeInt(msg.getDataLength());
+        out.writeIntLE(msg.getDataLength());
         out.writeBytes(msg.getData());
         out.writeInt(msg.getFrameTail());
     }

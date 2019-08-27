@@ -1,5 +1,7 @@
 package netty.hikvisionLED.demo.tools;
 
+import java.util.Calendar;
+
 /**
  * Copyright 2018 ...com Inc. All Rights Reserved.
  *
@@ -37,4 +39,10 @@ public class Tool {
         }
         return temp;
     }
+
+
+    public static int intAnd0xtoHex(int candidate){
+        return Integer.parseInt(String.valueOf(candidate),16);
+    }
+
 }

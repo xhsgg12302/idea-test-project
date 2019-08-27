@@ -1,5 +1,7 @@
 package netty.hikvisionLED.demo.tools;
 
+import netty.hikvisionLED.demo.protocol.LedRequestMessage;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +30,10 @@ public class CommandEntity {
         return objs;
     }
 
-    public synchronized void setObjs(List<Object> objs) {
-        this.objs = objs;
+    public synchronized void setObjs(LedRequestMessage[] ledRequestMessages) {
+        for (LedRequestMessage ledRequestMessage : ledRequestMessages) {
+            this.objs.add(ledRequestMessage);
+        }
+        this.objs.add(new String("stop"));
     }
 }
