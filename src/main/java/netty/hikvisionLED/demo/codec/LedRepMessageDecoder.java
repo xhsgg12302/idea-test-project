@@ -17,20 +17,22 @@ import java.util.List;
 public class LedRepMessageDecoder extends ByteToMessageDecoder {
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
+
         LedResponseMessage msg = new LedResponseMessage();
-        msg.setFrameHead(in.readInt());
+
+        msg.setFrameHead(in.readIntLE());
         msg.setAddress(in.readByte());
-        msg.setRetain(in.readShort());
+        msg.setRetain(in.readShortLE());
         msg.setOperateCode(in.readByte());
-        msg.setFrameNum(in.readShort());
-        int length = in.readInt();
+        msg.setFrameNum(in.readShortLE());
+        int length = in.readIntLE();
         msg.setAllLength(length);
         byte [] bytes = new byte[length];
         for(int i = 0 ; i < length ; i++){
-            bytes[1] = in.readByte();
+            bytes[i] = in.readByte();
         }
         msg.setData(bytes);
-        msg.setFrameTail(in.readInt());
+        msg.setFrameTail(in.readIntLE());
         out.add(msg);
     }
 }

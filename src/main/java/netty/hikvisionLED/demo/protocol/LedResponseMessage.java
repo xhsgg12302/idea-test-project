@@ -2,6 +2,8 @@ package netty.hikvisionLED.demo.protocol;
 
 import netty.hikvisionLED.demo.tools.Tool;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.Arrays;
 
 /**
@@ -92,6 +94,24 @@ public class LedResponseMessage {
     private int frameTail;
 
 
+    public byte[] toByteArray() {
+
+        ByteBuffer buf = ByteBuffer.wrap(new byte[ 18 + this.data.length ] );
+        buf.order(ByteOrder.LITTLE_ENDIAN);
+
+        buf.putInt(frameHead);
+        buf.put(address);
+        buf.putShort(retain);
+        buf.put(operateCode);
+        buf.putShort(frameNum);
+        buf.putInt(allLength);
+        buf.put(data);
+        buf.putInt(frameTail);
+
+        return buf.array();
+    }
+
+
     public int getFrameHead() {
         return frameHead;
     }
@@ -156,17 +176,27 @@ public class LedResponseMessage {
         this.frameTail = frameTail;
     }
 
+    public String merge(byte[] bytes,int index,int offset){
+        String temp = "";
+        int all = index + offset;
+        for ( ;index < all; index ++ ){
+            temp += Tool.supplement(Integer.toHexString(bytes[index] & 0xff),2);
+        }
+        return temp;
+    }
+
     @Override
     public String toString() {
-        return "LedResponseMessage{" +
-                "frameHead=" + Tool.supplement(Integer.toHexString(frameHead ),8) +
-                ", address=" + Tool.supplement(Integer.toHexString(address & 0xFF),2) +
-                ", retain=" + Tool.supplement(Integer.toHexString(retain & 0xFF),4) +
-                ", operateCode=" + Tool.supplement(Integer.toHexString(operateCode & 0xFF),2) +
-                ", frameNum=" + Tool.supplement(Integer.toHexString(frameNum & 0xFF),4) +
-                ", allLength=" + Tool.supplement(Integer.toHexString(allLength ),8) +
+        byte[] arrstrs = toByteArray();
+        return  "LedResponseMessage{" +
+                "frameHead=" + merge(arrstrs,0,4) +
+                ", address=" + merge(arrstrs,4,1) +
+                ", retain=" + merge(arrstrs,5,2) +
+                ", operateCode=" + merge(arrstrs,7,1) +
+                ", frameNum=" + merge(arrstrs,8,2) +
+                ", allLength=" + merge(arrstrs,10,4) +
                 ", data=" + Arrays.toString(data) +
-                ", frameTail=" + Tool.supplement(Integer.toHexString(frameTail ),8) +
+                ", frameTail=" + merge(arrstrs,arrstrs.length-4,4) +
                 '}';
     }
 }

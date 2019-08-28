@@ -1,8 +1,7 @@
 package netty.hikvisionLED.demo.basic;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
-
+import java.io.File;
+import java.io.FileOutputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.Calendar;
@@ -31,6 +30,172 @@ public class DataRepo {
                 (byte)intAnd0xtoHex(now.get(Calendar.SECOND) - 0)
         };
         return bytes;
+    }
+
+    public static byte[] bitmapInfo(){
+        return new byte[]{
+                0x01, (byte)0xff, 0x0a, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff,
+                (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, 0x7f, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff,
+                (byte)0xff, 0x7f, (byte)0xfe, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, 0x7f, (byte)0xfc, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff,
+                (byte)0xff, 0x7f, (byte)0xf8, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, 0x7f, (byte)0xf0, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff,
+                (byte)0xff, 0x7f, (byte)0xe0, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, 0x7f, (byte)0xc0, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff,
+                (byte)0xff, 0x7f, (byte)0x80, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, 0x7f, 0x00, (byte)0xff, 0x03, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, (byte)0xfe, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte)0xfc, 0x03, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, (byte)0xf8, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte)0xf0, 0x03, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, (byte)0xe0, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte)0xc0, 0x03, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, (byte)0xc0, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte)0xe0, 0x03, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, (byte)0xf0, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte)0xf8, 0x03, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, (byte)0xfc, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte)0xfe, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff,
+                (byte)0xff, 0x7f, 0x00, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, 0x7f, (byte)0x80, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff,
+                (byte)0xff, 0x7f, (byte)0xc0, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, 0x7f, (byte)0xe0, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff,
+                (byte)0xff, 0x7f, (byte)0xf0, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, 0x7f, (byte)0xf8, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff,
+                (byte)0xff, 0x7f, (byte)0xfc, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, 0x7f, (byte)0xfe, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff,
+                (byte)0xff, 0x7f, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff,
+                (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, 0x7f, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff,
+                (byte)0xff, 0x7f, (byte)0xfe, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, 0x7f, (byte)0xfc, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff,
+                (byte)0xff, 0x7f, (byte)0xf8, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, 0x7f, (byte)0xf0, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff,
+                (byte)0xff, 0x7f, (byte)0xe0, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, 0x7f, (byte)0xc0, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff,
+                (byte)0xff, 0x7f, (byte)0x80, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, 0x7f, 0x00, (byte)0xff, 0x03, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, (byte)0xfe, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte)0xfc, 0x03, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, (byte)0xf8, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte)0xf0, 0x03, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, (byte)0xe0, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte)0xc0, 0x03, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, (byte)0xc0, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte)0xe0, 0x03, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, (byte)0xf0, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte)0xf8, 0x03, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, (byte)0xfc, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte)0xfe, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff,
+                (byte)0xff, 0x7f, 0x00, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, 0x7f, (byte)0x80, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff,
+                (byte)0xff, 0x7f, (byte)0xc0, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, 0x7f, (byte)0xe0, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff,
+                (byte)0xff, 0x7f, (byte)0xf0, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, 0x7f, (byte)0xf8, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff,
+                (byte)0xff, 0x7f, (byte)0xfc, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, 0x7f, (byte)0xfe, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff,
+                (byte)0xff, 0x7f, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff,
+                (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, 0x7f, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff,
+                (byte)0xff, 0x7f, (byte)0xfe, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, 0x7f, (byte)0xfc, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff,
+                (byte)0xff, 0x7f, (byte)0xf8, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, 0x7f, (byte)0xf0, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff,
+                (byte)0xff, 0x7f, (byte)0xe0, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, 0x7f, (byte)0xc0, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff,
+                (byte)0xff, 0x7f, (byte)0x80, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, 0x7f, 0x00, (byte)0xff, 0x03, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, (byte)0xfe, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte)0xfc, 0x03, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, (byte)0xf8, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte)0xf0, 0x03, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, (byte)0xe0, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte)0xc0, 0x03, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, (byte)0xc0, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte)0xe0, 0x03, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, (byte)0xf0, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte)0xf8, 0x03, 0x00, 0x00, 0x00,
+                0x00, 0x00, 0x00, (byte)0xfc, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte)0xfe, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff,
+                (byte)0xff, 0x7f, 0x00, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, 0x7f, (byte)0x80, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff,
+                (byte)0xff, 0x7f, (byte)0xc0, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, 0x7f, (byte)0xe0, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff,
+                (byte)0xff, 0x7f, (byte)0xf0, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, 0x7f, (byte)0xf8, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff,
+                (byte)0xff, 0x7f, (byte)0xfc, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, 0x7f, (byte)0xfe, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff,
+                (byte)0xff, 0x7f, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff, (byte)0xff
+        };
+    }
+
+    public static class ProgramHeader{
+
+        /**
+         * 01 --节目数量
+         */
+        private byte programCount;
+
+        /**
+         * 01 --节目号(0)
+         */
+        private byte programNum;
+
+        /**
+         * 94 03 00 00 --节目数据大小(4)  #00000394 916
+         */
+        private int AreaTypeTotalSumLength;
+
+        /**
+         * 04 --节目区域数量(1)
+         */
+        private byte areaCount;
+
+        /**
+         * 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 -- 设置为0(15)
+         */
+        private byte[] retain;
+
+        /**
+         * 00 --节目播放次数(1)
+         */
+        private byte playTimes;
+
+        /**
+         * 00 00 --保留(2)
+         */
+        private short retain2;
+
+        public byte[] toByteArray() {
+
+            ByteBuffer buf = ByteBuffer.wrap(new byte[ 10 + this.retain.length] );
+            buf.order(ByteOrder.LITTLE_ENDIAN);
+
+            buf.put(programCount);
+            buf.put(programNum);
+            buf.putInt(AreaTypeTotalSumLength);
+            buf.put(areaCount);
+            buf.put(retain);
+            buf.put(playTimes);
+            buf.putShort(retain2);
+
+
+
+            return buf.array();
+        }
+
+        public byte getProgramCount() {
+            return programCount;
+        }
+
+        public void setProgramCount(byte programCount) {
+            this.programCount = programCount;
+        }
+
+        public byte getProgramNum() {
+            return programNum;
+        }
+
+        public void setProgramNum(byte programNum) {
+            this.programNum = programNum;
+        }
+
+        public int getAreaTypeTotalSumLength() {
+            return AreaTypeTotalSumLength;
+        }
+
+        public void setAreaTypeTotalSumLength(int areaTypeTotalSumLength) {
+            AreaTypeTotalSumLength = areaTypeTotalSumLength;
+        }
+
+        public byte getAreaCount() {
+            return areaCount;
+        }
+
+        public void setAreaCount(byte areaCount) {
+            this.areaCount = areaCount;
+        }
+
+        public byte[] getRetain() {
+            return retain;
+        }
+
+        public void setRetain(byte[] retain) {
+            this.retain = retain;
+        }
+
+        public byte getPlayTimes() {
+            return playTimes;
+        }
+
+        public void setPlayTimes(byte playTimes) {
+            this.playTimes = playTimes;
+        }
+
+        public short getRetain2() {
+            return retain2;
+        }
+
+        public void setRetain2(short retain2) {
+            this.retain2 = retain2;
+        }
     }
 
     public static class CharacterCodeArea{
@@ -101,7 +266,8 @@ public class DataRepo {
         private byte[] content;
 
         public byte[] toByteArray() {
-            ByteBuffer buf = ByteBuffer.wrap(new byte[6 + this.areaCoordinates.length + 12 + this.content.length]);
+
+            ByteBuffer buf = ByteBuffer.wrap(new byte[this.areaDataLength]);
             buf.order(ByteOrder.LITTLE_ENDIAN);
 
             buf.put(areaNum);
@@ -120,7 +286,6 @@ public class DataRepo {
 
             return buf.array();
         }
-
 
         public byte getAreaNum() {
             return areaNum;
@@ -228,7 +393,7 @@ public class DataRepo {
 
     }
 
-    private class TimeProgramArea{
+    public static class TimeProgramArea{
 
         /**
          * 01 --区域号(1)
@@ -311,6 +476,31 @@ public class DataRepo {
         private byte[] content;
 
 
+        public byte[] toByteArray() {
+
+            ByteBuffer buf = ByteBuffer.wrap(new byte[ this.areaDataLength ] );
+            buf.order(ByteOrder.LITTLE_ENDIAN);
+
+            buf.put(areaNum);
+            buf.putInt(areaDataLength);
+            buf.put(areaType);
+            buf.put(areaCoordinates);
+            buf.put(areaFontColor);
+            buf.putShort(retain);
+            buf.put(actionWay);
+            buf.put(retain2);
+            buf.put(speed);
+            buf.put(stayTimePerPage);
+            buf.put(fontSize);
+            buf.putInt(timeDataLength);
+            buf.put(timeUpdateType);
+            buf.put(showType);
+            buf.putInt(timeParams);
+            buf.put(content);
+
+            return buf.array();
+        }
+
         public byte getAreaNum() {
             return areaNum;
         }
@@ -320,12 +510,11 @@ public class DataRepo {
         }
 
         public int getAreaDataLength() {
-            int length = 6 + this.areaCoordinates.length + 8 + 4 + 6 + this.content.length;
-            return length;
+            return areaDataLength;
         }
 
-        public void setAreaDataLength(int areaDataLength) {
-            this.areaDataLength = areaDataLength;
+        public void setAreaDataLength() {
+            this.areaDataLength = 6 + this.areaCoordinates.length + 8 + 4 + 6 + this.content.length;
         }
 
         public byte getAreaType() {
@@ -441,7 +630,7 @@ public class DataRepo {
         }
     }
 
-    private class BitmapArea{
+    public static class BitmapArea{
         /**
          * 01 --区域号(1)
          */
@@ -472,6 +661,20 @@ public class DataRepo {
          */
         private byte[] bitmapInfo;
 
+        public byte[] toByteArray() {
+
+            ByteBuffer buf = ByteBuffer.wrap(new byte[this.areaDataLength] );
+            buf.order(ByteOrder.LITTLE_ENDIAN);
+
+            buf.put(areaNum);
+            buf.putInt(areaDataLength);
+            buf.put(areaType);
+            buf.put(areaCoordinates);
+            buf.putShort(areaPage);
+            buf.put(bitmapInfo);
+
+            return buf.array();
+        }
 
         public byte getAreaNum() {
             return areaNum;
@@ -482,12 +685,11 @@ public class DataRepo {
         }
 
         public int getAreaDataLength() {
-            int length = 6 + this.areaCoordinates.length + 2 + this.bitmapInfo.length;
-            return length;
+            return areaDataLength;
         }
 
-        public void setAreaDataLength(int areaDataLength) {
-            this.areaDataLength = areaDataLength;
+        public void setAreaDataLength() {
+            this.areaDataLength = 6 + this.areaCoordinates.length + 2 + this.bitmapInfo.length;
         }
 
         public byte getAreaType() {
@@ -523,7 +725,7 @@ public class DataRepo {
         }
     }
 
-    private class VoiceBroadcastData{
+    public static class VoiceBroadcastData{
         /**
          * 01 --区域号(1)
          */
@@ -569,6 +771,23 @@ public class DataRepo {
          */
         private byte[] content;
 
+        public byte[] toByteArray() {
+
+            ByteBuffer buf = ByteBuffer.wrap(new byte[this.areaDataLength] );
+            buf.order(ByteOrder.LITTLE_ENDIAN);
+
+            buf.put(areaNum);
+            buf.putInt(areaDataLength);
+            buf.put(areaType);
+            buf.put(retain);
+            buf.put(playWay);
+            buf.putInt(multiplePlayIntervals);
+            buf.put(playTimes);
+            buf.putInt(voiceLength);
+            buf.put(content);
+
+            return buf.array();
+        }
 
         public byte getAreaNum() {
             return areaNum;
@@ -579,8 +798,11 @@ public class DataRepo {
         }
 
         public int getAreaDataLength() {
-            int length = 6 + this.retain.length + 10 + this.content.length;
-            return length;
+            return areaDataLength;
+        }
+
+        public void setAreaDataLength() {
+            this.areaDataLength = 6 + this.retain.length + 10 + this.content.length;
         }
 
         public byte getAreaType() {
@@ -640,10 +862,15 @@ public class DataRepo {
         }
     }
 
-    public static void main(String[] args) {
-        byte [] bytes = getDateConstructor();
+    public static void main(String[] args) throws Exception {
+        /*byte [] bytes = getDateConstructor();
         for (byte aByte : bytes) {
             System.out.println(Integer.toHexString((int)aByte));
-        }
+        }*/
+
+        File file = new File("C:\\Users\\elizabeth\\Desktop\\xhsgg3.jpg");
+        FileOutputStream fileOutputStream = new FileOutputStream(file);
+        fileOutputStream.write(bitmapInfo());
+        fileOutputStream.flush();
     }
 }
