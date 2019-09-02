@@ -19,7 +19,7 @@ import java.util.Date;
 public class Demo {
     public static void main(String[] args) {
         // 初始化（1）
-        Velocity.init("E:/project/MyTest/src/main/resources/velocity.properties");
+        Velocity.init("E:/project/my-test/src/main/resources/velocity.properties");
 
         // 创建context，存放变量（2）
         VelocityContext context = new VelocityContext();
