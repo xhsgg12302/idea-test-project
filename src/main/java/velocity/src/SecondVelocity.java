@@ -43,7 +43,7 @@ public class SecondVelocity {
     }
     public static VelocityEngine getVelocityEngine(){
         VelocityEngine ve = new VelocityEngine();
-        ve.init("E:/project/MyTest/src/main/resources/velocity.properties");
+        ve.init("E:/project/my-test/src/main/resources/velocity.properties");
         return ve;
     }
     public static ArrayList getNames() {
