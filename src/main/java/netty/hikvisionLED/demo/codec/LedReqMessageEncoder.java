@@ -16,7 +16,7 @@ public class LedReqMessageEncoder extends MessageToByteEncoder<LedRequestMessage
     @Override
     protected void encode(ChannelHandlerContext ctx, LedRequestMessage msg, ByteBuf out) throws Exception {
 
-        System.out.println("encode codec...");
+        System.out.println("encode and send");
 
         out.writeInt(msg.getFrameHead());
         out.writeByte(msg.getAddress());

@@ -10,10 +10,9 @@ import utils.MQEnum;
 import utils.Md5Test;
 
 import javax.jms.*;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Copyright 2018 ...com Inc. All Rights Reserved.
@@ -55,19 +54,20 @@ public class JmsProducer {
         /*String sign = Md5Test.MD5Encode(MQEnum.MQMD5EncodeOriginEnum.ORIGIN_anft.getCode() + DateTimeUtil.getSignTime(), "utf-8").toUpperCase();
         MqMain mqMain = new MqMain();
         mqMain.setSign(sign);
-        mqMain.setCommand("inScanRecord");
-        mqMain.setMessageId("11222");
+        mqMain.setCommand("syncCoupon");
+        mqMain.setMessageId("112222");
         mqMain.setTimestamp(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-        mqMain.setData(new Unattended("入口","1","192.168.1.112","0987654321",new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())));
+        mqMain.setData(obtainData());
         String msg = JSON.toJSONString(mqMain);*/
-        String temp = "{\"command\":\"upCarSpaces\",\"data\":[{\"totalParkingSpace\":250,\"areaName\":\"\",\"parkingLotSeq\":\"69\",\"totalNormalParkingSpace\":\"\",\"totalFixedVipParkingSpace\":\"\",\"totalRemainingParkingSpace\":241,\"fixedVipParkingSpaceRemaining\":\"\",\"totalNormalParkingSpaceRemaining\":\"\",\"type\":1}],\"messageId\":\"6562870326156460032\",\"sign\":\"D61642D40A05705010406728863E391B\",\"timestamp\":\"1564710217992\"}";
+        String temp = "12345";
+        //String temp = "{\"command\":\"upCarSpaces\",\"data\":[{\"totalParkingSpace\":250,\"areaName\":\"\",\"parkingLotSeq\":\"69\",\"totalNormalParkingSpace\":\"\",\"totalFixedVipParkingSpace\":\"\",\"totalRemainingParkingSpace\":241,\"fixedVipParkingSpaceRemaining\":\"\",\"totalNormalParkingSpaceRemaining\":\"\",\"type\":1}],\"messageId\":\"6562870326156460032\",\"sign\":\"D61642D40A05705010406728863E391B\",\"timestamp\":\"1564710217992\"}";
         /*ReturnMqMain returnMqMain = new ReturnMqMain();
         returnMqMain.setCommand("upCarSpaces");
         returnMqMain.setMsg("成功");
         returnMqMain.setCode("0");
         returnMqMain.setMessageId("921844571271467008");
         String temp = JSON.toJSONString(returnMqMain);*/
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 3; i++) {
             TextMessage message = session.createTextMessage(temp);
             messageProducer.send(message);
         }

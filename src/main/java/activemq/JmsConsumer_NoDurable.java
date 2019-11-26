@@ -1,12 +1,8 @@
 package activemq;
 
-import com.alibaba.fastjson.JSON;
-import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.*;
-import javax.xml.soap.Text;
-import java.util.HashMap;
 
 /**
  * Copyright 2018 ...com Inc. All Rights Reserved.
@@ -26,7 +22,7 @@ public class JmsConsumer_NoDurable {
         // MessageProducer messageProducer; // 消息消费者
 
         // 实例化连接工厂
-        connectionFactory = new ActiveMQConnectionFactory("admin", "admin", "tcp://192.168.1.2:61616");
+        connectionFactory = new ActiveMQConnectionFactory("admin", "admin", "tcp://localhost:61616");
 
         connection = connectionFactory.createConnection(); // 通过连接工厂获取连接
         connection.setClientID("client-3");
