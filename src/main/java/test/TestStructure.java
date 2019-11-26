@@ -1,6 +1,7 @@
 package test;
 
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * Copyright 2018 ...com Inc. All Rights Reserved.
@@ -10,12 +11,15 @@ import java.io.IOException;
  * @Date: 2019/7/8 10:09
  * @Description:
  */
-public class TestStructure implements java.io.Closeable,java.io.Serializable,Cloneable{
+public abstract class TestStructure<K,V> implements java.io.Closeable,java.io.Serializable,Cloneable{
 
     private Long id;
 
 
-    private String name;
+    String defautl;
+
+
+    private String name = "elizabeth";
 
     /**
      * _12302_2019-07-08
@@ -80,7 +84,7 @@ public class TestStructure implements java.io.Closeable,java.io.Serializable,Clo
 
 
 
-
+    abstract void putAll(Map<? extends K, ? extends V> m);
 
     public boolean isColse(){
         return false;
@@ -116,4 +120,5 @@ public class TestStructure implements java.io.Closeable,java.io.Serializable,Clo
                 ", account='" + account + '\'' +
                 '}';
     }
+
 }
