@@ -3,12 +3,14 @@ package me.maupassant.springmvc.controller;
 import me.maupassant.springmvc.entity.Employee;
 import me.maupassant.springmvc.entity.TestObject;
 import me.maupassant.springmvc.entity.User;
+import me.maupassant.springmvc.services.ITest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 import java.util.Date;
 
 /**
@@ -57,5 +59,15 @@ public class TestController {
     @ResponseBody
     public User testLocalDateTime(@RequestBody User user){
         return user;
+    }
+
+    @Resource
+    private ITest iTest;
+    @RequestMapping(value = "/transaction")
+    @ResponseBody
+    public Object testTransaction(){
+        User user = new User("909","world","hello");
+        Integer result = iTest.testTransaction(user);
+        return result;
     }
 }

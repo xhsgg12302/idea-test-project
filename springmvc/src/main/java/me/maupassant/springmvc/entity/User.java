@@ -22,6 +22,16 @@ public class User {
 	private String account;
 	private String password;
 	private LocalDateTime time;
+
+	public User() {
+	}
+
+	public User(String name, String account, String password) {
+		this.name = name;
+		this.account = account;
+		this.password = password;
+	}
+
 	public String getName() {
 		return name;
 	}

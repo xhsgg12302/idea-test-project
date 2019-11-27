@@ -19,5 +19,8 @@ import me.maupassant.springmvc.entity.User;
  *
  */
 public interface UserDao {
+
 	User getUser(Map<String, Object> condition);
+
+	Integer insert(User user);
 }
