@@ -38,4 +38,11 @@
         <!-- 用include标签引入sql片段，refid写定义sql片段的id，where标签不要写在片段里 -->
         select * from user
     </select>
+
+    <insert id="insert" parameterType="me.maupassant.springmvc.entity.User" >
+        insert into user(name ,account ,password )
+		values(
+		#{name},#{account},#{password}
+		)
+    </insert>
 </mapper>
