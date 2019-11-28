@@ -59,9 +59,15 @@
         class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
-    
+
+
+    <!--事务参考:
+        https://blog.csdn.net/jiadajing267/article/details/81056057
+        https://www.iteye.com/blog/bugyun-2434939
+        https://www.jianshu.com/p/5687e2a38fbc
+    -->
     <!-- 启用支持annotation注解方式事务管理 -->
-    <tx:annotation-driven transaction-manager="transactionManager" />
+    <tx:annotation-driven/>
     
     <!--热部署工具-->
     <!--<bean id="mapperHotDeploy" class="me.maupassant.springmvc.utils.MapperHotDeployPlugin"/>-->

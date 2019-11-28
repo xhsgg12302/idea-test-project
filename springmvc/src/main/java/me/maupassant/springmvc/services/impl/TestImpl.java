@@ -28,7 +28,7 @@ public class TestImpl implements ITest {
         Integer temp;
         try {
             temp = iUserService.insert(user);
-            int i = 10/0;
+            //int i = 10/0;
         }catch (Exception e){
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             return 9;
