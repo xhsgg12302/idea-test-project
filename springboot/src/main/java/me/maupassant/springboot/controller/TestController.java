@@ -1,6 +1,9 @@
 package me.maupassant.springboot.controller;
 
 import me.maupassant.springboot.service.ItestAop;
+import me.maupassant.springboot.utils.stackoverflow.NetTask;
+import me.maupassant.springboot.utils.stackoverflow.NetworkListener;
+import me.maupassant.springboot.utils.stackoverflow.NetworkStatusThread;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,6 +36,46 @@ public class TestController {
     public Object aop(){
         Object test = itestAop.test();
         return new HashMap(){{put("code",1000);put("desc",test);}};
+    }
+
+    @RequestMapping(value = "start")
+    @ResponseBody
+    public Object start(){
+        try{
+            new Thread(NetworkStatusThread.getInstance()).start();
+
+            Thread.sleep(2* 1000l);
+            NetworkStatusThread.getInstance().addNetTask(new NetTask("39.107.88.49", new NetworkListener() {
+                @Override
+                public void sendNetworkStatus(String status) {
+                    System.out.println("39.107.88.49 \t" + status);
+                }
+            }));
+
+            Thread.sleep(4 * 1000l);
+            NetworkStatusThread.getInstance().addNetTask(new NetTask("127.0.0.1", new NetworkListener() {
+                @Override
+                public void sendNetworkStatus(String status) {
+                    System.out.println("127.0.0.1 \t" + status);
+                }
+            }));
+        }catch ( Exception e){
+            // ignore...
+        }
+        return new HashMap(){{put("code",1000);put("desc","start");}};
+    }
+
+    @RequestMapping(value = "add")
+    @ResponseBody
+    public Object checkNet(String ip){
+
+        NetworkStatusThread.getInstance().addNetTask(new NetTask(ip, new NetworkListener() {
+            @Override
+            public void sendNetworkStatus(String status) {
+                System.out.println(ip +" \t" + status);
+            }
+        }));
+        return new HashMap(){{put("code",1000);put("desc","addTask");}};
     }
 
 }

@@ -1,4 +1,4 @@
-package activemq;
+package activemq.first_study;
 
 /**
  * Copyright 2018 ...com Inc. All Rights Reserved.
