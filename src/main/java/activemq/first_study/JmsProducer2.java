@@ -1,4 +1,4 @@
-package activemq;
+package activemq.first_study;
 
 import com.alibaba.fastjson.JSON;
 import entity.MqMain;
@@ -58,7 +58,8 @@ public class JmsProducer2 {
          */
 
         Map<String,Object> dataMap = new HashMap<>();
-        dataMap.put("id",System.currentTimeMillis());
+        dataMap.put("unique_identify","1234567890");
+        /*dataMap.put("id",System.currentTimeMillis());
         dataMap.put("couponCode",String.valueOf(IdGenerator.getInstance(1,2).getId()));
         dataMap.put("orderId", "639780826019794940");
         dataMap.put("carNumber","甘K00001");//2019-11-01 01:18:22
@@ -66,13 +67,13 @@ public class JmsProducer2 {
         dataMap.put("endTime",LocalDateTime.of(2019,11,01,12,30,59));
         dataMap.put("preferentialModel",13);
         dataMap.put("operationCode",3);
-        dataMap.put("clazz",4);
+        dataMap.put("clazz",4);*/
 
 
         String sign = Md5Test.MD5Encode(MQEnum.MQMD5EncodeOriginEnum.ORIGIN_anft.getCode() + DateTimeUtil.getSignTime(), "utf-8").toUpperCase();
         MqMain mqMain = new MqMain();
         mqMain.setSign(sign);
-        mqMain.setCommand("networkCar");
+        mqMain.setCommand("inScanRecord");
         mqMain.setMessageId("112222");
         mqMain.setTimestamp(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         mqMain.setData(dataMap);

@@ -1,4 +1,4 @@
-package activemq;
+package activemq.first_study;
 
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;

@@ -27,12 +27,19 @@ public class TestImpl implements ITest {
     public Integer testTransaction(User user) {
         Integer temp;
         try {
-            temp = iUserService.insert(user);
-            //int i = 10/0;
+            //通过this 调用的时候回不回滚，指的是被调用方法（testTransaction）上是否加@Transaction，，
+            temp = insert(user);
+
         }catch (Exception e){
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             return 9;
         }
+        return temp;
+    }
+    @Transactional
+    public Integer insert(User user){
+        Integer temp = iUserService.insert(user);
+        int i = 10/0;
         return temp;
     }
 }

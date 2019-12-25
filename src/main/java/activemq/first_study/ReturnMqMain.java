@@ -1,4 +1,4 @@
-package activemq;
+package activemq.first_study;
 
 import java.io.Serializable;
 import java.util.Map;
