@@ -2,7 +2,14 @@ package lambda;
 
 import lambda.stream.model.Person;
 import lambda.stream.utils.StreamUtils;
+import org.springframework.jms.core.MessageCreator;
 
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.Session;
+import javax.jms.TextMessage;
+import java.lang.invoke.LambdaConversionException;
+import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -63,7 +70,7 @@ public class Test2 {
         list1.forEach(System.out::println);
     }
 
-    public static void main(String[] args) {
+    public static void main4(String[] args) {
         List<Person> list = StreamUtils.getList();
         list.stream()
                 .filter(person -> person.getNumberOfWar() == 13)
@@ -72,5 +79,32 @@ public class Test2 {
                 .orElseGet(()->{Person c = new Person(); c.setNumberOfWar(13); return c;})
                 .setNumberOfWar(14);
         list.forEach(System.out::println);
+    }
+
+    public static void main(String[] args) {
+        Test2 test2 = new Test2();
+        test2.test1();
+    }
+
+    public void test1(){
+        test2((session)->{
+            TextMessage textMessage = session.createTextMessage("{12345678909876543212}");
+            return textMessage;
+        });
+    }
+
+    public void test2(MessageCreator messageCreator){
+        if(messageCreator instanceof LambdaConversionException){
+            System.out.println(1);
+        }
+
+        Class<? extends MessageCreator> aClass = messageCreator.getClass();
+        String name = aClass.getName();
+
+        Field[] fields = aClass.getFields();
+        for (Field field : fields) {
+            System.out.println(field.getName());
+        }
+        System.out.println(messageCreator);
     }
 }
