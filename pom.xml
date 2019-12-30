@@ -213,6 +213,12 @@
         </dependency>
         <!-- spring start -->
 
+        <!-- https://mvnrepository.com/artifact/ognl/ognl -->
+        <dependency>
+            <groupId>ognl</groupId>
+            <artifactId>ognl</artifactId>
+            <version>3.2.10</version>
+        </dependency>
 
     </dependencies>
 

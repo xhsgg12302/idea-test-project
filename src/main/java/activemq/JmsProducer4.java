@@ -50,39 +50,7 @@ public class JmsProducer4 {
         mqMain.setTimestamp(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         mqMain.setData(obtainData());1560836610128
         String msg = JSON.toJSONString(mqMain);*/
-        String temp = "{\n" +
-                "\t\"command\": \"inOrder\",\n" +
-                "\t\"data\": [{\n" +
-                "\t\t\"alipayFlag\": \"0\",\n" +
-                "\t\t\"carBrand\": \"宝马\",\n" +
-                "\t\t\"carNum\": \"京MN1122\",\n" +
-                "\t\t\"carNumColor\": \"蓝色\",\n" +
-                "\t\t\"carParkId\": \"588\",\n" +
-                "\t\t\"carParkName\": \"西直门内北顺城街11号院\",\n" +
-                "\t\t\"carSubBrand\": \"A6\",\n" +
-                "\t\t\"carType\": \"1\",\n" +
-                "\t\t\"cardNum\": \"\",\n" +
-                "\t\t\"cardType\": \"1\",\n" +
-                "\t\t\"cardTypeName\": \"临时车\",\n" +
-                "\t\t\"enterCarFullPicture\": \"\",\n" +
-                //"\t\t\"enterCarLicensePicture\": \"https://wtfu12302.github.io/images/asdfghjkl.jpg\",\n" +
-                "\t\t\"enterCarNum\": \"京MN1122\",\n" +
-                "\t\t\"enterChannel\": \"1\",\n" +
-                "\t\t\"enterGate\": \"入口\",\n" +
-                "\t\t\"enterTime\": \"1571020811326\",\n" +
-                "\t\t\"enterType\": \"1\",\n" +
-                "\t\t\"gateType\": \"1\",\n" +
-                "\t\t\"inOperatorAccout\": \"李四\",\n" +
-                "\t\t\"inOperatorTime\": \"2019-10-14 10:40:11\",\n" +
-                "\t\t\"isPay\": \"2\",\n" +
-                "\t\t\"parkingLotSeq\": \"69\",\n" +
-                "\t\t\"recordNum\": \"633252708706684928\",\n" +
-                "\t\t\"refResource\": \"1\"\n" +
-                "\t}],\n" +
-                "\t\"messageId\": \"6589338873019629568\",\n" +
-                "\t\"sign\": \"B30ECFE16C1F81B132F2F5952606E44A\",\n" +
-                "\t\"timestamp\": \"1571020811326\"\n" +
-                "}";
+        String temp = "";
         //String temp = "{\"command\":\"upCarSpaces\",\"data\":[{\"totalParkingSpace\":250,\"areaName\":\"\",\"parkingLotSeq\":\"69\",\"totalNormalParkingSpace\":\"\",\"totalFixedVipParkingSpace\":\"\",\"totalRemainingParkingSpace\":241,\"fixedVipParkingSpaceRemaining\":\"\",\"totalNormalParkingSpaceRemaining\":\"\",\"type\":1}],\"messageId\":\"6562870326156460032\",\"sign\":\"D61642D40A05705010406728863E391B\",\"timestamp\":\"1564710217992\"}";
         /*ReturnMqMain returnMqMain = new ReturnMqMain();
         returnMqMain.setCommand("upCarSpaces");
