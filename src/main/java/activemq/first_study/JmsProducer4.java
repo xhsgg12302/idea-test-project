@@ -1,4 +1,4 @@
-package activemq;
+package activemq.first_study;
 
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
@@ -12,7 +12,7 @@ import javax.jms.*;
  * @Date: 2018/12/14 11:31
  * @Description:
  */
-public class JmsProducer3 {
+public class JmsProducer4 {
 
     public static void main(String[] args) throws Exception {
 
@@ -48,7 +48,7 @@ public class JmsProducer3 {
         mqMain.setCommand("syncCoupon");
         mqMain.setMessageId("112222");
         mqMain.setTimestamp(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-        mqMain.setData(obtainData());
+        mqMain.setData(obtainData());1560836610128
         String msg = JSON.toJSONString(mqMain);*/
         String temp = "";
         //String temp = "{\"command\":\"upCarSpaces\",\"data\":[{\"totalParkingSpace\":250,\"areaName\":\"\",\"parkingLotSeq\":\"69\",\"totalNormalParkingSpace\":\"\",\"totalFixedVipParkingSpace\":\"\",\"totalRemainingParkingSpace\":241,\"fixedVipParkingSpaceRemaining\":\"\",\"totalNormalParkingSpaceRemaining\":\"\",\"type\":1}],\"messageId\":\"6562870326156460032\",\"sign\":\"D61642D40A05705010406728863E391B\",\"timestamp\":\"1564710217992\"}";

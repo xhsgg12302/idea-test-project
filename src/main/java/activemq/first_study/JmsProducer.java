@@ -1,17 +1,17 @@
-package activemq;
+package activemq.first_study;
 
 import com.alibaba.fastjson.JSON;
 import entity.MqMain;
+import entity.Unattended;
+import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import utils.DateTimeUtil;
-import utils.IdGenerator;
 import utils.MQEnum;
 import utils.Md5Test;
 
 import javax.jms.*;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.*;
 
 /**
@@ -21,7 +21,7 @@ import java.util.*;
  * @Date: 2018/12/14 11:31
  * @Description:
  */
-public class JmsProducer2 {
+public class JmsProducer {
 
     public static void main(String[] args) throws Exception {
 
@@ -42,43 +42,33 @@ public class JmsProducer2 {
         session = connection.createSession(Boolean.FALSE, Session.AUTO_ACKNOWLEDGE); // 创建Session
 
         //destination = session.createTopic("response_anft");
-        destination = session.createTopic("69");
+        destination = session.createTopic("request_anft");
 
         messageProducer = session.createProducer(destination); // 创建消息生产者
 
-        /**
-         * id   String 是 id
-         * orderId		String	是	订单编号
-         * carNumber		String	是	车牌号码
-         * startTime		LocalDateTime	是	开始时间
-         * endTime		LocalDateTime	是	结束时间
-         * preferentialModel		Integer	是	优惠模式	分钟
-         * operationCode		Integer	是	操作码类型	1、增加车辆信息 2、删除车辆信息 3、更新车辆信息
-         *
-         */
+        //messageProducer.setDeliveryMode(DeliveryMode.PERSISTENT);
 
-        Map<String,Object> dataMap = new HashMap<>();
-        dataMap.put("id",System.currentTimeMillis());
-        dataMap.put("couponCode",String.valueOf(IdGenerator.getInstance(1,2).getId()));
-        dataMap.put("orderId", "639780826019794940");
-        dataMap.put("carNumber","甘K00001");//2019-11-01 01:18:22
-        dataMap.put("startTime", LocalDateTime.of(2019,11,01,9,25,04));
-        dataMap.put("endTime",LocalDateTime.of(2019,11,01,12,30,59));
-        dataMap.put("preferentialModel",13);
-        dataMap.put("operationCode",3);
-        dataMap.put("clazz",4);
+        //ReturnMqMain returnMqMain = new ReturnMqMain();
+        //String command, EnumCarOwnerPaySyncStatus syncSuccess, String messageId, String remark
 
-
-        String sign = Md5Test.MD5Encode(MQEnum.MQMD5EncodeOriginEnum.ORIGIN_anft.getCode() + DateTimeUtil.getSignTime(), "utf-8").toUpperCase();
+        /*String sign = Md5Test.MD5Encode(MQEnum.MQMD5EncodeOriginEnum.ORIGIN_anft.getCode() + DateTimeUtil.getSignTime(), "utf-8").toUpperCase();
         MqMain mqMain = new MqMain();
         mqMain.setSign(sign);
-        mqMain.setCommand("networkCar");
+        mqMain.setCommand("syncCoupon");
         mqMain.setMessageId("112222");
         mqMain.setTimestamp(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-        mqMain.setData(dataMap);
-        String msg = JSON.toJSONString(mqMain);
-        for (int i = 0; i < 1; i++) {
-            TextMessage message = session.createTextMessage(msg);
+        mqMain.setData(obtainData());
+        String msg = JSON.toJSONString(mqMain);*/
+        String temp = "12345";
+        //String temp = "{\"command\":\"upCarSpaces\",\"data\":[{\"totalParkingSpace\":250,\"areaName\":\"\",\"parkingLotSeq\":\"69\",\"totalNormalParkingSpace\":\"\",\"totalFixedVipParkingSpace\":\"\",\"totalRemainingParkingSpace\":241,\"fixedVipParkingSpaceRemaining\":\"\",\"totalNormalParkingSpaceRemaining\":\"\",\"type\":1}],\"messageId\":\"6562870326156460032\",\"sign\":\"D61642D40A05705010406728863E391B\",\"timestamp\":\"1564710217992\"}";
+        /*ReturnMqMain returnMqMain = new ReturnMqMain();
+        returnMqMain.setCommand("upCarSpaces");
+        returnMqMain.setMsg("成功");
+        returnMqMain.setCode("0");
+        returnMqMain.setMessageId("921844571271467008");
+        String temp = JSON.toJSONString(returnMqMain);*/
+        for (int i = 0; i < 3; i++) {
+            TextMessage message = session.createTextMessage(temp);
             messageProducer.send(message);
         }
         connection.close();
