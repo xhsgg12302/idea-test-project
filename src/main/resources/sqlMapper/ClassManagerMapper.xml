@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mybatis.mapper.ClassManagerDao">
+
+	<resultMap id="BaseResultMap" type="mybatis.bean.ClassManagerDO" >
+		<result column="id" property="id" />
+		<result column="class_code" property="classCode" />
+		<result column="class_name" property="className" />
+		<result column="class_desc" property="classDesc" />
+		<result column="remark" property="remark" />
+		<result column="status" property="status" />
+		<result column="operate_time" property="operateTime" />
+		<result column="operator" property="operator" />
+		<result column="yuliu1" property="yuliu1" />
+		<result column="yuliu2" property="yuliu2" />
+		<collection property="classCheckDO" ofType="mybatis.bean.ClassCheckDO">
+			<id column="c_id" property="id"/>
+			<result column="class_id" property="classId" />
+			<result column="valid_start_time" property="validStartTime" />
+			<result column="valid_end_time" property="validEndTime" />
+			<result column="check_type" property="checkType" />
+			<result column="check_time" property="checkTime" />
+			<result column="late_time" property="lateTime" />
+			<result column="early_time" property="earlyTime" />
+			<result column="nulll_time" property="nulllTime" />
+		</collection>
+	</resultMap>
+
+	<select id="get" resultMap="BaseResultMap">
+		SELECT tcm.`id`,`class_code`,`class_name`,`class_desc`,`remark`,`status`,tcm.`operate_time`,tcm.`operator`,tcm.`yuliu1`,tcm.`yuliu2`,tcc.*
+			FROM tr_class_manager tcm LEFT JOIN tr_class_check tcc ON tcm.id = tcc.class_id
+		where tcm.id = #{value}
+	</select>
+
+	<select id="list" resultType="com.anft.common.domain.ClassManagerDO">
+		SELECT tcm.`id`,`class_code`,`class_name`,`class_desc`,COUNT(tcc.class_id) as`remark`,`status`,tcm.`operate_time`,tcm.`operator`,tcm.`yuliu1`,tcm.`yuliu2`
+		FROM tr_class_manager tcm
+		LEFT JOIN tr_class_check tcc ON tcm.id = tcc.class_id
+        <where>
+		  		  <if test="id != null and id != ''"> and tcm.id = #{id} </if>
+		  		  <if test="classCode != null and classCode != ''"> and tcm.class_code = #{classCode} </if>
+		  		  <if test="name != null and name != ''"> and tcm.class_name like "%${name}%" </if>
+		  		  <if test="classDesc != null and classDesc != ''"> and tcm.class_desc = #{classDesc} </if>
+		  		  <if test="remark != null and remark != ''"> and tcm.remark = #{remark} </if>
+		  		  <if test="status != null and status != ''"> and tcm.status = #{status} </if>
+		  		  <if test="operateTime != null and operateTime != ''"> and tcm.operate_time = #{operateTime} </if>
+		  		  <if test="operator != null and operator != ''"> and tcm.operator = #{operator} </if>
+		  		  <if test="yuliu1 != null and yuliu1 != ''"> and tcm.yuliu1 = #{yuliu1} </if>
+		  		  <if test="yuliu2 != null and yuliu2 != ''"> and tcm.yuliu2 = #{yuliu2} </if>
+		</where>
+		<![CDATA[
+			GROUP BY tcm.id
+		]]>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by tcm.id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from tr_class_manager
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="classCode != null and classCode != ''"> and class_code = #{classCode} </if>
+			      <if test="name != null and name != ''"> and class_name like "%${name}%" </if>
+		  		  <if test="classDesc != null and classDesc != ''"> and class_desc = #{classDesc} </if>
+		  		  <if test="remark != null and remark != ''"> and remark = #{remark} </if>
+		  		  <if test="status != null and status != ''"> and status = #{status} </if>
+		  		  <if test="operateTime != null and operateTime != ''"> and operate_time = #{operateTime} </if>
+		  		  <if test="operator != null and operator != ''"> and operator = #{operator} </if>
+		  		  <if test="yuliu1 != null and yuliu1 != ''"> and yuliu1 = #{yuliu1} </if>
+		  		  <if test="yuliu2 != null and yuliu2 != ''"> and yuliu2 = #{yuliu2} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.anft.common.domain.ClassManagerDO" useGeneratedKeys="true" keyProperty="id">
+		insert into tr_class_manager
+		(
+			`id`,
+			`class_code`, 
+			`class_name`, 
+			`class_desc`, 
+			`remark`, 
+			`status`, 
+			`operate_time`, 
+			`operator`, 
+			`yuliu1`, 
+			`yuliu2`
+		)
+		values
+		(
+			#{id},
+			#{classCode}, 
+			#{className}, 
+			#{classDesc}, 
+			#{remark}, 
+			#{status}, 
+			#{operateTime}, 
+			#{operator}, 
+			#{yuliu1}, 
+			#{yuliu2}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.anft.common.domain.ClassManagerDO">
+		update tr_class_manager 
+		<set>
+			<if test="classCode != null">`class_code` = #{classCode}, </if>
+			<if test="className != null">`class_name` = #{className}, </if>
+			<if test="classDesc != null">`class_desc` = #{classDesc}, </if>
+			<if test="remark != null">`remark` = #{remark}, </if>
+			<if test="status != null">`status` = #{status}, </if>
+			<if test="operateTime != null">`operate_time` = #{operateTime}, </if>
+			<if test="operator != null">`operator` = #{operator}, </if>
+			<if test="yuliu1 != null">`yuliu1` = #{yuliu1}, </if>
+			<if test="yuliu2 != null">`yuliu2` = #{yuliu2}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from tr_class_manager where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from tr_class_manager where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+    <select id="getManagerName" resultType="com.anft.common.domain.ClassManagerDO">
+        select id, class_name AS className,class_code  AS classCode from tr_class_manager where status ='1'
+    </select>
+
+</mapper>

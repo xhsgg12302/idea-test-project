@@ -20,7 +20,7 @@ public class TestServerSocket {
         InetSocketAddress inetSocketAddress;
         ServerSocket server;
         try {
-            inetSocketAddress = new InetSocketAddress("192.168.1.45",12302);
+            inetSocketAddress = new InetSocketAddress("192.168.0.100",12302);
             server = new ServerSocket();
             server.bind(inetSocketAddress);
             Socket socket = server.accept();
@@ -46,15 +46,17 @@ class Ta implements Runnable{
             //socket.setSoTimeout(5 * 1000);
             String _pattern = "yyyy-MM-dd HH:mm:ss";
             SimpleDateFormat format = new SimpleDateFormat(_pattern);
+            InputStream ips = socket.getInputStream();
             while(true){
                 System.out.println("开始：" + format.format(new Date()));
-                InputStream ips = socket.getInputStream();
                 ByteArrayOutputStream bops = new ByteArrayOutputStream();
                 try{
-                    int data = -1;
-                    while((data = ips.read()) != -1){
-                        System.out.println(data);
+                    int data;
+                    byte[] buf = new byte[36];
+                    while((data = ips.read(buf)) != -1){
+                        //System.out.println(data);
                         bops.write(data);
+                        System.out.println(new String(buf,"UTF-8"));
                     }
                 }catch (Exception e){
                     e.printStackTrace();
