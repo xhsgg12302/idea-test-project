@@ -5,6 +5,8 @@ import org.apache.commons.lang3.StringUtils;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -57,11 +59,7 @@ public class DateTimeUtil {
     SimpleDateFormat sp1 = new SimpleDateFormat(MEDIATIME_PATTERN);
     return sp1.format(ca.getTime());
   }
-  public static int getFullMins(Date startTime, Date endTime) {
-    int result = 0;
-    result = (int) ((endTime.getTime() - startTime.getTime()) / 1000 / 60);
-    return result;
-  }
+
 
   public static String getNowFullString() {
     Calendar ca = Calendar.getInstance();
@@ -182,6 +180,30 @@ public class DateTimeUtil {
    *
    * @return 1 大于 0 相等 -1 小于
    */
+  public static int comparativeTime(Date nowDate, Date lastDate)
+
+  {
+    SimpleDateFormat sdf = new SimpleDateFormat(LONGTIME_PATTERN2);
+    String nowTime = sdf.format(nowDate);
+    String lastTime = sdf.format(lastDate);
+    try {
+      nowDate = sdf.parse(nowTime);
+      lastDate = sdf.parse(lastTime);
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
+    if (nowDate.equals(lastDate)) {
+      return 0;
+    }
+    if (nowDate.after(lastDate)) {
+      return 1;
+    }
+    if (nowDate.before(lastDate)) {
+      return -1;
+    }
+    return 0;
+  }
+
   public static int comparativeDate(Date nowDate, Date lastDate)
 
   {
@@ -205,6 +227,7 @@ public class DateTimeUtil {
     }
     return 0;
   }
+
 
   /**
    * 得到当前日期短日期格式：HH:mm:SS.ms
@@ -316,6 +339,14 @@ public class DateTimeUtil {
     }
   }
 
+    public static Date toDate(String strDate, String pattern) {
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+        try {
+            return sdf.parse(strDate);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
   /**
    * 判断time是否在from，to之内
    *
@@ -338,7 +369,7 @@ public class DateTimeUtil {
     Calendar before = Calendar.getInstance();
     before.setTime(to);
 
-    if (date.after(after) && date.before(before)) {
+    if ((date.after(after) || date.equals(after) )&& (date.before(before) || date.equals(before))) {
       return true;
     } else {
       return false;
@@ -393,7 +424,8 @@ public class DateTimeUtil {
       while (date.getTime() <= end.getTime()) {
         list.add(sdf.format(date));
         cd.setTime(date);
-        cd.add(Calendar.DATE, 1);// 增加一天
+        // 增加一天
+        cd.add(Calendar.DATE, 1);
         date = cd.getTime();
       }
     } catch (Exception e) {
@@ -401,7 +433,13 @@ public class DateTimeUtil {
     return list;
   }
 
-  // *年*月最后一天日期
+
+  /**
+   * *年*月最后一天日期
+   * @param year
+   * @param month
+   * @return
+   */
   public static Integer getMonLastDay(Integer year, Integer month) {
     Calendar cal = Calendar.getInstance();
     cal.set(Calendar.YEAR, year);
@@ -411,7 +449,12 @@ public class DateTimeUtil {
     return cal.get(Calendar.DAY_OF_MONTH);
   }
 
-  // 某月第一天日期
+  /**
+   * 某月第一天日期
+   * @param year
+   * @param month
+   * @return
+   */
   public static Date getMonFirstDay(Integer year, Integer month) {
     Calendar cal = Calendar.getInstance();
     cal.set(Calendar.YEAR, year);
@@ -704,21 +747,28 @@ public class DateTimeUtil {
   }
 
 
-  /**
-   * 获取指定日期以后（以前）一定天数的日期
-   *
-   * @param strTime
-   * @param count
-   *     要增加（减少）的天数，是负数表示向前的天数
-   *
-   * @return String 格式与输入的日期格式相同
-   */
-  public static Date dateAddDay(Date strTime, int count) {
+  public static Date dateAddDay(Date time, int count) {
+    if (time == null)  return null;
+
     Calendar calendar = Calendar.getInstance();
-    calendar.setTime(strTime);
-    calendar.add(Calendar.DAY_OF_MONTH, count);
+    calendar.setTime(time);
+
+    calendar.add(Calendar.DATE, count);
     Date dtDst = calendar.getTime();
     return dtDst;
+  }
+
+  public static Date getDateOfZero(Date current){
+    Calendar cal = Calendar.getInstance();
+    cal.setTime(current);
+    cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), 0, 0, 0);
+    return cal.getTime();
+  }
+  public static Date getDateOfZeroGip(Date current){
+    Calendar cal = Calendar.getInstance();
+    cal.setTime(current);
+    cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), 23, 59, 59);
+    return cal.getTime();
   }
 
   /**
@@ -918,7 +968,8 @@ public class DateTimeUtil {
     }
     Calendar cal = Calendar.getInstance();
     cal.setTime(date);
-    cal.add(Calendar.MINUTE, x);// 24小时制
+    // 24小时制
+    cal.add(Calendar.MINUTE, x);
     date = cal.getTime();
     cal = null;
     return format1.format(date);
@@ -951,7 +1002,7 @@ public class DateTimeUtil {
 
 
   public static String differMins(Date inTime) {
-    int minutes = (int) ((new Date().getTime() - inTime.getTime()) / (1000 * 60));
+    int minutes = (int) ((System.currentTimeMillis() - inTime.getTime()) / (1000 * 60));
     if (minutes < 60) {
       return minutes + "分钟";
     } else {
@@ -986,7 +1037,7 @@ public class DateTimeUtil {
 
 
   public static String differMins(String inTime, String outTime) {
-    if (StringUtils.isBlank(inTime) || StringUtils.isBlank(outTime)) {
+    if (org.apache.commons.lang3.StringUtils.isBlank(inTime) || StringUtils.isBlank(outTime)) {
       return "空";
     }
     Date inDate = DateTimeUtil.parseDate(inTime);
@@ -1167,6 +1218,67 @@ public class DateTimeUtil {
         .get(Calendar.DAY_OF_MONTH);
 
     return isSameDate;
+  }
+
+
+  /*
+  * 将 LocalDateTime 格式转换成 date 格式  长时间格式
+  *
+  * */
+/*  public static Date localDateTimeToDate( LocalDateTime localDateTime){
+      ZoneId zoneId = ZoneId.systemDefault();
+      ZonedDateTime zdt = localDateTime.atZone(zoneId);
+      Date date = Date.from(zdt.toInstant());
+      return date;
+  }*/
+
+  /*
+  * 将 LocalDateTime 格式的时间 转换成 yyyy-MM-dd HH:mm:ss 格式的字符串
+  * */
+  /*  public static String localDateTimeToDateString( LocalDateTime localDateTime){
+        ZoneId zoneId = ZoneId.systemDefault();
+        ZonedDateTime zdt = localDateTime.atZone(zoneId);
+        Date date = Date.from(zdt.toInstant());
+        SimpleDateFormat sdf = new SimpleDateFormat(LONGTIME_PATTERN);// 24小时制
+        String format = sdf.format(date);
+        return format;
+    }*/
+
+    /*
+    * 将 date 转换成 LocalDateTime 格式
+    * */
+    public static LocalDateTime dateToLocalDateTime (Date date){
+        SimpleDateFormat sdf = new SimpleDateFormat(LONGTIME_PATTERN);
+        DateTimeFormatter df = DateTimeFormatter.ofPattern(LONGTIME_PATTERN);
+        LocalDateTime parse = LocalDateTime.parse(sdf.format(date), df);
+        return parse;
+    }
+
+    /*
+    * 比较 两个LocalDateTime 时间的 大小
+    *   l1 > l2  == 1
+    *   l1 < l2 == -1
+    *   l1 = l2 == 0
+    * */
+    public static int compareLDT(LocalDateTime l1,LocalDateTime l2){
+        return l1.isAfter(l2) ? 1 : (l1.isBefore(l2) ? -1 : 0);
+    }
+
+
+
+
+  /*<获取分钟数>_12302_2019-11-11_*/
+  public static Long calcMinutes(String inTime){
+    try{
+      SimpleDateFormat df = new SimpleDateFormat(LONGTIME_PATTERN);
+      Date outTime = new Date();
+      Date startTime = df.parse(inTime);
+      long l = outTime.getTime() - startTime.getTime();
+      return (l/1000/60);
+    }catch (Exception e){
+      //Ignore ...
+    }
+    return 0l;
   }
 
   public static void main(String[] args) throws ParseException {

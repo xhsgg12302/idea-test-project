@@ -3,6 +3,7 @@ package lambda.stream._operator.match;
 import lambda.stream.model.Person;
 import lambda.stream.utils.StreamUtils;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ import java.util.List;
  */
 public class TestMatch {
 
-    public static void main(String[] args) {
+    public static void main1(String[] args) {
 
         List<Person> list = StreamUtils.getList();
         list.forEach(System.out::println);
@@ -33,5 +34,19 @@ public class TestMatch {
         System.out.println("\n=========================使用noneMatch()========================================");
         boolean exist3 = list.stream().noneMatch(person -> "12302".equals(person.getName()));
         System.out.println(exist3);
+
+
+    }
+
+    public static void main(String[] args) {
+        List<String> temp1 = Arrays.asList(new String[]{"1","2","3","4"});
+        List<String> temp2 = Arrays.asList(new String[]{"5","6","7","8","9","10"});
+
+        boolean exist4 = temp1.stream().anyMatch((car) -> {
+            String tempPlate = String.valueOf(car);
+            System.out.println(tempPlate);
+            return temp2.stream().anyMatch(orderEnter -> tempPlate.equals(orderEnter));
+        });
+        System.out.println(exist4);
     }
 }

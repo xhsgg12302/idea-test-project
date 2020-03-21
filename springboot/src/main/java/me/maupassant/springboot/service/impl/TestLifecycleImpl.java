@@ -14,6 +14,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class TestLifecycleImpl implements ItestLifecycle, Lifecycle {
 
+    public TestLifecycleImpl(){
+        System.out.println("++++++++++++++++++");
+    }
+
     private Thread curr;
 
     @Override

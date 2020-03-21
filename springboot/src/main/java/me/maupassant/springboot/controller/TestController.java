@@ -5,11 +5,12 @@ import me.maupassant.springboot.utils.stackoverflow.NetTask;
 import me.maupassant.springboot.utils.stackoverflow.NetworkListener;
 import me.maupassant.springboot.utils.stackoverflow.NetworkStatusThread;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Copyright 2018 ...com Inc. All Rights Reserved.
@@ -76,6 +77,12 @@ public class TestController {
             }
         }));
         return new HashMap(){{put("code",1000);put("desc","addTask");}};
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST ,consumes = { "application/x-www-form-urlencoded" })
+    @ResponseBody
+    public Object login(@RequestParam(required = false) String username, @RequestParam(required = false) String password, HttpServletRequest request) {
+        return new HashMap(){{put("msg",username + "欢迎" );put("status",200);}};
     }
 
 }

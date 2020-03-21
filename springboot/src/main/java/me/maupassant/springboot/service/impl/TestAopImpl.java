@@ -14,6 +14,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class TestAopImpl implements ItestAop {
 
+    public TestAopImpl(){
+        System.out.println("+++++++++++");
+    }
+
     @Async
     @Override
     public Object test() {

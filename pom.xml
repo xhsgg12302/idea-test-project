@@ -297,5 +297,6 @@
     <modules>
         <module>unzip-and-zip</module>
         <module>getter</module>
+        <module>aspectj-test</module>
     </modules>
 </project>
