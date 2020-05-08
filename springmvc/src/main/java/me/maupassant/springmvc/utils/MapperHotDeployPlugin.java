@@ -1,7 +1,7 @@
 /**
  * Copyright_c 2018 qmhd.con.cn Inc. All Rights Reserved.
  * @Title MapperHotDeployPlugin.java
- * @Package: me.maupassant.springmvc.utils
+ * @Package: me.maupassant.springmvc._utils.utils
  * @Email:  xhsgg12302@outlook.com   
  * @date: 2019年4月13日 下午9:58:00 
  * @version 1.0.0

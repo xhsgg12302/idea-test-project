@@ -9,6 +9,6 @@ package demo;
  */
 public class TestMain {
     public static void main(String[] args) {
-        System.out.println("this is base.demo.TestMain.main(),and nothing else");
+        System.out.println("this is _base.base.demo.TestMain.main(),and nothing else");
     }
 }

@@ -38,9 +38,9 @@ public class LoginController {
 
 	/*@RequestMapping("/content")
 	public String getContextBean(HttpServletRequest request, Model model) {
-		//ApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring-mybatis.xml");
+		//ApplicationContext context = new ClassPathXmlApplicationContext("classpath:_framework.spring-_framework.mybatis.xml");
 		System.out.println("helloworld");
-		ApplicationContext son = new ClassPathXmlApplicationContext("classpath:spring-mvc.xml");
+		ApplicationContext son = new ClassPathXmlApplicationContext("classpath:_framework.spring-mvc.xml");
 		//String[] str = context.getBeanDefinitionNames();
 		*//*for(String ss :str){
 			System.out.println(ss);

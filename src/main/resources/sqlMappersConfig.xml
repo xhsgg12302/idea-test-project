@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration
-        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        PUBLIC "-//_framework.mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 
@@ -22,7 +22,7 @@
         </environment>
     </environments>
     <mappers>
-        <!--<mapper resource="mybatis/xml/Student.xml"/>-->
+        <!--<mapper resource="_framework.mybatis/xml/Student.xml"/>-->
         <mapper resource="sqlMapper/Student.xml"/>
     </mappers>
 </configuration>

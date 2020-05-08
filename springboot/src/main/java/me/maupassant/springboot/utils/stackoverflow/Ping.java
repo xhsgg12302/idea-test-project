@@ -143,7 +143,7 @@ public class Ping {
         Printer printer;
 
         // List of pending targets.  We use this list because if we try to
-        // register a channel with the selector while the connector thread is
+        // register a channel with the selector while the connector _base.thread is
         // blocked in the selector then we will block.
         //
         LinkedList pending = new LinkedList();
@@ -256,7 +256,7 @@ public class Ping {
 
         volatile boolean shutdown = false;
 
-        // Invoked by the main thread when it's time to shut down
+        // Invoked by the main _base.thread when it's time to shut down
         //
         void shutdown() {
             shutdown = true;

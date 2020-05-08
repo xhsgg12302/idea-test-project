@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//_framework.mybatis.org//DTD Mapper 3.0//EN" "http://_framework.mybatis.org/dtd/_framework.mybatis-3-mapper.dtd">
 
 <!-- ==================代理方式=================
 由mapper标签开始，由/mapper结束，可以把它想成一个空间，是映射文件
@@ -15,7 +15,7 @@
     属性property：是po类里所指定的列名
     通常会在原列名后面加下划线，这是固定的，这里就是id后面_
      -->
-    <resultMap type="me.maupassant.springmvc.entity.User" id="userinfoMap">
+    <resultMap type="me.maupassant.springmvc._draft.entity.User" id="userinfoMap">
         <result column="name" property="name"/>
         <result column="account" property="account"/>
         <result column="password" property="password"/>
@@ -39,7 +39,7 @@
         select * from user
     </select>
 
-    <insert id="insert" parameterType="me.maupassant.springmvc.entity.User" >
+    <insert id="insert" parameterType="me.maupassant.springmvc._draft.entity.User" >
         insert into user(name ,account ,password )
 		values(
 		#{name},#{account},#{password}

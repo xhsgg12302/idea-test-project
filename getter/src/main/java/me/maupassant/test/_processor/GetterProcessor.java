@@ -24,7 +24,7 @@ import java.util.Set;
  * @Date: 2019-11-25
  * @Desc:
  */
-@SupportedAnnotationTypes({"me.maupassant.test._annotation.Getter"})
+@SupportedAnnotationTypes({"me.maupassant._draft.test._annotation.Getter"})
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 public class GetterProcessor extends AbstractProcessor {
 

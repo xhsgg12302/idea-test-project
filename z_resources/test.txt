@@ -1,0 +1,7 @@
+更加高效（以下内容摘自《JAVA NIO》）；
+
+大多数现代操作系统都支持本地矢量I/O（native vectored I/O）操作。
+
+当您在一个通道上请求一个Scatter/Gather操作时，该请求会被翻译为适当的本地调用来直接填充或抽取缓冲区，减少或避免了缓冲区拷贝和系统调用；
+
+Scatter/Gather应该使用直接的ByteBuffers以从本地I/O获取最大性能优势；
