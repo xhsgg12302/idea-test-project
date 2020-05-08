@@ -30,7 +30,7 @@ public class NetworkStatusThread implements Runnable {
     public void addNetTask(NetTask netTask) {
         synchronized (mutex) {
             tasks.add(netTask);
-            System.out.println("thread are going on notify -addNetTask-");
+            System.out.println("_base.thread are going on notify -addNetTask-");
             mutex.notifyAll();
         }
     }
@@ -42,7 +42,7 @@ public class NetworkStatusThread implements Runnable {
                     int timeout = 2000;
 
                     while (tasks.isEmpty()) {
-                        System.out.println("thread are going on wait -isEmpty-");
+                        System.out.println("_base.thread are going on wait -isEmpty-");
                         mutex.wait();
                     }
                     NetTask curr = NetTask.class.cast(tasks.get(0));

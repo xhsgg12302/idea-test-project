@@ -30,7 +30,7 @@ public class TestLifecycleImpl implements ItestLifecycle, Lifecycle {
     @Override
     public void stop() {
         System.out.println("stop()");
-        if(curr.isAlive()) System.out.println(curr.getName() + "thread has death");
+        if(curr.isAlive()) System.out.println(curr.getName() + "_base.thread has death");
     }
 
     @Override

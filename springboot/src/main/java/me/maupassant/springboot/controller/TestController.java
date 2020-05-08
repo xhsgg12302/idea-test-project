@@ -20,10 +20,10 @@ import java.util.Map;
  * @Desc:
  */
 @Controller
-@RequestMapping(value = "test")
+@RequestMapping(value = "_draft.test")
 public class TestController {
 
-    @RequestMapping(value = "test")
+    @RequestMapping(value = "_draft.test")
     @ResponseBody
     public Object test(){
         return new HashMap(){{put("code",1000);put("desc","SUCCESS");}};

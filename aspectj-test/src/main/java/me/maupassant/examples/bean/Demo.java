@@ -14,7 +14,7 @@ import java.io.*;
 
 public class Demo {//implements PropertyChangeListener {
 
-    /*static final String fileName = "test.tmp";
+    /*static final String fileName = "_draft.test.tmp";
 
     *//**
      * when Demo is playing the listener role,
@@ -26,7 +26,7 @@ public class Demo {//implements PropertyChangeListener {
     }
 
     *//**
-     * main: test the program
+     * main: _draft.test the program
      *//*
     public static void main(String[] args){
         Point p1 = new Point();
@@ -46,11 +46,11 @@ public class Demo {//implements PropertyChangeListener {
     }
 
     *//**
-     * Save a serializable object to a file
+     * Save a serializable object to a _base.file
      *//*
     static void save(Serializable p, String fn){
         try {
-            System.out.println("Writing to file: " + p);
+            System.out.println("Writing to _base.file: " + p);
             FileOutputStream fo = new FileOutputStream(fn);
             ObjectOutputStream so = new ObjectOutputStream(fo);
             so.writeObject(p);
@@ -62,12 +62,12 @@ public class Demo {//implements PropertyChangeListener {
     }
 
     *//**
-     * Restore a serializable object from the file
+     * Restore a serializable object from the _base.file
      *//*
     static Object restore(String fn){
         try {
             Object result;
-            System.out.println("Reading from file: " + fn);
+            System.out.println("Reading from _base.file: " + fn);
             FileInputStream fi = new FileInputStream(fn);
             ObjectInputStream si = new ObjectInputStream(fi);
             return si.readObject();
