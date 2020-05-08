@@ -295,8 +295,11 @@
     </distributionManagement>
 
     <modules>
-        <module>unzip-and-zip</module>
-        <module>getter</module>
-        <module>aspectj-test</module>
+        <module>_1_aspectJ-Test</module>
+        <module>_2_getter</module>
+        <module>_3_springboot</module>
+        <module>_4_springmvc</module>
+        <module>_5_ss-ssr-url-parse</module>
+        <module>_7_unzip-and-zip</module>
     </modules>
 </project>
