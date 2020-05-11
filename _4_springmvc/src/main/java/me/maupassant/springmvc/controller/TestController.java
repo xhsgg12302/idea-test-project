@@ -21,7 +21,7 @@ import java.util.Date;
  * @Desc:
  */
 @Controller
-@RequestMapping(value = "/_draft.test")
+@RequestMapping(value = "/test")
 public class TestController {
 
     @RequestMapping("/testRb")

@@ -105,12 +105,14 @@
             <artifactId>mybatis-spring</artifactId>
             <version>1.2.2</version>
         </dependency>
-        <!-- 导入java ee jar 包 -->
+
+        <!-- 2020-05-12 tomcat8 中会报异常 ParallelWebappClassLoader 加载 javax.validation.Validator 成功了，但找不到实现类-->
+        <!--&lt;!&ndash; 导入java ee jar 包 &ndash;&gt;
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
             <version>7.0</version>
-        </dependency>
+        </dependency>-->
         <!-- 导入Mysql数据库链接jar包 -->
         <dependency>
             <groupId>mysql</groupId>
