@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration
-        PUBLIC "-//_framework.mybatis.org//DTD Config 3.0//EN"
-        "http://_framework.mybatis.org/dtd/_framework.mybatis-3-config.dtd">
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/_framework.mybatis-3-config.dtd">
 <configuration>
     <!--<plugins>
         <plugin interceptor="me.maupassant.springmvc.pluing.ExamplePlugin">
