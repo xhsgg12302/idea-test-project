@@ -25,10 +25,16 @@ public class SortUtils {
     }
 
 
-    public static void switchNumber(int[] raw,int x, int y){
+    public static void switchNumber1(int[] raw,int x, int y){
         int temp = raw[x];
         raw[x] = raw[y];
         raw[y] = temp;
+    }
+
+    public static void switchNumber(int[] raw, int x, int y ){
+        raw[x] = raw[x] ^ raw[y];
+        raw[y] = raw[x] ^ raw[y];
+        raw[x] = raw[x] ^ raw[y];
     }
 
     @Test

@@ -1,7 +1,9 @@
 package groupId;
 
+import org.springframework.util.Assert;
+
 import java.io.*;
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -13,7 +15,7 @@ public class WeChatImgRevert {
 
         Runnable r = () -> {
             String tempDir = "/Users/stevenobelia/anft-backup/elizabeth-dsk/documents/WechatFiles/xhs12302/FileStorage/Image/2019-10";
-            String[] fileName = getFileName(tempDir);
+            String[] fileName = {};
             int i = 0;
             for (String name : fileName) {
 
@@ -38,12 +40,39 @@ public class WeChatImgRevert {
     }
 
     public static void main(String[] args) {
-        String tempDir = "/Users/stevenobelia/anft-backup/elizabeth-dsk/documents/WechatFiles/xhs12302/FileStorage/Image/2019-09";
+        /*String tempDir = "/Users/stevenobelia/anft-backup/elizabeth-dsk/documents/WechatFiles/xhs12302/FileStorage/Image/2019-09";
         File file = new File(tempDir);
         File[] files = file.listFiles();
         for (File file1 : files) {
             System.out.println(getXor(file1));
+        }*/
+
+        String file = "_8_wechat-image-conversion/src/main/resources/" +
+                "5701f4497e9c98252ef818b6e5202250.dat";
+        //String temp = "_8_wechat-image-conversion/test.txt";
+        //System.out.println(System.getProperty("user.dir"));
+        File file1 = new File(file);
+        Assert.isTrue(file1.exists(), "file not exist");
+        Object[] xor = getXor(file1);
+        System.out.println(Arrays.toString(xor));
+        byte[] convert = convert(file1, (int) xor[1]);
+        GUIFrame.showImage(convert);
+    }
+
+    public static byte[] convert(File file,int mask) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        byte[] bytes = new byte[(int)file.length()];
+        try (InputStream reader = new FileInputStream(file)) {
+            reader.read(bytes);
+            for (byte aByte : bytes) {
+                baos.write(aByte ^ mask);  //mask这个值是现算的，每个人电脑的值都不一致
+            }
+            baos.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
+        return baos.toByteArray();
     }
 
     private static Object[] getXor(File file) {
@@ -60,7 +89,8 @@ public class WeChatImgRevert {
         return xor;
     }
 
-    public static Map<String,String> FILE_TYPE_MAP = new HashMap(){{put("ffd8ffe000104a464946", "jpg");}};
+    public static Map<String, String> FILE_TYPE_MAP = Horse.FILE_TYPE_MAP;
+
     /**
      * @param bytes
      * @return
@@ -86,19 +116,9 @@ public class WeChatImgRevert {
         return xorType;
     }
 
+    public void test() {
 
-
-        public static String[] getFileName(String path) {
-
-            File file = new File(path);
-
-            String[] fileName = file.list();
-
-            return fileName;
-
-        }
-
-
+    }
 }
 
 
