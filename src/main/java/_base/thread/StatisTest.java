@@ -1,7 +1,8 @@
 package _base.thread;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import jdk.nashorn.internal.codegen.CompilerConstants;
+
+import java.util.concurrent.*;
 
 /**
  * Copyright 2018 ...com Inc. All Rights Reserved.
@@ -18,10 +19,31 @@ public class StatisTest {
     public static void main(String[] args) throws Exception {
         ExecutorService executorService = Executors.newCachedThreadPool();
         for (int i = 0; i < 10 ; i++) {
-            executorService.execute(() -> {
+           /* executorService.execute(() -> {
                 add();
                 System.out.println(count);
             });
+            executorService.submit(()->{
+                System.out.println(1);
+            });
+            executorService.submit(()->{
+                System.out.println( );
+                return 1 + 1 ;
+            });*/
+            final int out = i;  int result= 3 ;
+            Future<Integer> rst = executorService.submit(()->{ int vab = out * 2; },result);
+            System.out.println(rst.get());
+
         }
 }}
+
+class abc implements Callable{
+
+
+    @Override
+    public Object call() throws Exception {
+        return null;
+    }
+}
+
 
