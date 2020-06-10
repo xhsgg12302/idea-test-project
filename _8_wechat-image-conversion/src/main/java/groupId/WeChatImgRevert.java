@@ -1,5 +1,6 @@
 package groupId;
 
+import org.junit.Test;
 import org.springframework.util.Assert;
 
 import java.io.*;
@@ -116,8 +117,15 @@ public class WeChatImgRevert {
         return xorType;
     }
 
+    @Test
     public void test() {
+        int a = -52;
+        System.out.println((byte)a);
 
+        byte b = (byte)0xcc;
+        System.out.println(b);
+        System.out.println(b & 0xff);
+        System.out.println((byte)(b & 0xff));
     }
 }
 
