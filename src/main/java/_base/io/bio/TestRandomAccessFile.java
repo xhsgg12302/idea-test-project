@@ -1,12 +1,14 @@
 package _base.io.bio;
 
+import org.junit.Test;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
 public class TestRandomAccessFile {
-    private static final String url = "raf.txt";
+    private static final String url = "z_resources/raf.txt";
     private static final String [] model = {"r","rw","rws","rwd"};
 
     public static RandomAccessFile getRAFWithModelR() throws FileNotFoundException {
@@ -30,10 +32,16 @@ public class TestRandomAccessFile {
     }
 
 
-    public static void main(String[] args) throws IOException {
+    /**
+     * 将指定的字节数写入原来的内容，不会覆盖其他的
+     * @throws Exception
+     */
+    @Test
+    public void test() throws Exception{
         RandomAccessFile raf = TestRandomAccessFile.getRAFWithModelRW();
-        String word = "raf";
+        String word = "hello";
         raf.write(word.getBytes());
+        raf.close();
     }
 
 }

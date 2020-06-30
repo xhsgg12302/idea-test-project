@@ -88,6 +88,40 @@ public class DemoTree {
         }
     }
 
+    public static void delElement(Node node,int value){
+        if(node == null ) return;
+        if(node.value == value){
+            node = null;
+            return;
+        }
+        delElement(node.left,value);
+        delElement(node.right,value);
+    }
+
+
+    public static void delElement2(Node parent,Node node,int value ,int flag){
+        if(node == null ) return;
+        if(node.value == value){
+            if(parent == null){
+                // 只能在外部置null , root 元素
+            }else{
+                if(flag == 0){
+                    parent.left = null;
+                }else{
+                    parent.right = null;
+                }
+            }
+            return;
+        }
+        delElement2(node,node.left,value,0);
+        delElement2(node,node.right,value,1);
+    }
+
+    public static void reallyDeeElement(Node node,int value){
+
+    }
+
+
     public static void levelTraversal(Node tree){
         Node[] temp = new Node[]{tree};
         Node[] tempReally = temp;
