@@ -106,7 +106,11 @@
             <version>1.2.2</version>
         </dependency>
 
-        <!-- 2020-05-12 tomcat8 中会报异常 ParallelWebappClassLoader 加载 javax.validation.Validator 成功了，但找不到实现类-->
+        <!-- 2020-05-12 tomcat8 中会报异常
+            ParallelWebappClassLoader 加载 javax.validation.Validator 成功了，但找不到实现类
+            在处理这个驱动的时候会默认加载一些相关依赖，<mvc:annotation-driven> 还可以有validator 属性指定
+            AnnotationDrivenBeanDefinitionParser 中有个变量为真后Spring回找实现类，找不到就报错。
+        -->
         <!--&lt;!&ndash; 导入java ee jar 包 &ndash;&gt;
         <dependency>
             <groupId>javax</groupId>
