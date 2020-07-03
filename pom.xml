@@ -260,6 +260,14 @@
         </dependency>
 
 
+        <!--  XML parse framework digester dependency-->
+        <dependency>
+            <groupId>commons-digester</groupId>
+            <artifactId>commons-digester</artifactId>
+            <version>2.1</version>
+        </dependency>
+
+
 
         <dependency>
             <groupId>junit</groupId>
@@ -289,6 +297,12 @@
             </plugin>
         </plugins>
     </build>
+
+    <developers>
+        <developer>
+            <name>${maven.build.timestamp}</name>
+        </developer>
+    </developers>
 
     <!-- 发布到私服插件<mvn deploy> -->
     <distributionManagement>
