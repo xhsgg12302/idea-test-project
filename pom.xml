@@ -283,6 +283,8 @@
         <resources>
             <resource>
                 <directory>${basedir}/*</directory>
+                <!-- 计算maven表达式-->
+                <!-- mvn help:evaluate -Dexpression=basedir  -->
             </resource>
         </resources>
         <plugins>
