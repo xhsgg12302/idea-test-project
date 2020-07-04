@@ -1,0 +1,47 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Java template
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+.DS_Store
+.idea/
+_1_aspectj-test/_1_aspectJ-test.iml
+_1_aspectj-test/src/main/main.iml
+_1_aspectj-test/target/
+_2_getter/_2_getter.iml
+_2_getter/target/
+_3_springboot/_3_springboot.iml
+_3_springboot/target/
+_4_springmvc/_4_springmvc.iml
+_4_springmvc/target/
+_5_ss-ssr-url-parse/_5_ss-ssr-url-parse.iml
+_5_ss-ssr-url-parse/target/
+_7_unzip-and-zip/src/
+_7_unzip-and-zip/target/
+_8_wechat-image-conversion/_8_wechat-image-conversion.iml
+_8_wechat-image-conversion/src/main/.DS_Store
+_8_wechat-image-conversion/src/test/
+_8_wechat-image-conversion/target/
+my-test.iml
+target/
