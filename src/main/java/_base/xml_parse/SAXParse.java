@@ -21,7 +21,7 @@ public class SAXParse {
     public void SAX() throws Exception {
         SAXParser parser = SAXParserFactory.newInstance().newSAXParser();
 
-        parser.parse(new File("z_resources/test.xml"), new MyDefaultHandler());
+        parser.parse(new File("src/main/resources/test-files/test.xml"), new MyDefaultHandler());
     }
 
     @Test
@@ -29,7 +29,7 @@ public class SAXParse {
         XMLReader xmlReader = XMLReaderFactory.createXMLReader();
         xmlReader.setContentHandler(new MyDefaultHandler());
 
-        xmlReader.parse(new InputSource(new FileReader("z_resources/test.xml")));
+        xmlReader.parse(new InputSource(new FileReader("src/main/resources/test-files/test.xml")));
     }
 
 }

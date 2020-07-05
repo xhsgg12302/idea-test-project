@@ -28,7 +28,7 @@ public class Practise {
 
     private void digester() throws IOException, SAXException {
         // 读取根据文件的路径，创建InputSource对象，digester解析的时候需要用到
-        File file = new File("z_resources/digester-test.xml");
+        File file = new File("src/main/resources/test-files/digester-test.xml");
         InputStream inputStream = new FileInputStream(file);
         InputSource inputSource = new InputSource(file.toURI().toURL().toString());
         inputSource.setByteStream(inputStream);
