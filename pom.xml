@@ -285,6 +285,9 @@
                 <directory>${basedir}/*</directory>
                 <!-- 计算maven表达式-->
                 <!-- mvn help:evaluate -Dexpression=basedir  -->
+
+                <!-- 查看依赖项 -->
+                <!-- mvn dependency:tree -Dverbose -Dincludes=commons-digester:commons-digester  -->
             </resource>
         </resources>
         <plugins>
