@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 
 public class TestRandomAccessFile {
-    private static final String url = "z_resources/raf.txt";
+    private static final String url = "src/main/resources/test-files/raf.txt";
     private static final String [] model = {"r","rw","rws","rwd"};
 
     public static RandomAccessFile getRAFWithModelR() throws FileNotFoundException {
