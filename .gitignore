@@ -27,7 +27,6 @@ hs_err_pid*
 .DS_Store
 .idea/
 _1_aspectj-test/_1_aspectJ-test.iml
-_1_aspectj-test/src/main/main.iml
 _1_aspectj-test/target/
 _2_getter/_2_getter.iml
 _2_getter/target/
@@ -37,11 +36,10 @@ _4_springmvc/_4_springmvc.iml
 _4_springmvc/target/
 _5_ss-ssr-url-parse/_5_ss-ssr-url-parse.iml
 _5_ss-ssr-url-parse/target/
-_7_unzip-and-zip/src/
+_7_unzip-and-zip/_7_unzip-and-zip.iml
 _7_unzip-and-zip/target/
 _8_wechat-image-conversion/_8_wechat-image-conversion.iml
-_8_wechat-image-conversion/src/main/.DS_Store
-_8_wechat-image-conversion/src/test/
 _8_wechat-image-conversion/target/
+
 my-test.iml
 target/

@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/_4_springmvc/_4_springmvc.iml" filepath="$PROJECT_DIR$/_4_springmvc/_4_springmvc.iml" />
       <module fileurl="file://$PROJECT_DIR$/_5_ss-ssr-url-parse/_5_ss-ssr-url-parse.iml" filepath="$PROJECT_DIR$/_5_ss-ssr-url-parse/_5_ss-ssr-url-parse.iml" />
       <module fileurl="file://$PROJECT_DIR$/_7_unzip-and-zip/_7_unzip-and-zip.iml" filepath="$PROJECT_DIR$/_7_unzip-and-zip/_7_unzip-and-zip.iml" />
+      <module fileurl="file://$PROJECT_DIR$/_8_wechat-image-conversion/_8_wechat-image-conversion.iml" filepath="$PROJECT_DIR$/_8_wechat-image-conversion/_8_wechat-image-conversion.iml" />
       <module fileurl="file://$PROJECT_DIR$/my-test.iml" filepath="$PROJECT_DIR$/my-test.iml" />
     </modules>
   </component>
