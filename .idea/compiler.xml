@@ -5,6 +5,7 @@
     <option name="delegateToJavac" value="true" />
   </component>
   <component name="CompilerConfiguration">
+    <option name="DEFAULT_COMPILER" value="ajc" />
     <annotationProcessing>
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -16,6 +17,7 @@
         <module name="_4_springmvc" />
         <module name="_5_ss-ssr-url-parse" />
         <module name="_7_unzip-and-zip" />
+        <module name="_8_wechat-image-conversion" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -25,6 +27,7 @@
       <module name="_4_springmvc" target="1.8" />
       <module name="_5_ss-ssr-url-parse" target="1.8" />
       <module name="_7_unzip-and-zip" target="1.8" />
+      <module name="_8_wechat-image-conversion" target="1.8" />
       <module name="my-test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
