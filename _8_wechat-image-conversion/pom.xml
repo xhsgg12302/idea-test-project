@@ -41,4 +41,19 @@
     <build>
 
     </build>
+
+    <!-- 发布到github <mvn deploy> -->
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub XHS-12302 Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/XHS-12302/idea-test-project</url>
+        </repository>
+
+        <snapshotRepository>
+            <id>github</id>
+            <name>GitHub XHS-12302 Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/XHS-12302/idea-test-project</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
