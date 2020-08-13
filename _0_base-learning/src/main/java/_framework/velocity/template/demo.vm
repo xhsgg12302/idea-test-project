@@ -1,0 +1,6 @@
+#set( $this ='xhsgg')
+
+$this
+
+
+日期:$date
