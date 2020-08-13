@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>groupId</groupId>
+    <groupId>wtfo.site</groupId>
     <artifactId>my-test</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
@@ -310,16 +310,11 @@
 
 
     <build>
-        <resources>
-            <resource>
-                <directory>${basedir}/*</directory>
                 <!-- 计算maven表达式-->
                 <!-- mvn help:evaluate -Dexpression=basedir  -->
 
                 <!-- 查看依赖项 -->
                 <!-- mvn dependency:tree -Dverbose -Dincludes=commons-digester:commons-digester  -->
-            </resource>
-        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -354,10 +349,11 @@
     </distributionManagement>
 
     <modules>
+        <module>_0_base-learning</module>
         <module>_1_aspectJ-Test</module>
         <module>_2_getter</module>
         <module>_3_springboot</module>
-        <!--<module>_4_springmvc</module>-->
+        <module>_4_springmvc</module>
         <module>_5_ss-ssr-url-parse</module>
         <module>_7_unzip-and-zip</module>
         <module>_8_wechat-image-conversion</module>
