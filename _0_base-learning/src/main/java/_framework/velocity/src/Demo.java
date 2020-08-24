@@ -3,8 +3,11 @@ package _framework.velocity.src;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
+import org.junit.Test;
 
 import java.io.StringWriter;
+import java.net.URI;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -16,9 +19,13 @@ import java.util.Date;
  * @Desc:
  */
 public class Demo {
-    public static void main(String[] args) {
+
+    @Test
+    public void test(){
+
+        URL resource = this.getClass().getClassLoader().getResource("velocity.properties");
         // 初始化（1）
-        Velocity.init("E:/project/my-_draft.test/src/main/resources/_framework.velocity.properties");
+        Velocity.init(resource.getFile());
 
         // 创建context，存放变量（2）
         VelocityContext context = new VelocityContext();
