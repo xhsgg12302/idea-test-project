@@ -4,8 +4,10 @@ import _framework.mybatis.bean.Student;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
+import org.junit.Test;
 
 import java.io.StringWriter;
+import java.net.URL;
 
 /**
  * Copyright 2018 ...com Inc. All Rights Reserved.
@@ -15,11 +17,14 @@ import java.io.StringWriter;
  * @Desc:
  */
 public class ExampleVelocity {
-    public static void main(String[] args) {
 
+
+    @Test
+    public void test(){
         try {
+            URL resource = this.getClass().getClassLoader().getResource("velocity.properties");
             // 初始化（1）
-            Velocity.init("E:/project/my-_draft.test/src/main/resources/_framework.velocity.properties");
+            Velocity.init(resource.getFile());
 
             // 创建context，存放变量（2）
             VelocityContext context = new VelocityContext();
