@@ -1,5 +1,7 @@
 package _base.io.nio.channel;
 
+import org.junit.Test;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -40,28 +42,20 @@ import java.nio.file.StandardOpenOption;
  *
  * 字符集：编解码
  */
-public class Test {
+public class TestChannel {
 
-    public static void main(String[] args) throws Exception{
-        //test1();
-        //test2();
-
-        //test3();
-        //test4();
-
-        test5();
-    }
 
     //普通方式获取通道
-    public static void test1(){
+    @Test
+    public void test1(){
         FileInputStream fis = null;
         FileOutputStream fos = null;
         FileChannel inChannel = null;
         FileChannel outChannel = null;
 
         try{
-            fis = new FileInputStream("4.png");
-            fos = new FileOutputStream("2.png");
+            fis = new FileInputStream("src/main/resources/test-files/4.png");
+            fos = new FileOutputStream("src/main/resources/test-files/2.png");
 
             inChannel = fis.getChannel();
             outChannel = fos.getChannel();
@@ -109,9 +103,10 @@ public class Test {
     }
 
     //open 方式 + 映射内存文件
-    public static void test2() throws Exception{
-        FileChannel inChannel = FileChannel.open(Paths.get("/Users/stevenobelia/Downloads/temporary-download/2.rmvb"), StandardOpenOption.READ);
-        FileChannel outChannel = FileChannel.open(Paths.get("/Users/stevenobelia/Downloads/temporary-download/3.rmvb"), StandardOpenOption.READ,StandardOpenOption.WRITE, StandardOpenOption.CREATE);
+    @Test
+    public void test2() throws Exception{
+        FileChannel inChannel = FileChannel.open(Paths.get("../path-to-path/Downloads/temporary-download/2.rmvb"), StandardOpenOption.READ);
+        FileChannel outChannel = FileChannel.open(Paths.get("../path-to-path/Downloads/temporary-download/3.rmvb"), StandardOpenOption.READ,StandardOpenOption.WRITE, StandardOpenOption.CREATE);
 
         MappedByteBuffer inMappedByteBuffer = inChannel.map(FileChannel.MapMode.READ_ONLY, 0, inChannel.size());
         MappedByteBuffer outMappedByteBuffer = outChannel.map(FileChannel.MapMode.READ_WRITE, 0, inChannel.size());
@@ -125,9 +120,10 @@ public class Test {
     }
 
     // transferTo(),transferFrom()
-    public static void test3() throws Exception{
-        FileChannel inFileChannel = FileChannel.open(Paths.get("2.png"),StandardOpenOption.READ);
-        FileChannel outFileChannel = FileChannel.open(Paths.get("5.png"),StandardOpenOption.READ, StandardOpenOption.WRITE,StandardOpenOption.CREATE);
+    @Test
+    public void test3() throws Exception{
+        FileChannel inFileChannel = FileChannel.open(Paths.get("src/main/resources/test-files/2.png"),StandardOpenOption.READ);
+        FileChannel outFileChannel = FileChannel.open(Paths.get("src/main/resources/test-files/5.png"),StandardOpenOption.READ, StandardOpenOption.WRITE,StandardOpenOption.CREATE);
 
         inFileChannel.transferTo(0,inFileChannel.size(),outFileChannel);
 
@@ -136,8 +132,9 @@ public class Test {
     }
 
     //scatter gather
-    public static void test4() throws Exception{
-        RandomAccessFile raf = new RandomAccessFile("_draft.test.txt","rw");
+    @Test
+    public void test4() throws Exception{
+        RandomAccessFile raf = new RandomAccessFile("src/main/resources/test-files/test.txt","rw");
 
         FileChannel rafChannel = raf.getChannel();
 
@@ -154,7 +151,7 @@ public class Test {
             System.out.println("==========================");
         }
 
-        RandomAccessFile raf2 = new RandomAccessFile("test2.txt","rw");
+        RandomAccessFile raf2 = new RandomAccessFile("src/main/resources/test-files/test2.txt","rw");
         FileChannel raf2Channel = raf2.getChannel();
 
         raf2Channel.write(buffers);
@@ -166,7 +163,8 @@ public class Test {
     }
 
     //charset
-    public static void test5() throws Exception{
+    @Test
+    public void test5() throws Exception{
         //System.out.println(Charset.availableCharsets().entrySet().size());
         //Charset.availableCharsets().entrySet().forEach((entry-> System.out.println(entry.getKey() + "\t" + entry.getValue())));
 
