@@ -10,7 +10,7 @@ import java.nio.ByteBuffer;
  * @Date: 2020-02-02
  * @Desc:
  */
-public class Test {
+public class TestBuffer {
 
     /**
      * _12302_2020-02-02
