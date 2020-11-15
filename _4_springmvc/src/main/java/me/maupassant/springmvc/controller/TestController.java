@@ -5,10 +5,7 @@ import me.maupassant.springmvc.entity.TestObject;
 import me.maupassant.springmvc.entity.User;
 import me.maupassant.springmvc.services.ITest;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
@@ -108,5 +105,55 @@ public class TestController {
             response.addCookie(cookie);
         }
         return "Test Ok";
+    }
+
+
+    /**
+     * # 测试 post URL带参数，和 body数据一起接收
+     * @param employee
+     * @return
+     *
+     * example1 : curl http://localhost:8080/test/postdataandparameter.do\?get1\=123\&get2\=456 -d '{"name":"eli","age":18}' -H 'Content-Type: application/json'
+     *
+     *      public String testPostDataAndParameter(String get1, String get2,@RequestBody Employee employee){}
+     *      public String testPostDataAndParameter(@RequestParam String get1,@RequestParam String get2,@RequestBody Employee employee){}
+     *
+     *      As you see ， receiving url parameters via empty annotations has the same effect as @RequestParam
+     */
+    @RequestMapping(value = "/postdataandparameter",method = RequestMethod.POST)
+    @ResponseBody
+    public String testPostDataAndParameter(@RequestParam String get1,@RequestParam String get2,@RequestBody Employee employee){
+        //System.out.println(get1);
+        //System.out.println(get2);
+        System.out.println(employee);
+        return "Test Ok";
+    }
+
+    /**
+     *  # 测试 post 默认编码 urlencode
+     * @param employee
+     * @return
+     *
+     * example1: curl http://localhost:8080/test/postDefault.do -d 'name=eli&age=18'
+     *
+     *      public String testPostDefault(Employee employee){}
+     *
+     *
+     * example2: curl http://localhost:8080/test/postDefault.do\?get1\=123\&get2\=456 -d 'name=eli&age=18'
+     *
+     *      public String testPostDefault(String get1,String get2, Employee employee){}
+     *      public String testPostDefault(@RequestParam String get1,@RequestParam String get2, Employee employee){}
+     *
+     *
+     * additional note: url arguments also append to entity(employee)
+     * example3: curl http://localhost:8080/test/postDefault.do\?get1\=123\&get2\=456\&age\=17 -d 'name=eli'
+     *
+     *      public String testPostDefault(@RequestParam String get1,@RequestParam String get2, Employee employee ){}
+     */
+    @RequestMapping(value = "/postDefault" ,method = RequestMethod.POST)
+    @ResponseBody
+    public String testPostDefault(@RequestParam String get1,@RequestParam String get2, Employee employee ){
+        System.out.println(employee);
+        return "Test OK";
     }
 }
