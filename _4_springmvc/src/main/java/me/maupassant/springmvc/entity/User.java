@@ -9,6 +9,7 @@
  */
 package me.maupassant.springmvc.entity;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.time.LocalDateTime;
 
 /**
@@ -16,6 +17,7 @@ import java.time.LocalDateTime;
  * @description
  *
  */
+@XmlRootElement
 public class User {
 	private String name;
 	private Integer age;

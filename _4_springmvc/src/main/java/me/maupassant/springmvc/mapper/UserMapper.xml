@@ -17,13 +17,19 @@
      -->
     <resultMap type="me.maupassant.springmvc.entity.User" id="userinfoMap">
         <result column="name" property="name"/>
+        <result column="age" property="age"/>
         <result column="account" property="account"/>
         <result column="password" property="password"/>
+        <!--<result column="time" property="time" javaType="[Ljava.time.LocalDateTime;" jdbcType="TIME"/>-->
     </resultMap>
     <!-- ==================定义sql片段==============
     sql:是sql片段标签属性id是该片段的唯一标识 -->
     <sql id="zd">
         name,account,password
+    </sql>
+
+    <sql id="getListFromUser">
+        name,age,account,password
     </sql>
     <!-- 增删改查标签里的id:一定要和接口里对应的方法名一致，
          resultMap输出类型里写映射标签里的id 
@@ -31,7 +37,14 @@
     <!-- 验证登录 -->
     <select id="getUser" resultMap="userinfoMap" parameterType="hashmap">    
         <!-- 用include标签引入sql片段，refid写定义sql片段的id，where标签不要写在片段里 -->
-        select * from user
+        select * from user limit 0,1
+    </select>
+
+    <select id="getListFromUser" resultMap="userinfoMap" parameterType="hashmap">
+        select
+          <include refid="getListFromUser"/>
+
+        from user
     </select>
     
     <select id="getABc" resultMap="userinfoMap" parameterType="hashmap">    

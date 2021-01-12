@@ -6,6 +6,8 @@ import me.maupassant.springmvc.services.IUserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Copyright 2018 ...com Inc. All Rights Reserved.
@@ -23,5 +25,10 @@ public class UserServiceImpl implements IUserService {
     @Override
     public Integer insert(User user) {
         return userDao.insert(user);
+    }
+
+    @Override
+    public List getList(Map map) {
+        return userDao.getListFromUser(map);
     }
 }
