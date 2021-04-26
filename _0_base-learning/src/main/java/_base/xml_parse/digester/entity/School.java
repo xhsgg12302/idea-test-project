@@ -2,6 +2,8 @@ package _base.xml_parse.digester.entity;
 
 public class School {
     private String name;
+    private String wtfu;
+
     private Grade grades[] = new Grade[0];
     private final Object servicesLock = new Object();
 
@@ -22,9 +24,22 @@ public class School {
         return name;
     }
 
+    public String getWtfu() {
+        return wtfu;
+    }
+
+    public void setWtfu(String wtfu) {
+        this.wtfu = wtfu;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
+
+
+
+
+
 }
 
 

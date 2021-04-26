@@ -1,5 +1,8 @@
-package _base.proxy;
+package _base.proxy.jdk_dynamic;
 
+import org.junit.Test;
+
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
@@ -15,6 +18,7 @@ public class StuInvocationHandler implements InvocationHandler {
     //invocationHandler持有的被代理对象
     Object target;
 
+    public StuInvocationHandler(){}
     public StuInvocationHandler(Object target) {
         this.target = target;
     }
@@ -33,5 +37,15 @@ public class StuInvocationHandler implements InvocationHandler {
         Object result = method.invoke(target, args);
         MonitorUtil.finish(method.getName());
         return result;
+    }
+
+    @Test
+    public void test() throws Exception{
+
+    }
+
+    public static void main(String[] args) throws Exception{
+        Constructor<StuInvocationHandler> constructor = StuInvocationHandler.class.getConstructor(Object.class);
+        System.out.println(constructor);
     }
 }

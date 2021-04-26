@@ -1,4 +1,4 @@
-package _base.proxy;
+package _base.proxy.jdk_dynamic;
 
 /**
  * Copyright 2018 ...com Inc. All Rights Reserved.

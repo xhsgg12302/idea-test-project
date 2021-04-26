@@ -1,5 +1,11 @@
 package _base.lambda.functionalInterface.function;
 
+import _base.lambda.stream.model.Person;
+
+import java.awt.*;
+import java.util.HashMap;
+import java.util.function.BiFunction;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 /**
@@ -14,6 +20,62 @@ public class Test {
     public static void main(String[] args) {
         Function<Integer, Integer> f = s -> s++;
         Function<Integer, Integer> g = s -> s * 2;
+
+
+        /**
+         * 类型图解1 Person::getAge
+         */
+        Function<Person, Integer> function = Person::getAge;
+        Integer apply = function.apply(new Person());
+
+        Function<Person, Integer> fucntion1 = person -> person.getAge();
+        Function<Person, Integer> function2 = new Function<Person, Integer>() {
+            @Override
+            public Integer apply(Person person) {
+                return person.getAge();
+            }
+        };
+
+
+
+        /**
+         * 对象图解2 person.getAge
+         */
+        Person person = new Person();
+
+        Function<HashMap, String> getAddress = person::getAddress;
+        Function<HashMap, String> getAddress2 = map -> {
+            String address = person.getAddress(map);
+            return address;
+        };
+        Function<HashMap, String> getAddress3 = new Function<HashMap, String>() {
+            @Override
+            public String apply(HashMap hashMap) {
+                return person.getAddress(hashMap);
+            }
+        };
+        String apply2 = getAddress.apply(new HashMap());
+
+
+        /**
+         * 其他参考用例
+         */
+        Function<Person, String> biFunction1 = Person::getAddress;
+        BiFunction<Person, Person, String> personPersonStringBiFunction = Person::getAddress;
+
+        String abc = "content";
+        /* _12302_2021/4/26_< 类型调用 > */
+        BiFunction<String, Object, Boolean> biFunction = String::equals;
+        /* _12302_2021/4/26_< 对象调用  abc类型的substring 方法 《==》 str -> str.substring(Integer) */
+        Function<Integer, String> biFunction2 = abc::substring;
+
+        Consumer<String> consumer = System.out::println;
+
+
+
+
+
+
 
         /**
          * 下面表示在执行F时，先执行G，并且执行F时使用G的输出当作输入。

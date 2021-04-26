@@ -62,6 +62,14 @@ public class TestController {
         return user;
     }
 
+    @RequestMapping("exception")
+    @ResponseBody
+    public String testException(){
+        String abc = null;
+        abc.equals("1");
+        return "";
+    }
+
     @Resource
     private ITest iTest;
     @RequestMapping(value = "/transaction")
@@ -90,6 +98,7 @@ public class TestController {
     @ResponseBody
     public String testCookie(HttpServletRequest request,HttpServletResponse response){
         boolean flag = false;
+        request.getSession();
         Cookie[] cookies = request.getCookies();
         if(cookies != null){
             for (Cookie cookie : cookies) {
