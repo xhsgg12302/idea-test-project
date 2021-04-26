@@ -2,6 +2,9 @@ package me.maupassant.springmvc.services;
 
 import me.maupassant.springmvc.entity.User;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * Copyright 2018 ...com Inc. All Rights Reserved.
  *
@@ -12,4 +15,7 @@ import me.maupassant.springmvc.entity.User;
 public interface IUserService {
 
     Integer insert(User user);
+
+    List getList(Map map);
+
 }

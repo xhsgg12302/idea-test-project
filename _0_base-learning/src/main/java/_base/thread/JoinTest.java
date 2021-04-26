@@ -11,23 +11,58 @@ package _base.thread;
  */
 public class JoinTest {
     public static void main(String[] args) throws Exception{
-        MyThread1 m1 = new MyThread1("A");
+        //MyThread1 m1 = new MyThread1("A");
 
-        MyThread m2 = new MyThread("B");
+        //MyThread m2 = new MyThread("B");
 
-        MyThread m3 = new MyThread("C");
+        //MyThread m3 = new MyThread("C");
 
-        m1.start();
-
-
-        m2.start();
+        //m1.start();
 
 
-        m2.join(4000);
+        //m2.start();
 
 
-        m3.start();
+        //m2.join(4000);
+
+
+        //m3.start();
         ///m3.join();
+
+        Thread n1 = new Thread(()->{
+            try {
+                Thread.sleep(1000);
+                System.out.println("n1 done");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        n1.start();
+        n1.join();
+
+        Thread n2 = new Thread(()->{
+            try {
+                Thread.sleep(2000);
+                System.out.println("n2 done");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        n2.start();
+        n2.join();
+
+        Thread n3 = new Thread(()->{
+            try {
+                Thread.sleep(3000);
+                System.out.println("n3 done");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        n3.start();
+        //n3.join();
+
+
 
         System.out.println("main is dead");
     }

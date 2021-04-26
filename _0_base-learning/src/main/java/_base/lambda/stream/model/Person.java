@@ -1,6 +1,7 @@
 package _base.lambda.stream.model;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.Objects;
 
 /**
@@ -112,5 +113,13 @@ public class Person {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getAddress(Person person) {
+        return null;
+    }
+
+    public String getAddress(HashMap o) {
+        return null;
     }
 }

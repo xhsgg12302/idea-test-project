@@ -16,6 +16,9 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- spring版本号 -->
+        <!--<spring.version>4.0.2.RELEASE</spring.version>-->
     </properties>
 
     <dependencies>

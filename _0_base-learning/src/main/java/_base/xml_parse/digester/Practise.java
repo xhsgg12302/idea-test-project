@@ -36,7 +36,7 @@ public class Practise {
         // 创建Digester对象
         Digester digester = new Digester();
         // 是否需要用DTD验证XML文档的合法性
-        digester.setValidating(true);
+        digester.setValidating(false);
         // 将当前对象放到对象堆的最顶层，这也是这个类为什么要有school属性的原因！
         digester.push(this);
 
@@ -58,7 +58,7 @@ public class Practise {
          * 1. 如果School节点没有className属性，将创建com.juconcurrent.learn.apache.digester.School对象；
          * 2. 如果School节点有className属性，将创建指定的(className属性的值)对象
          */
-        digester.addObjectCreate("School", School2.class.getName(), "wtfu");
+        digester.addObjectCreate("School", School.class.getName(), School2.class.getName());
         // 将指定节点的属性映射到对象，即将School节点的name的属性映射到School.java
         digester.addSetProperties("School");
 

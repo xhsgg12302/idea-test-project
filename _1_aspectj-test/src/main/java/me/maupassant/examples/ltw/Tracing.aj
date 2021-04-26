@@ -17,10 +17,10 @@ Tracing {
 		execution(public static void main(String[]));
 
 	before () : mainMethod() {
-		System.out.println("> " + thisJoinPoint);
+		System.out.println("> " + thisJoinPoint + "itw.Tracing.mainMethod(pointcut)before");
 	}
 
 	after () : mainMethod() {
-		System.out.println("< " + thisJoinPoint);
+		System.out.println("< " + thisJoinPoint  + "itw.Tracing.mainMethod(pointcut)after");
 	}
 }

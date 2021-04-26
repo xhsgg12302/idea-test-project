@@ -9,6 +9,7 @@
  */
 package me.maupassant.springmvc.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import me.maupassant.springmvc.entity.User;
@@ -23,4 +24,6 @@ public interface UserDao {
 	User getUser(Map<String, Object> condition);
 
 	Integer insert(User user);
+
+	List getListFromUser(Map<String,Object> condition);
 }

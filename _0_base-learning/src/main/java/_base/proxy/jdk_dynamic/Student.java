@@ -1,4 +1,6 @@
-package _base.proxy;
+package _base.proxy.jdk_dynamic;
+
+import _base.proxy.jdk_dynamic.Person;
 
 /**
  * Copyright 2018 ...com Inc. All Rights Reserved.
@@ -7,7 +9,7 @@ package _base.proxy;
  * @Date: 2019/3/24 23:53
  * @Description:
  */
-public class Student implements Person{
+public class Student implements Person {
     private String name;
     public Student(String name) {
         this.name = name;

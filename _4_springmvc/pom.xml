@@ -4,6 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>wtfo.site</groupId>
+        <artifactId>my-test</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
     <groupId>me.maupassant</groupId>
     <artifactId>_4_springmvc</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -194,6 +199,7 @@
         </dependency>
     </dependencies>
     <build>
+        <finalName>spring-mvc-test##1.1</finalName>
         <resources>
             <resource>
                 <directory>src/main/java</directory>
@@ -221,9 +227,9 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
-                    <url>http://39.107.88.49:13380/manager/text</url>
+                    <url>http://test.wtfu.site/manager/text</url>
                     <server>tomcat7</server>
-                    <path>/mau</path>
+                    <path>/test##2.1</path>
                     <charset>utf8</charset>
                     <update>true</update>
                 </configuration>

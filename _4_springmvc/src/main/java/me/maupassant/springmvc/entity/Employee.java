@@ -1,5 +1,7 @@
 package me.maupassant.springmvc.entity;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * Copyright 2018 ...com Inc. All Rights Reserved.
  *
@@ -11,6 +13,12 @@ public class Employee {
 
     private String name;
     private int age;
+
+    public Employee(){};
+    public Employee(int age,String name){
+        this.age = age;
+        this.name = name;
+    }
 
     public String getName() {
         return name;

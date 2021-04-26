@@ -17,22 +17,22 @@
 
 
 
-    <bean id="EObjectMapper" class="me.maupassant.springmvc.config.EObjectMapper"></bean>
+    <!--<bean id="EObjectMapper" class="me.maupassant.springmvc.config.EObjectMapper"></bean>-->
 
 
     <!-- ========================================消息转换器配置 1========origin begin================================= -->
     <!--避免IE执行AJAX时，返回JSON出现下载文件 -->
     <bean id="mappingJacksonHttpMessageConverter"
-          class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+          class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter">
         <property name="supportedMediaTypes">
             <list>
-                <value>application/json;charset=UTF-8</value>
-                <value>application/*+json;charset=UTF-8</value>
+                <value>application/xml;charset=UTF-8</value>
+                <value>application/*+xml;charset=UTF-8</value>
             </list>
         </property>
-        <property name="objectMapper">
+        <!--<property name="objectMapper">
             <ref bean="EObjectMapper" />
-        </property>
+        </property>-->
     </bean>
 
     <!-- 启动SpringMVC的注解功能，完成请求和注解POJO的映射 -->

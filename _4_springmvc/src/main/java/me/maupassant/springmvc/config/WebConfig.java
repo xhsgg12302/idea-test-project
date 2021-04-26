@@ -62,13 +62,15 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         super.configureMessageConverters(converters);
-        for (HttpMessageConverter converter : converters) {
-            if (converter instanceof MappingJacksonHttpMessageConverter) {
-                ObjectMapper objectMapper = ((MappingJacksonHttpMessageConverter) converter).getObjectMapper();
-                SimpleModule module = new SimpleModule("localdateTime", Version.unknownVersion());
-                module.addSerializer(LocalDateTime.class,new LocalDateTimeSerializer());
-                module.addDeserializer(LocalDateTime.class,new LocalDateTimeDeserializer());
-                objectMapper.registerModule(module);
+        if(1==2){
+            for (HttpMessageConverter converter : converters) {
+                if (converter instanceof MappingJacksonHttpMessageConverter) {
+                    ObjectMapper objectMapper = ((MappingJacksonHttpMessageConverter) converter).getObjectMapper();
+                    SimpleModule module = new SimpleModule("localdateTime", Version.unknownVersion());
+                    module.addSerializer(LocalDateTime.class,new LocalDateTimeSerializer());
+                    module.addDeserializer(LocalDateTime.class,new LocalDateTimeDeserializer());
+                    objectMapper.registerModule(module);
+                }
             }
         }
     }
