@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.maupassant.springboot.mapper.LocationsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="me.maupassant.springboot.beans.Locations">
+        <id column="location_id" property="locationId" />
+        <result column="street_address" property="streetAddress" />
+        <result column="postal_code" property="postalCode" />
+        <result column="city" property="city" />
+        <result column="state_province" property="stateProvince" />
+        <result column="country_id" property="countryId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        location_id, street_address, postal_code, city, state_province, country_id
+    </sql>
+
+</mapper>
