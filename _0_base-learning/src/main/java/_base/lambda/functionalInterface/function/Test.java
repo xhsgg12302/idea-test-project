@@ -2,7 +2,6 @@ package _base.lambda.functionalInterface.function;
 
 import _base.lambda.stream.model.Person;
 
-import java.awt.*;
 import java.util.HashMap;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
@@ -17,6 +16,34 @@ import java.util.function.Function;
  */
 public class Test {
 
+
+
+    /*
+        定义一个方法
+        参数传一个字符串类型的数组
+        参数再传递两个Function接口
+            一个泛型使用Function<String, Integer>
+            一个泛型使用Function<Integer, String>
+     */
+    public static void change(String s, Function<String, Integer> fun1, Function<Integer, String> fun2) {
+        String ss = fun1.andThen(fun2).apply(s);
+        System.out.println(ss);
+    }
+    public static  void main1(String[] args) {
+        // 定义一个字符串
+        String s1 = "123";
+        // 调用change方法，传递字符串和两个Lambda表达式
+        change(s1, (String str) -> {
+            // 把字符串转换为整数+10
+            return Integer.parseInt(str) + 10;
+        }, (Integer i) -> {
+            // 把整数转换为字符串。
+            return i + ""; // 字符串和整数的求和时：把整数当作字符串，返回结果是两个字符串的拼接
+        });
+        // 使用Lambda表达式
+        change(s1, str -> Integer.parseInt(str) + 10, i -> i + "");
+    }
+
     public static void main(String[] args) {
         Function<Integer, Integer> f = s -> s++;
         Function<Integer, Integer> g = s -> s * 2;
@@ -27,6 +54,16 @@ public class Test {
          */
         Function<Person, Integer> function = Person::getAge;
         Integer apply = function.apply(new Person());
+
+
+        /*Function<Person, Integer> funcGetName = Person::getNumberOfWar;
+        funcGetName.andThen(new Function<Integer, Object>() {
+            @Override
+            public Object apply(Integer integer) {
+
+                return null;
+            }
+        });*/
 
         Function<Person, Integer> fucntion1 = person -> person.getAge();
         Function<Person, Integer> function2 = new Function<Person, Integer>() {
