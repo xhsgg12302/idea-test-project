@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.wtfu.framework.mapper.JobsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="site.wtfu.framework.beans.Jobs">
+        <id column="job_id" property="jobId" />
+        <result column="job_title" property="jobTitle" />
+        <result column="min_salary" property="minSalary" />
+        <result column="max_salary" property="maxSalary" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        job_id, job_title, min_salary, max_salary
+    </sql>
+
+</mapper>

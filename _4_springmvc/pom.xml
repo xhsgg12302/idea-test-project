@@ -5,13 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>wtfo.site</groupId>
+        <groupId>site.wtfu</groupId>
         <artifactId>my-test</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <groupId>me.maupassant</groupId>
     <artifactId>_4_springmvc</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <name>_4_springmvc</name>
@@ -197,6 +195,12 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
     </dependencies>
     <build>
         <finalName>spring-mvc-test##1.1</finalName>

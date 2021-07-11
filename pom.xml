@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>wtfo.site</groupId>
+    <groupId>site.wtfu</groupId>
     <artifactId>my-test</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
@@ -19,317 +19,325 @@
 
     </properties>
 
-    <dependencies>
+   <dependencyManagement>
+       <dependencies>
 
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.30</version>
-        </dependency>
+           <dependency>
+               <groupId>mysql</groupId>
+               <artifactId>mysql-connector-java</artifactId>
+               <version>5.1.30</version>
+           </dependency>
 
-        <dependency>
-            <groupId>p6spy</groupId>
-            <artifactId>p6spy</artifactId>
-            <version>3.6.0</version>
-        </dependency>
+           <dependency>
+               <groupId>p6spy</groupId>
+               <artifactId>p6spy</artifactId>
+               <version>3.6.0</version>
+           </dependency>
 
-        <!--velocity dependency begin-->
-        <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity-engine-core</artifactId>
-            <version>2.1</version>
-        </dependency>
+           <!--velocity dependency begin-->
+           <dependency>
+               <groupId>org.apache.velocity</groupId>
+               <artifactId>velocity-engine-core</artifactId>
+               <version>2.1</version>
+           </dependency>
 
-        <dependency>
-            <groupId>velocity-tools</groupId>
-            <artifactId>velocity-tools-generic</artifactId>
-            <version>1.4</version>
-        </dependency>
-        <!--velocity dependency end-->
+           <dependency>
+               <groupId>velocity-tools</groupId>
+               <artifactId>velocity-tools-generic</artifactId>
+               <version>1.4</version>
+           </dependency>
+           <!--velocity dependency end-->
 
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-            <version>3.10-FINAL</version>
-        </dependency>
+           <dependency>
+               <groupId>org.apache.poi</groupId>
+               <artifactId>poi</artifactId>
+               <version>3.10-FINAL</version>
+           </dependency>
 
-        <dependency>
-            <groupId>commons-beanutils</groupId>
-            <artifactId>commons-beanutils</artifactId>
-            <version>1.9.3</version>
-        </dependency>
-
-
-        <!--netty dependency -->
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-all</artifactId>
-            <version>4.1.42.Final</version>
-        </dependency>
+           <dependency>
+               <groupId>commons-beanutils</groupId>
+               <artifactId>commons-beanutils</artifactId>
+               <version>1.9.3</version>
+           </dependency>
 
 
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
-        </dependency>
+           <!--netty dependency -->
+           <dependency>
+               <groupId>io.netty</groupId>
+               <artifactId>netty-all</artifactId>
+               <version>4.1.42.Final</version>
+           </dependency>
 
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20090211</version>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.25</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.9.5</version>
-        </dependency>
+           <dependency>
+               <groupId>cglib</groupId>
+               <artifactId>cglib</artifactId>
+               <version>3.2.12</version>
+           </dependency>
 
 
+           <dependency>
+               <groupId>javax.servlet</groupId>
+               <artifactId>javax.servlet-api</artifactId>
+               <version>3.1.0</version>
+           </dependency>
 
-        <!-- activeMQ-->
-        <dependency>
-            <groupId>org.apache.activemq</groupId>
-            <artifactId>activemq-all</artifactId>
-            <version>5.9.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.activemq</groupId>
-            <artifactId>activemq-pool</artifactId>
-            <version>5.9.0</version>
-        </dependency>
-        <!-- spring start-->
-        <!-- spring start -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-aop</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-aspects</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-beans</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-expression</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-instrument</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-instrument-tomcat</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jms</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-messaging</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-orm</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-oxm</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-tx</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc-portlet</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-websocket</artifactId>
-            <version>${org.springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
-            <version>3.3.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.4</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-spring</artifactId>
-            <version>1.2.3</version>
-        </dependency>
-        <!-- spring start -->
+           <dependency>
+               <groupId>org.json</groupId>
+               <artifactId>json</artifactId>
+               <version>20090211</version>
+           </dependency>
+           <dependency>
+               <groupId>com.alibaba</groupId>
+               <artifactId>fastjson</artifactId>
+               <version>1.2.47</version>
+           </dependency>
 
-        <!-- log -->
-        <!-- 日志文件管理包 -->
-        <!-- log start -->
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>${log4j.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-
-        <!-- 网络工具 -->
-        <dependency>
-            <groupId>commons-net</groupId>
-            <artifactId>commons-net</artifactId>
-            <version>3.6</version>
-        </dependency>
-
-
-        <!-- https://mvnrepository.com/artifact/ognl/ognl -->
-        <dependency>
-            <groupId>ognl</groupId>
-            <artifactId>ognl</artifactId>
-            <version>3.2.10</version>
-        </dependency>
-
-
-        <!--  XML parse framework digester dependency-->
-        <dependency>
-            <groupId>commons-digester</groupId>
-            <artifactId>commons-digester</artifactId>
-            <version>2.1</version>
-        </dependency>
-
-        <!-- 根据电话号码解析归属地，城市和省份 -->
-        <dependency>
-            <groupId>com.maxmind.geoip2</groupId>
-            <artifactId>geoip2</artifactId>
-            <version>2.8.1</version>
-        </dependency>
-
-        <!-- 根据ip数据库文件获取ip所处省份和城市 -->
-        <dependency>
-           <groupId>com.googlecode.libphonenumber</groupId>
-           <artifactId>geocoder</artifactId>
-           <version>2.15</version>
-        </dependency>
-
-        <dependency>
-           <groupId>com.googlecode.libphonenumber</groupId>
-           <artifactId>libphonenumber</artifactId>
-           <version>6.3</version>
-        </dependency>
-
-        <dependency>
-           <groupId>com.googlecode.libphonenumber</groupId>
-           <artifactId>prefixmapper</artifactId>
-           <version>2.15</version>
-        </dependency>
-        <dependency>
-           <groupId>com.googlecode.libphonenumber</groupId>
-           <artifactId>carrier</artifactId>
-           <version>1.5</version>
-        </dependency>
-
-        <!-- 解决 PortletRequestDataBinder 类中引入包的问题，add java.portlet.api-->
-        <!-- https://mvnrepository.com/artifact/javax.portlet/portlet-api -->
-        <dependency>
-            <groupId>javax.portlet</groupId>
-            <artifactId>portlet-api</artifactId>
-            <version>2.0</version>
-            <scope>provided</scope>
-        </dependency>
+           <dependency>
+               <groupId>com.fasterxml.jackson.core</groupId>
+               <artifactId>jackson-databind</artifactId>
+               <version>2.9.5</version>
+           </dependency>
 
 
 
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.12</version>
-        </dependency>
+           <!-- activeMQ-->
+           <dependency>
+               <groupId>org.apache.activemq</groupId>
+               <artifactId>activemq-all</artifactId>
+               <version>5.9.0</version>
+           </dependency>
+           <dependency>
+               <groupId>org.apache.activemq</groupId>
+               <artifactId>activemq-pool</artifactId>
+               <version>5.9.0</version>
+           </dependency>
+           <!-- spring start-->
+           <!-- spring start -->
+           <dependency>
+               <groupId>org.springframework</groupId>
+               <artifactId>spring-aop</artifactId>
+               <version>${org.springframework.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>org.springframework</groupId>
+               <artifactId>spring-aspects</artifactId>
+               <version>${org.springframework.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>org.springframework</groupId>
+               <artifactId>spring-beans</artifactId>
+               <version>${org.springframework.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>org.springframework</groupId>
+               <artifactId>spring-context</artifactId>
+               <version>${org.springframework.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>org.springframework</groupId>
+               <artifactId>spring-context-support</artifactId>
+               <version>${org.springframework.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>org.springframework</groupId>
+               <artifactId>spring-core</artifactId>
+               <version>${org.springframework.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>org.springframework</groupId>
+               <artifactId>spring-expression</artifactId>
+               <version>${org.springframework.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>org.springframework</groupId>
+               <artifactId>spring-instrument</artifactId>
+               <version>${org.springframework.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>org.springframework</groupId>
+               <artifactId>spring-instrument-tomcat</artifactId>
+               <version>${org.springframework.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>org.springframework</groupId>
+               <artifactId>spring-jdbc</artifactId>
+               <version>${org.springframework.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>org.springframework</groupId>
+               <artifactId>spring-jms</artifactId>
+               <version>${org.springframework.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>org.springframework</groupId>
+               <artifactId>spring-messaging</artifactId>
+               <version>${org.springframework.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>org.springframework</groupId>
+               <artifactId>spring-orm</artifactId>
+               <version>${org.springframework.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>org.springframework</groupId>
+               <artifactId>spring-oxm</artifactId>
+               <version>${org.springframework.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>org.springframework</groupId>
+               <artifactId>spring-test</artifactId>
+               <version>${org.springframework.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>org.springframework</groupId>
+               <artifactId>spring-tx</artifactId>
+               <version>${org.springframework.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>org.springframework</groupId>
+               <artifactId>spring-web</artifactId>
+               <version>${org.springframework.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>org.springframework</groupId>
+               <artifactId>spring-webmvc</artifactId>
+               <version>${org.springframework.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>org.springframework</groupId>
+               <artifactId>spring-webmvc-portlet</artifactId>
+               <version>${org.springframework.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>org.springframework</groupId>
+               <artifactId>spring-websocket</artifactId>
+               <version>${org.springframework.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>org.mybatis</groupId>
+               <artifactId>mybatis</artifactId>
+               <version>3.3.1</version>
+           </dependency>
+           <dependency>
+               <groupId>org.apache.commons</groupId>
+               <artifactId>commons-lang3</artifactId>
+               <version>3.4</version>
+           </dependency>
+           <dependency>
+               <groupId>org.mybatis</groupId>
+               <artifactId>mybatis-spring</artifactId>
+               <version>1.2.3</version>
+           </dependency>
+           <!-- spring start -->
 
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjrt</artifactId>
-            <version>1.8.13</version>
-        </dependency>
+           <!-- log -->
+           <!-- 日志文件管理包 -->
+           <!-- log start -->
+           <dependency>
+               <groupId>log4j</groupId>
+               <artifactId>log4j</artifactId>
+               <version>${log4j.version}</version>
+           </dependency>
+
+           <dependency>
+               <groupId>org.slf4j</groupId>
+               <artifactId>slf4j-api</artifactId>
+               <version>${slf4j.version}</version>
+           </dependency>
+
+           <dependency>
+               <groupId>org.slf4j</groupId>
+               <artifactId>slf4j-log4j12</artifactId>
+               <version>${slf4j.version}</version>
+           </dependency>
+
+           <!-- 网络工具 -->
+           <dependency>
+               <groupId>commons-net</groupId>
+               <artifactId>commons-net</artifactId>
+               <version>3.6</version>
+           </dependency>
 
 
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-        </dependency>
+           <!-- https://mvnrepository.com/artifact/ognl/ognl -->
+           <dependency>
+               <groupId>ognl</groupId>
+               <artifactId>ognl</artifactId>
+               <version>3.2.10</version>
+           </dependency>
 
 
-    </dependencies>
+           <!--  XML parse framework digester dependency-->
+           <dependency>
+               <groupId>commons-digester</groupId>
+               <artifactId>commons-digester</artifactId>
+               <version>2.1</version>
+           </dependency>
+
+           <!-- 根据电话号码解析归属地，城市和省份 -->
+           <dependency>
+               <groupId>com.maxmind.geoip2</groupId>
+               <artifactId>geoip2</artifactId>
+               <version>2.8.1</version>
+           </dependency>
+
+           <!-- 根据ip数据库文件获取ip所处省份和城市 -->
+           <dependency>
+               <groupId>com.googlecode.libphonenumber</groupId>
+               <artifactId>geocoder</artifactId>
+               <version>2.15</version>
+           </dependency>
+
+           <dependency>
+               <groupId>com.googlecode.libphonenumber</groupId>
+               <artifactId>libphonenumber</artifactId>
+               <version>6.3</version>
+           </dependency>
+
+           <dependency>
+               <groupId>com.googlecode.libphonenumber</groupId>
+               <artifactId>prefixmapper</artifactId>
+               <version>2.15</version>
+           </dependency>
+           <dependency>
+               <groupId>com.googlecode.libphonenumber</groupId>
+               <artifactId>carrier</artifactId>
+               <version>1.5</version>
+           </dependency>
+
+           <!-- 解决 PortletRequestDataBinder 类中引入包的问题，add java.portlet.api-->
+           <!-- https://mvnrepository.com/artifact/javax.portlet/portlet-api -->
+           <dependency>
+               <groupId>javax.portlet</groupId>
+               <artifactId>portlet-api</artifactId>
+               <version>2.0</version>
+               <scope>provided</scope>
+           </dependency>
+
+
+
+           <dependency>
+               <groupId>org.projectlombok</groupId>
+               <artifactId>lombok</artifactId>
+               <version>1.18.12</version>
+           </dependency>
+
+           <dependency>
+               <groupId>org.aspectj</groupId>
+               <artifactId>aspectjrt</artifactId>
+               <version>1.8.13</version>
+           </dependency>
+
+
+           <dependency>
+               <groupId>junit</groupId>
+               <artifactId>junit</artifactId>
+               <version>4.12</version>
+           </dependency>
+
+
+       </dependencies>
+   </dependencyManagement>
 
 
     <build>
