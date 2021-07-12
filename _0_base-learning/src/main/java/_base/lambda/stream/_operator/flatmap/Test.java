@@ -1,5 +1,6 @@
 package _base.lambda.stream._operator.flatmap;
 
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -18,8 +19,10 @@ public class Test {
         //out: testt1t2teeabc
         >_12302_2019-10-02_*/
         Stream<String> s = Stream.of("_draft/test", "t1", "t2", "tee", "abc");
-        s.flatMap(n -> Stream.of(n.split(""))).forEach(System.out::print);
+        //s.flatMap(n -> Stream.of(n.split(","))).forEach(System.out::print);
 
+        String collect = s.map(s1 -> s1 + 1).collect(Collectors.joining(","));
+        System.out.println(collect);
 
         System.out.println();
         System.out.println("_draft/test".split("").length);
