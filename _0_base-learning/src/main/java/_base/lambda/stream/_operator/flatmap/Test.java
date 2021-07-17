@@ -18,7 +18,7 @@ public class Test {
         //out: testt1t2teeabc
         >_12302_2019-10-02_*/
         Stream<String> s = Stream.of("_draft/test", "t1", "t2", "tee", "abc");
-        s.flatMap(n -> Stream.of(n.split(""))).forEach(System.out::print);
+        s.flatMap(n -> Stream.of(n + "#")).forEach(System.out::print);
 
 
         System.out.println();

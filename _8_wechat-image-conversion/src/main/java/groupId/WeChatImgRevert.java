@@ -1,7 +1,6 @@
 package groupId;
 
 import org.junit.Test;
-import org.springframework.util.Assert;
 
 import java.io.*;
 import java.util.Arrays;
@@ -53,7 +52,7 @@ public class WeChatImgRevert {
         //String temp = "_8_wechat-image-conversion/test.txt";
         //System.out.println(System.getProperty("user.dir"));
         File file1 = new File(file);
-        Assert.isTrue(file1.exists(), "file not exist");
+        //Assert.isTrue(file1.exists(), "file not exist");
         Object[] xor = getXor(file1);
         System.out.println(Arrays.toString(xor));
         byte[] convert = convert(file1, (int) xor[1]);

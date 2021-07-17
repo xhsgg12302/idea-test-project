@@ -1,7 +1,6 @@
 package _utils.XSS.xss;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 
 import javax.servlet.ReadListener;

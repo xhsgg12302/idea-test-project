@@ -45,7 +45,7 @@
         <property name="configLocation"  value="classpath:mybatisConfig.xml"/>
         <property name="dataSource" ref="dataSource" />
         <!-- 自动扫描mapping.xml文件 -->
-        <property name="mapperLocations" value="classpath:me/maupassant/springmvc/mapper/*.xml"></property>
+        <property name="mapperLocations" value="classpath:site/wtfu/framework/mapper/*.xml"></property>
     </bean>
 
     <!-- DAO接口所在的包名，spring会自动查找其下的类，！注意这句 value="sqlSessionFactory"，不是ref而是value -->
