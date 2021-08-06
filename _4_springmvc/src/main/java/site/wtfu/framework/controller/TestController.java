@@ -128,6 +128,9 @@ public class TestController {
      *      public String testPostDataAndParameter(@RequestParam String get1,@RequestParam String get2,@RequestBody Employee employee){}
      *
      *      As you see ， receiving url parameters via empty annotations has the same effect as @RequestParam
+     *      * additional note: url arguments also append to entity(employee)
+     *      * example3: curl http://localhost:8080/test/postDefault.do\?get1\=123\&get2\=456\&age\=17 -d 'name=eli'
+     *      @RequestParam 可以将post 中的数据拿到  json 获取不到
      */
     @RequestMapping(value = "/postdataandparameter",method = RequestMethod.POST)
     @ResponseBody
@@ -138,31 +141,71 @@ public class TestController {
         return "Test Ok";
     }
 
+
+
+
     /**
-     *  # 测试 post 默认编码 urlencode
+     * curl -X GET http://localhost:11181/test/getMethodUrlEncoding.do -G -d 'get1=123' -d 'name=wtfu' -d 'age=2' -d 'id=932'
+     * @param get1
+     * @param name
      * @param employee
+     * @param id
      * @return
-     *
-     * example1: curl http://localhost:8080/test/postDefault.do -d 'name=eli&age=18'
-     *
-     *      public String testPostDefault(Employee employee){}
-     *
-     *
-     * example2: curl http://localhost:8080/test/postDefault.do\?get1\=123\&get2\=456 -d 'name=eli&age=18'
-     *
-     *      public String testPostDefault(String get1,String get2, Employee employee){}
-     *      public String testPostDefault(@RequestParam String get1,@RequestParam String get2, Employee employee){}
-     *
-     *
-     * additional note: url arguments also append to entity(employee)
-     * example3: curl http://localhost:8080/test/postDefault.do\?get1\=123\&get2\=456\&age\=17 -d 'name=eli'
-     *
-     *      public String testPostDefault(@RequestParam String get1,@RequestParam String get2, Employee employee ){}
      */
-    @RequestMapping(value = "/postDefault" ,method = RequestMethod.POST)
+    @RequestMapping(value = "/getMethodUrlEncoding", method = RequestMethod.GET)
     @ResponseBody
-    public String testPostDefault(@RequestParam String get1,@RequestParam String get2, Employee employee ){
+    public String testGetParamsUrlEncoding(@RequestParam String get1, String name, Employee employee ,Long id){
         System.out.println(employee);
         return "Test OK";
     }
+
+    /**
+     *  curl -X POST http://localhost:11181/test/postMethodUrlEncoding.do  -d 'get1=123' -d 'name=wtfu' -d 'age=2' -d 'id=932'
+     * @param get1
+     * @param name
+     * @param employee
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/postMethodUrlEncoding" ,method = RequestMethod.POST)
+    @ResponseBody
+    public String testPostUrlEncoding(@RequestParam String get1, String name, Employee employee ,Long id){
+        System.out.println(employee);
+        return "Test OK";
+    }
+
+    /**
+     * 会出现415，400
+     * @param get1
+     * @param name
+     * @param employee
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/getMethodJSON", method = RequestMethod.GET)
+    @ResponseBody
+    public String testGetParamsJSON(@RequestParam String get1, String name, String text, @RequestBody Employee employee ){ // ,@RequestBody Long id){
+        System.out.println(employee);
+        return "Test OK";
+    }
+
+    /**
+     * curl -X POST  http://localhost:11181/test/postMethodJSON.do\?get1\=123 -H 'Content-Type: application/json' -d '{"name":"wtfu"}'   [400]
+     * 删除 @RequestBody Long id 后正常，不过name 不会给String name; employee 中的好使
+     * curl -X POST  http://localhost:11181/test/postMethodJSON.do\?get1\=123\&name\=hello -H 'Content-Type: application/json' -d '{"name":"wtfu"}'
+     * JSON 中的会给employee, url 上的会给String name,
+     * @param get1
+     * @param name
+     * @param employee
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/postMethodJSON" ,method = RequestMethod.POST)
+    @ResponseBody
+    public String testPostJSON(@RequestParam String get1, String name,String text, @RequestBody Employee employee ){
+        System.out.println(employee);
+        return "Test OK";
+    }
+
+
 }
