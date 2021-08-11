@@ -1,6 +1,6 @@
 /**
  *
- * 1,通过SA(Serviceability Agent)工具ClassDUMP
+ * 1,通过SA(Serviceability Agent)工具ClassDUMP  [运行hsdb（HotSpot Debugger）工具]
  *
  * -------------------------------------------------------------------------------------------------------------------
  * #缺省输出该PID下所有已加载的class文件至./目录
@@ -34,6 +34,9 @@
  *
  * -------------------------------------------------------------------------------------------------------------------
  * https://www.iteye.com/blog/rednaxelafx-727938
+ * http://monkeywie.cn/2018/07/25/jvm-dump-class/
+ * https://my.oschina.net/unclejobs/blog/3190908
+ * https://www.cnblogs.com/ctgulong/p/5011614.html
  *
  */
 
