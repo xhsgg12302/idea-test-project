@@ -17,3 +17,5 @@ public class Hello{
     + un_JTW(从，静态织入)
     + unzip-and-zip(从，压缩与解压缩)
     + pom.xml
+
++ test git credential
