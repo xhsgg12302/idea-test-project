@@ -1,7 +1,7 @@
 /**
  * Copyright_c 2018 qmhd.con.cn Inc. All Rights Reserved.
  * @Title LoginServiceImpl.java
- * @Package: me.maupassant.springmvc.services.impl
+ * @Package: site.wtfu.framework.services.impl
  * @Email:  xhsgg12302@outlook.com   
  * @date: 2019年3月11日 上午12:05:40 
  * @version 1.0.0

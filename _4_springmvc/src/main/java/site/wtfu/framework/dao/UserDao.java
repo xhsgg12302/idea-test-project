@@ -1,7 +1,7 @@
 /**
  * Copyright_c 2018 qmhd.con.cn Inc. All Rights Reserved.
  * @Title UserDao.java
- * @Package: me.maupassant.springmvc.dao
+ * @Package: site.wtfu.framework.dao
  * @Email:  xhsgg12302@outlook.com   
  * @date: 2019年3月11日 上午12:08:14 
  * @version 1.0.0

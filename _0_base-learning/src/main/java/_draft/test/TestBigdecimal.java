@@ -21,6 +21,10 @@ public class TestBigdecimal {
        System.out.println(new BigDecimal("2.00"));
 
 
+
+
+
+
         System.out.println(bd+"\t"+bd1+"\t"+bd2+"\t"+bd3);
 
 
@@ -30,5 +34,9 @@ public class TestBigdecimal {
         System.out.println(df1.format(bd)+"\t"+df1.format(bd1)+"\t"+df1.format(bd2)+"\t"+df1.format(bd3));
 
 
+        System.out.println("++++++++++++++");
+        BigDecimal divide = BigDecimal.valueOf(26).divide(BigDecimal.valueOf(3),2, BigDecimal.ROUND_HALF_UP);
+        double v = divide.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+        System.out.println(divide);
     }
 }

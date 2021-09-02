@@ -11,7 +11,7 @@
                         http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
     <!-- 自动扫描 -->
-    <context:component-scan base-package="me.maupassant.springmvc">
+    <context:component-scan base-package="site.wtfu.framework">
     		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
     
@@ -50,7 +50,7 @@
 
     <!-- DAO接口所在的包名，spring会自动查找其下的类，！注意这句 value="sqlSessionFactory"，不是ref而是value -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="me.maupassant.springmvc.dao" />
+        <property name="basePackage" value="site.wtfu.framework.dao" />
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
     </bean>
 
@@ -70,6 +70,6 @@
     <tx:annotation-driven/>
     
     <!--热部署工具-->
-    <!--<bean id="mapperHotDeploy" class="me.maupassant.springmvc._utils.utils.MapperHotDeployPlugin"/>-->
+    <!--<bean id="mapperHotDeploy" class="site.wtfu.framework._utils.utils.MapperHotDeployPlugin"/>-->
 
 </beans>

@@ -1,7 +1,7 @@
 /**
  * Copyright_c 2018 qmhd.con.cn Inc. All Rights Reserved.
  * @Title LoginController.java
- * @Package: me.maupassant.springmvc.controller
+ * @Package: site.wtfu.framework.controller
  * @Email:  xhsgg12302@outlook.com   
  * @date: 2019年3月10日 下午11:57:34 
  * @version 1.0.0
