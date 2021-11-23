@@ -25,7 +25,7 @@ public class Demo {
             CtClass cc = pool.get("_framework.javassist.helper.Origin");
             cc.setSuperclass(pool.get("_framework.javassist.helper.Base"));
 
-            cc.writeFile("D:\\idea-project\\idea-test-project\\_0_base-learning\\src\\main\\java\\_framework\\javassist");
+            cc.writeFile(".\\_0_base-learning\\src\\main\\java\\_framework\\javassist");
             Object o = cc.toClass().newInstance();
             System.out.println("pause");
         }catch (Exception e) { e.printStackTrace();}

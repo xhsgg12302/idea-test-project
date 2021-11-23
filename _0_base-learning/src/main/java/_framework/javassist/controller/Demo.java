@@ -80,7 +80,7 @@ public class Demo {
         MethodInfo info = method.getMethodInfo();
         info.addAttribute(methodAttr);
         clazz.addMethod(method);
-        clazz.writeFile("D:\\idea-project\\idea-test-project\\_0_base-learning\\src\\main\\java\\_framework\\javassist");
+        clazz.writeFile(".\\_0_base-learning\\src\\main\\java\\_framework\\javassist");
 
     }
 }

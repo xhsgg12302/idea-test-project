@@ -25,7 +25,7 @@ public class Product {
             CtField f = new CtField(CtClass.intType, "hiddenValue", cc);
             f.setModifiers(Modifier.PUBLIC);
             cc.addField(f);
-            cc.writeFile("D:\\idea-project\\idea-test-project\\_0_base-learning\\target\\classes\\_framework\\javassist");
+            cc.writeFile(".\\_0_base-learning\\target\\classes\\_framework\\javassist");
         }catch (Exception e){ /* _12302_2021/11/23_< ignore... > */}
     }
     
