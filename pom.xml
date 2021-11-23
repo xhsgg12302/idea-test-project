@@ -346,11 +346,15 @@
 
 
     <build>
-                <!-- 计算maven表达式-->
-                <!-- mvn help:evaluate -Dexpression=basedir  -->
+        <!-- 计算maven表达式-->
+        <!-- mvn help:evaluate -Dexpression=basedir  -->
 
-                <!-- 查看依赖项 -->
-                <!-- mvn dependency:tree -Dverbose -Dincludes=commons-digester:commons-digester  -->
+        <!-- 查看依赖项 -->
+        <!-- mvn dependency:tree -Dverbose -Dincludes=commons-digester:commons-digester  -->
+
+        <!-- _12302_2021/9/2_< filter文档 > -->
+        <!-- _12302_2021/9/2_< http://maven.apache.org/guides/getting-started/index.html#how-do-i-filter-resource-files > -->
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
