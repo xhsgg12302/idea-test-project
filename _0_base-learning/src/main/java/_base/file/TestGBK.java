@@ -35,4 +35,13 @@ public class TestGBK {
         os.flush();
         os.close();
     }
+    
+    
+    public static void cc(){
+        String temp = "2020年统计用区划代码和城乡划分代码";
+        
+        
+        
+    }
 }
+
