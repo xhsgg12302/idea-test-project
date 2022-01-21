@@ -47,5 +47,8 @@ public class Test {
         /*Optional<String> o = Optional.ofNullable(s);
         System.out.println(o.orElseThrow(()->new Exception("_draft.test")));*/
 
+
+        parallelListStream.forEach( c -> System.out.println(c) );
+
     }
 }
