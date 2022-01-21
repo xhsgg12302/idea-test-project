@@ -1,3 +1,4 @@
+/*
 package _draft.test;
 
 import org.apache.poi.hssf.usermodel.*;
@@ -35,7 +36,9 @@ public class TestPOI3 {
                     cell.setCellStyle(cellStyleCenter);
                 }
             }
-            /*// ---------------------------2.指定单元格填充数据------------------------------
+            */
+/*//*
+/ ---------------------------2.指定单元格填充数据------------------------------
             cell = sheet.getRow(0).getCell(0);
             cell.setCellValue(new HSSFRichTextString("银行存余额表"));
             cell = sheet.getRow(1).getCell(0);
@@ -55,7 +58,8 @@ public class TestPOI3 {
             cell = sheet.getRow(4).getCell(1);
             cell.setCellValue(new HSSFRichTextString("人民币"));
             cell = sheet.getRow(4).getCell(2);
-            cell.setCellValue(new HSSFRichTextString("折合本位币合计"));*/
+            cell.setCellValue(new HSSFRichTextString("折合本位币合计"));*//*
+
 
             // ---------------------------3.合并单元格------------------------------
             sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, 5));// 开始行，结束行，开始列，结束列
@@ -75,14 +79,16 @@ public class TestPOI3 {
 
 }
 class ExportFileNameUtils implements Serializable {
-    /**
+    */
+/**
      *
      * <br>
      * <b>功能：</b>列头样式<br>
      * <b>作者：</b>yixq<br>
      * <b>@param wb
      * <b>@return</b>
-     */
+     *//*
+
     public static HSSFCellStyle initColumnHeadStyle(HSSFWorkbook wb) {
         HSSFCellStyle columnHeadStyle = wb.createCellStyle();
         HSSFFont columnHeadFont = wb.createFont();
@@ -105,14 +111,16 @@ class ExportFileNameUtils implements Serializable {
         return columnHeadStyle;
     }
 
-    /**
+    */
+/**
      *
      * <br>
      * <b>功能：</b>单元格的默认样式<br>
      * <b>作者：</b>yixq<br>
      * <b>@param wb
      * <b>@return</b>
-     */
+     *//*
+
     public static HSSFCellStyle initColumnCenterstyle(HSSFWorkbook wb) {
         HSSFFont font = wb.createFont();
         font.setFontName("宋体");
@@ -132,3 +140,4 @@ class ExportFileNameUtils implements Serializable {
         return centerstyle;
     }
 }
+*/
