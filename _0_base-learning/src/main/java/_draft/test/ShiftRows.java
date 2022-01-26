@@ -1,8 +1,7 @@
 package _draft.test;
 
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileOutputStream;
@@ -25,28 +24,36 @@ public class ShiftRows {
         Sheet sheet = wb.createSheet("Sheet1");
 
         Row head = sheet.createRow(0);
-        head.createCell(0).setCellValue("head");
+
+        CellStyle errorCellStyle = wb.createCellStyle();
+        Font font = wb.createFont();
+        font.setColor(Font.COLOR_RED);
+        errorCellStyle.setFont(font);
+        Cell cell = head.createCell(0);
+        cell.setCellValue("This is a test of merging");
+        cell.setCellStyle(errorCellStyle);
+        sheet.addMergedRegion(new CellRangeAddress(0,0,0,10));
         
         
         Row row1 = sheet.createRow(1);
-        setRowValue(row1,"1");
-
+        setRowValue(row1,"中");
+        
         Row row2 = sheet.createRow(4);
-        setRowValue(row2,"2");
+        setRowValue(row2,"华");
 
         Row row3 = sheet.createRow(5);
-        setRowValue(row3,"3");
+        setRowValue(row3,"人");
 
         Row row4 = sheet.createRow(6);
-        setRowValue(row4 ,"4");
+        setRowValue(row4 ,"民");
 
         Row row5 = sheet.createRow(9);
-        setRowValue(row5  ,"5");
+        setRowValue(row5  ,"共和国");
 
         // Shift rows 6 - 11 on the spreadsheet to the top (rows 0 - 5)
-        sheet.shiftRows(5, 10, -4);
+        sheet.shiftRows(4, 5, 2);
 
-        FileOutputStream fileOut = new FileOutputStream("shiftRows4.xlsx");
+        FileOutputStream fileOut = new FileOutputStream("shiftRowsOrigin45-2.xlsx");
         wb.write(fileOut);
         fileOut.close();
         
