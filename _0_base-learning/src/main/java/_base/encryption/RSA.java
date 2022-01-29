@@ -8,24 +8,21 @@ package _base.encryption;
  * @Desc:
  */
 
-import java.io.*;
-import java.security.*;
-
-import java.security.interfaces.RSAPrivateKey;
-import java.security.interfaces.RSAPublicKey;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.PKCS8EncodedKeySpec;
-import java.security.spec.X509EncodedKeySpec;
+import org.apache.commons.codec.binary.Base64;
+import org.bouncycastle.asn1.*;
+import org.bouncycastle.asn1.pkcs.PKCSObjectIdentifiers;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
-
-import org.apache.commons.codec.binary.Base64;
-import org.bouncycastle.openssl.PEMReader;
-import org.bouncycastle.util.io.pem.PemObject;
-import org.bouncycastle.util.io.pem.PemReader;
+import java.io.*;
+import java.security.*;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.interfaces.RSAPublicKey;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
 
 public class RSA {
     /**
@@ -166,18 +163,49 @@ public class RSA {
     
     public static RSAPrivateKey loadPrivateKeyByStr(String privateKeyStr, boolean isPkcs8) throws Exception{
         try {
-            // Loads a privte key from the specified key file name
+            /*// Loads a privte key from the specified key file name
             final PemReader pemReader = new PemReader(new InputStreamReader(new ByteArrayInputStream(privateKeyStr.getBytes())));
             final PemObject pemObject = pemReader.readPemObject();
             final byte[] pemContent = pemObject.getContent();
-            pemReader.close();
-            final PKCS8EncodedKeySpec encodedKeySpec = new PKCS8EncodedKeySpec(pemContent);
+            pemReader.close();*/
+            Base64 base64 = new Base64();
+            byte[] data = base64.decode(privateKeyStr);
+            ASN1EncodableVector v = new ASN1EncodableVector();
+            v.add(new ASN1Integer(0));
+            ASN1EncodableVector v2 = new ASN1EncodableVector();
+            v2.add(new ASN1ObjectIdentifier(PKCSObjectIdentifiers.rsaEncryption.getId()));
+            v2.add(DERNull.INSTANCE);
+            v.add(new DERSequence(v2));
+            v.add(new DEROctetString(data));
+            ASN1Sequence seq = new DERSequence(v);
+            byte[] privKey = seq.getEncoded("DER");
+            final PKCS8EncodedKeySpec encodedKeySpec = new PKCS8EncodedKeySpec(privKey);
             final KeyFactory keyFactory = KeyFactory.getInstance("RSA");
             final PrivateKey privateKey = keyFactory.generatePrivate(encodedKeySpec);
             return (RSAPrivateKey)privateKey;
         } catch (NullPointerException e) {
             throw new Exception("私钥数据为空");
         } 
+    }
+
+    public static RSAPrivateKey loadPrivateKeyByStr(String privateKeyStr, boolean isPkcs8, boolean example) throws Exception{
+        try {
+            /*// Loads a privte key from the specified key file name
+            final PemReader pemReader = new PemReader(new InputStreamReader(new ByteArrayInputStream(privateKeyStr.getBytes())));
+            final PemObject pemObject = pemReader.readPemObject();
+            final byte[] pemContent = pemObject.getContent();
+            pemReader.close();*/
+            /*PemFile pemFile = new PemFile(filename);
+            byte[] privKey = pemFile.getPemObject().getContent();
+            final PKCS8EncodedKeySpec encodedKeySpec = new PKCS8EncodedKeySpec(privKey);
+            final KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+            final PrivateKey privateKey = keyFactory.generatePrivate(encodedKeySpec);
+            return (RSAPrivateKey)privateKey;*/
+        } catch (NullPointerException e) {
+            throw new Exception("私钥数据为空");
+        }
+        
+        return null;
     }
 
     /**

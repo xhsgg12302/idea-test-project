@@ -38,23 +38,35 @@ public class ShiftRows {
         Row row1 = sheet.createRow(1);
         setRowValue(row1,"中");
         
-        Row row2 = sheet.createRow(4);
+        Row row2 = sheet.createRow(2);
         setRowValue(row2,"华");
 
-        Row row3 = sheet.createRow(5);
+        Row row3 = sheet.createRow(3);
         setRowValue(row3,"人");
 
-        Row row4 = sheet.createRow(6);
+        Row row4 = sheet.createRow(4);
         setRowValue(row4 ,"民");
 
-        Row row5 = sheet.createRow(9);
+        Row row5 = sheet.createRow(5);
         setRowValue(row5  ,"共和国");
 
         // Shift rows 6 - 11 on the spreadsheet to the top (rows 0 - 5)
-        sheet.shiftRows(4, 5, 2);
+        //sheet.shiftRows(2, 2, -1);
+        
+        
+        sheet.shiftColumns(1,1 , 1);
+        
+        /*for (int i = 1 ;i < 6 ; i++){
+            Row row = sheet.getRow(i);
+            Cell cell1 = row.createCell(1);
+            cell1.setCellStyle(errorCellStyle);
+            cell1.setCellValue("干啥");
+        }*/
+        
 
-        FileOutputStream fileOut = new FileOutputStream("shiftRowsOrigin45-2.xlsx");
+        FileOutputStream fileOut = new FileOutputStream("shiftColumnOrigin141.xlsx");
         wb.write(fileOut);
+        fileOut.flush();
         fileOut.close();
         
     }
