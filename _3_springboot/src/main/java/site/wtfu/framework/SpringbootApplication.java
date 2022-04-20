@@ -6,10 +6,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+/**
+ * @author stevenobelia
+ */
 @SpringBootApplication
 @EnableAsync
 @EnableScheduling
-@MapperScan(value = "me.maupassant.springboot.mapper")
+@MapperScan(basePackages = "site.wtfu.framework.mapper")
 public class SpringbootApplication {
 
     public static void main(String[] args) {

@@ -19,9 +19,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- spring版本号 -->
-        <spring.version>4.0.2.RELEASE</spring.version>
-        <!-- mybatis版本号 -->
-        <mybatis.version>3.2.6</mybatis.version>
+        <!--<spring.version>4.0.2.RELEASE</spring.version>-->
+        <spring.version>${org.springframework.version}</spring.version>
         <!-- log4j日志文件管理包版本 -->
         <slf4j.version>1.7.7</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
@@ -100,7 +99,6 @@
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
-            <version>${mybatis.version}</version>
         </dependency>
         <!-- mybatis/spring包 -->
         <dependency>
@@ -169,9 +167,8 @@
         <!-- log end -->
         <!-- 映入JSON -->
         <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-asl</artifactId>
-            <version>1.9.13</version>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
         </dependency>
         <!-- 上传组件包 -->
         <dependency>
