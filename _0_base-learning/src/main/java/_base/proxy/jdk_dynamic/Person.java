@@ -8,7 +8,15 @@ package _base.proxy.jdk_dynamic;
  * @Description:
  */
 public interface Person {
-    //上交班费
+
+    /**
+     * giveMoney
+     */
     void giveMoney();
+
+    /**
+     * sayHello
+     * @param string
+     */
     void sayHello(String string);
 }
