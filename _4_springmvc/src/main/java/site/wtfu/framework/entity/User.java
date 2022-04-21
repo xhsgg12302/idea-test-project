@@ -9,21 +9,20 @@
  */
 package site.wtfu.framework.entity;
 
-import javax.xml.bind.annotation.XmlRootElement;
-import java.time.LocalDateTime;
+import java.util.Date;
+
 
 /**
  * @className User
  * @description
  *
  */
-@XmlRootElement
 public class User {
 	private String name;
 	private Integer age;
 	private String account;
 	private String password;
-	private LocalDateTime time;
+	private Date time;
 
 	public User() {
 	}
@@ -61,10 +60,10 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public LocalDateTime getTime() {
+	public Date getTime() {
 		return time;
 	}
-	public void setTime(LocalDateTime time) {
+	public void setTime(Date time) {
 		this.time = time;
 	}
 

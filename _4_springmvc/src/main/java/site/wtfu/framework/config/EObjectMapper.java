@@ -96,7 +96,6 @@ public class EObjectMapper extends ObjectMapper {
             user.setAge(age);
             user.setAccount(account);
             user.setPassword(password);
-            user.setTime(time);
             return user;
         }
     }
