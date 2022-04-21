@@ -12,7 +12,8 @@ import java.util.concurrent.TimeUnit;
  * @author: 12302
  * @date: 2021-06-14
  */
-@Component
+/* _12302_2022/4/20_< 取消定时 > */
+//@Component
 public class ScheduleTask {
 
 

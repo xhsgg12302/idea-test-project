@@ -178,29 +178,29 @@
             <version>1.11.3</version>
         </dependency>
 
-        <!--工作流activiti-->
+        <!--&lt;!&ndash;工作流activiti&ndash;&gt;
         <dependency>
             <groupId>org.activiti</groupId>
             <artifactId>activiti-spring-boot-starter-basic</artifactId>
             <version>6.0.0</version>
             <exclusions>
-                <!--启动检查报错-->
-                <!--<exclusion>
+                &lt;!&ndash;启动检查报错&ndash;&gt;
+                &lt;!&ndash;<exclusion>
                     <groupId>org.activiti</groupId>
                     <artifactId>activiti-bpmn-model</artifactId>
-                </exclusion>-->
+                </exclusion>&ndash;&gt;
                 <exclusion>
                     <groupId>org.mybatis</groupId>
                     <artifactId>mybatis</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
-        <!-- 流程发布转换-->
+        &lt;!&ndash; 流程发布转换&ndash;&gt;
         <dependency>
             <groupId>org.activiti</groupId>
             <artifactId>activiti-json-converter</artifactId>
             <version>6.0.0</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>

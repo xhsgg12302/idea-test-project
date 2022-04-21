@@ -1,16 +1,14 @@
 package site.wtfu.framework.config;
 
-import org.codehaus.jackson.JsonGenerator;
-import org.codehaus.jackson.JsonParser;
-import org.codehaus.jackson.JsonToken;
-import org.codehaus.jackson.Version;
-import org.codehaus.jackson.map.*;
-import org.codehaus.jackson.map.module.SimpleModule;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.core.Version;
+import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -64,8 +62,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         super.configureMessageConverters(converters);
         if(1==2){
             for (HttpMessageConverter converter : converters) {
-                if (converter instanceof MappingJacksonHttpMessageConverter) {
-                    ObjectMapper objectMapper = ((MappingJacksonHttpMessageConverter) converter).getObjectMapper();
+                if (converter instanceof MappingJackson2HttpMessageConverter) {
+                    ObjectMapper objectMapper;
+                    objectMapper = ((MappingJackson2HttpMessageConverter) converter).getObjectMapper();
                     SimpleModule module = new SimpleModule("localdateTime", Version.unknownVersion());
                     module.addSerializer(LocalDateTime.class,new LocalDateTimeSerializer());
                     module.addDeserializer(LocalDateTime.class,new LocalDateTimeDeserializer());

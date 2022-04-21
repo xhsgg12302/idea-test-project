@@ -19,10 +19,10 @@ import java.util.HashMap;
  * @Desc:
  */
 @Controller
-@RequestMapping(value = "_draft.test")
+@RequestMapping(value = "test")
 public class TestController {
 
-    @RequestMapping(value = "_draft.test")
+    @RequestMapping(value = "test")
     @ResponseBody
     public Object test(){
         return new HashMap(){{put("code",1000);put("desc","SUCCESS");}};
@@ -44,7 +44,7 @@ public class TestController {
         try{
             new Thread(NetworkStatusThread.getInstance()).start();
 
-            Thread.sleep(2* 1000l);
+            Thread.sleep(2* 1000L);
             NetworkStatusThread.getInstance().addNetTask(new NetTask("39.107.88.49", new NetworkListener() {
                 @Override
                 public void sendNetworkStatus(String status) {
@@ -52,7 +52,7 @@ public class TestController {
                 }
             }));
 
-            Thread.sleep(4 * 1000l);
+            Thread.sleep(4 * 1000L);
             NetworkStatusThread.getInstance().addNetTask(new NetTask("127.0.0.1", new NetworkListener() {
                 @Override
                 public void sendNetworkStatus(String status) {

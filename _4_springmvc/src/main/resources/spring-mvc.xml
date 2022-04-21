@@ -17,7 +17,7 @@
 
 
 
-    <!--<bean id="EObjectMapper" class="site.wtfu.framework.config.EObjectMapper"></bean>-->
+    <bean id="EObjectMapper" class="site.wtfu.framework.config.EObjectMapper"></bean>
 
 
     <!-- ========================================消息转换器配置 1========origin begin================================= -->

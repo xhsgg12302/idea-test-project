@@ -1,16 +1,17 @@
 package _base.proxy.jdk_dynamic;
 
-import _base.proxy.jdk_dynamic.Person;
-
 /**
  * Copyright 2018 ...com Inc. All Rights Reserved.
  *
+ * @author stevenobelia
  * @Email: xhsgg12302@gmail.com
  * @Date: 2019/3/24 23:53
  * @Description:
  */
 public class Student implements Person {
+
     private String name;
+
     public Student(String name) {
         this.name = name;
     }

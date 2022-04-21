@@ -1,13 +1,12 @@
 package site.wtfu.framework.config;
 
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.core.util.VersionUtil;
+import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import site.wtfu.framework.entity.User;
-import org.codehaus.jackson.JsonGenerator;
-import org.codehaus.jackson.JsonNode;
-import org.codehaus.jackson.JsonParser;
-import org.codehaus.jackson.JsonToken;
-import org.codehaus.jackson.map.*;
-import org.codehaus.jackson.map.module.SimpleModule;
-import org.codehaus.jackson.util.VersionUtil;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -97,7 +96,6 @@ public class EObjectMapper extends ObjectMapper {
             user.setAge(age);
             user.setAccount(account);
             user.setPassword(password);
-            user.setTime(time);
             return user;
         }
     }
