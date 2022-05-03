@@ -20,20 +20,20 @@ public class HtmlTest {
     public static void main(String[] args) throws IOException {
 
 
-        InputStream resourceAsStream = HtmlTest.class.getClassLoader().getResourceAsStream("demoHtml.html");
+        InputStream resourceAsStream = HtmlTest.class.getClassLoader().getResourceAsStream("_base/html_parse/res/wtfu.site.html");
 
         String html = new String(FileCopyUtils.copyToByteArray(resourceAsStream),"UTF-8");
 
         Document doc = Jsoup.parse(html);
 
-        Elements select = doc.select(".abstract-mode");
+        Elements select = doc.select(".s-bottom-layer");
 
-        Elements allElements = select.get(0).children();
+        Elements allElements = select.get(0).children().get(0).children();
 
         allElements.stream().forEach((e) -> {
-            String id = e.attr("id");
-            String text = e.children().select("div.title > div > span").text();
-            System.out.println(String.format("%s,%s",id,text));
+            String text = e.select("a").text();
+            String url = e.select("a").attr("href");
+            System.out.println(String.format("%s : %s",text,url));
         });
 
         System.out.println("pause");

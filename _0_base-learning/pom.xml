@@ -269,6 +269,9 @@
                 <includes>
                     <include>**/*.xml</include>
                     <include>**/*.properties</include>
+                    <include>**/*.html</include>
+                    <include>**/*.mmdb</include>
+                    <include>**/*.vm</include>
                 </includes>
             </resource>
             <resource>

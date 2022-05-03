@@ -6,7 +6,6 @@ import org.apache.velocity.app.Velocity;
 import org.junit.Test;
 
 import java.io.StringWriter;
-import java.net.URI;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,7 +22,7 @@ public class Demo {
     @Test
     public void test(){
 
-        URL resource = this.getClass().getClassLoader().getResource("velocity.properties");
+        URL resource = this.getClass().getClassLoader().getResource("_framework/velocity/res/velocity.properties");
         // 初始化（1）
         Velocity.init(resource.getFile());
 
@@ -43,6 +42,6 @@ public class Demo {
         template.merge(context, stringWriter);
 
         // 打印结果
-        System.out.println(stringWriter.toString());
+        System.out.println(stringWriter);
     }
 }
