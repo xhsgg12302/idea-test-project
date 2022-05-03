@@ -19,3 +19,10 @@ public class Hello{
     + pom.xml
 
 + test git credential
+
+
+# TODO
+  
+  - [X] else
+  - [ ] properties password encrypt used maven plugin
+  - [ ] mvn settings migration to mac idea

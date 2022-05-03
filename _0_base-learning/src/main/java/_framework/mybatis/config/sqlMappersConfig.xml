@@ -5,7 +5,7 @@
 
 
 <configuration>
-    <properties resource="jdbc.properties" />
+    <properties resource="_framework/mybatis/config/jdbc.properties" />
     <settings>
         <!-- 打印查询语句 -->
         <setting name="logImpl" value="STDOUT_LOGGING" />
@@ -21,8 +21,12 @@
             </dataSource>
         </environment>
     </environments>
+
+    <!-- _12302_2022/5/3_< https://mybatis.net.cn/configuration.html#mappers > -->
     <mappers>
-        <!--<mapper resource="_framework.mybatis/xml/Student.xml"/>-->
-        <mapper resource="sqlMapper/Student.xml"/>
+        <!--<mapper resource="sqlMapper/Student.xml"/>-->
+        <!--<mapper class="_framework.mybatis.mapper.StudentMapper" />-->
+        <!--<package name="_framework.mybatis.mapper"/>-->
+        <mapper resource="_framework/mybatis/mapper/Student.xml"/>
     </mappers>
 </configuration>

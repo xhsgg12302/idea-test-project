@@ -1,5 +1,8 @@
 package _draft.test;
 
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -60,6 +63,10 @@ public class TestSPI {
 
 
     public static void main(String[] args) {
+
+        Enumeration<Driver> drivers = DriverManager.getDrivers();
+
+
         foo(0);
         System.out.println(output);
         foo(1);
