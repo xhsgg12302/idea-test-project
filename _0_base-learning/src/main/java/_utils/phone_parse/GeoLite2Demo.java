@@ -12,6 +12,7 @@ package _utils.phone_parse;
 import com.maxmind.geoip2.DatabaseReader;
 import com.maxmind.geoip2.model.CityResponse;
 import com.maxmind.geoip2.record.*;
+import org.junit.Test;
 
 import java.io.File;
 import java.net.InetAddress;
@@ -25,10 +26,12 @@ import java.net.URL;
  * @date 2018年8月15日下午4:34:30
  * @version V1.0
  */
-public class Test {
-    public static void main(String[] args) throws Exception {
+public class GeoLite2Demo {
+
+    @Test
+    public void test() throws Exception {
         // 创建 GeoLite2 数据库
-        URL resource = Test.class.getClassLoader().getResource("GeoLite2-City.mmdb");
+        URL resource = GeoLite2Demo.class.getClassLoader().getResource("_utils/phone_parse/res/GeoLite2-City.mmdb");
         File database = new File(resource.getFile());
         // 读取数据库内容
         DatabaseReader reader = new DatabaseReader.Builder(database).build();

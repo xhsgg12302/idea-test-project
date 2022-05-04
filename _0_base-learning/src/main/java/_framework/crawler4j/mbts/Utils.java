@@ -15,6 +15,7 @@ import org.springframework.util.StringUtils;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -47,7 +48,7 @@ public class Utils {
         pool.setMinimumIdle(10);
         pool.setConnectionInitSql("SELECT 1");
         try {
-            inputStream = Resources.getResourceAsStream("ConfigSqlMapper.xml");
+            inputStream = Resources.getResourceAsStream("_framework/crawler4j/mbts/config/ConfigSqlMapper.xml");
             XMLConfigBuilder xmlConfigBuilder = new XMLConfigBuilder(inputStream, null, null);
             Configuration parse = xmlConfigBuilder.parse();
             Environment environment = new Environment("development", new JdbcTransactionFactory(), pool);
@@ -90,8 +91,10 @@ public class Utils {
         temp = null;
 
         System.out.println();
-        
-        
-        
+
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        StatsGovDataMapper mapper = sqlSession.getMapper(StatsGovDataMapper.class);
+        List<Map> x = mapper.selectByName("X");
+        sqlSession.close();
     }
 }

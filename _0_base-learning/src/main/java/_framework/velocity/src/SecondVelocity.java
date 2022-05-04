@@ -67,7 +67,7 @@ public class SecondVelocity {
 
     public VelocityEngine getVelocityEngine() {
         VelocityEngine ve = new VelocityEngine();
-        URL resource = this.getClass().getClassLoader().getResource("velocity.properties");
+        URL resource = this.getClass().getClassLoader().getResource("_framework/velocity/res/velocity.properties");
         // 初始化（1）
         ve.init(resource.getFile());
         return ve;

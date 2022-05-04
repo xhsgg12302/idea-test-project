@@ -1,5 +1,6 @@
 package site.wtfu.framework.service.impl;
 
+import org.springframework.transaction.annotation.Transactional;
 import site.wtfu.framework.beans.Departments;
 import site.wtfu.framework.mapper.DepartmentsMapper;
 import site.wtfu.framework.service.IDepartmentsService;
@@ -17,4 +18,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class DepartmentsServiceImpl extends ServiceImpl<DepartmentsMapper, Departments> implements IDepartmentsService {
 
+    @Transactional(rollbackFor = Exception.class)
+    public void testTransaction(){}
 }

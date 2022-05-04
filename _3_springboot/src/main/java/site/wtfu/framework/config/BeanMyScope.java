@@ -1,6 +1,5 @@
 package site.wtfu.framework.config;
 
-import com.sun.istack.internal.Nullable;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.config.Scope;
 
@@ -20,7 +19,6 @@ public class BeanMyScope implements Scope {
         return objectFactory.getObject();
     }
 
-    @Nullable
     @Override
     public Object remove(String name) {
         return null;
@@ -31,13 +29,11 @@ public class BeanMyScope implements Scope {
 
     }
 
-    @Nullable
     @Override
     public Object resolveContextualObject(String key) {
         return null;
     }
 
-    @Nullable
     @Override
     public String getConversationId() {
         return null;

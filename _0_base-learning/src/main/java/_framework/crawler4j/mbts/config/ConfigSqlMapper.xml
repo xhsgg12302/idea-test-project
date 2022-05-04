@@ -11,6 +11,6 @@
     </settings>-->
     <mappers>
         <!--<mapper resource="_framework.mybatis/xml/Student.xml"/>-->
-        <mapper resource="sqlMapper/StatsGovDataMapper.xml"/>
+        <mapper resource="_framework/crawler4j/mbts/mapper/StatsGovDataMapper.xml"/>
     </mappers>
 </configuration>

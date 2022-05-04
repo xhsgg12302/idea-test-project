@@ -24,7 +24,7 @@ public class CheckSimple {
         InputStream inputStream = null;
         SqlSessionFactory sqlSessionFactory;
         try {
-            inputStream = Resources.getResourceAsStream("sqlMappersConfig.xml");
+            inputStream = Resources.getResourceAsStream("_framework/mybatis/config/sqlMappersConfig.xml");
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

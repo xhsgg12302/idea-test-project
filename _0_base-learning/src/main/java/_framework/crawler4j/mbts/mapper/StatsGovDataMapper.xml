@@ -4,7 +4,7 @@
 <mapper namespace="_framework.crawler4j.mbts.mapper.StatsGovDataMapper">
     
     <select id="selectByName" parameterType="java.lang.String" resultType="map">
-        select * from student where sname like  concat('%',#{name},'%')
+        select * from stats_gov_data where sgd_name like  concat('%',#{name},'%')
     </select>
 
 

@@ -22,7 +22,7 @@ public class ExampleVelocity {
     @Test
     public void test(){
         try {
-            URL resource = this.getClass().getClassLoader().getResource("velocity.properties");
+            URL resource = this.getClass().getClassLoader().getResource("_framework/velocity/res/velocity.properties");
             // 初始化（1）
             Velocity.init(resource.getFile());
 
