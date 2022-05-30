@@ -32,7 +32,7 @@ public class JmsConsumer2 {
 
         session = connection.createSession(Boolean.FALSE, Session.AUTO_ACKNOWLEDGE); // 创建Session
 
-        destination = session.createTopic("firstTopic");
+        destination = session.createTopic("69");
         messageConsumer = session.createDurableSubscriber((Topic)destination,"name_2"); //持久订阅
         //messageConsumer = session.createConsumer(destination); // 创建消息消费者
         /*int i = 0;

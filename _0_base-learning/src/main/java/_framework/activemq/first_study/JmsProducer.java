@@ -1,6 +1,7 @@
 package _framework.activemq.first_study;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
+import org.junit.Test;
 
 import javax.jms.*;
 
@@ -12,6 +13,16 @@ import javax.jms.*;
  * @Description:
  */
 public class JmsProducer {
+
+    public static final String topicName = "request_69";
+
+    public static final String USER_NAME = "wtfu";
+
+    public static final String PASSWORD = "broker12302";
+
+    public static final String BROKER_URL = "tcp://wtfu.site:13316";
+
+
 
     public static void main(String[] args) throws Exception {
 
