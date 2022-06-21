@@ -26,9 +26,7 @@ public class TestJstack {
 
         @Override
         public void run() {
-            synchronized (locl){
-                calculate();
-            }
+            calculate();
         }
 
         private void calculate(){

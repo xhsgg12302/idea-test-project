@@ -15,7 +15,7 @@ import java.net.Socket;
  */
 public class TestServerSocket {
     public static void main(String[] args) throws IOException {
-        ServerSocket ss = new ServerSocket(12345);
+        ServerSocket ss = new ServerSocket(14307);
         while (true) {
             Socket socket = ss.accept();
             System.out.println(socket);

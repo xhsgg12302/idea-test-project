@@ -46,10 +46,18 @@ import java.util.Scanner;
 
 public class Test {
 
+    public static void main(String[] args) {
+        Test test = new Test();
+        try {
+            test.client();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     @org.junit.Test
     public void client() throws Exception{
         //获取通道
-        SocketChannel socketChannel = SocketChannel.open(new InetSocketAddress("127.0.0.1",9898));
+        SocketChannel socketChannel = SocketChannel.open(new InetSocketAddress("wtfu.site",14308));
         //切换非阻塞模式
         socketChannel.configureBlocking(false);
         //分配指定大小的缓冲区

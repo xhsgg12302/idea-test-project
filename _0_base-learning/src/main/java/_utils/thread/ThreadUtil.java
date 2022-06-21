@@ -47,4 +47,13 @@ public class ThreadUtil {
         return Instance.singleton;
     }
 
+    public static void keepRunning(){
+        Thread thread = Thread.currentThread();
+        synchronized (thread){
+            try {
+                thread.wait();
+            } catch (InterruptedException e) { e.printStackTrace(); }
+        }
+    }
+
 }
