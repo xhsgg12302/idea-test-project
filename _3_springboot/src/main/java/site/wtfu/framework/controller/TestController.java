@@ -22,9 +22,15 @@ import java.util.HashMap;
 @RequestMapping(value = "test")
 public class TestController {
 
+    /**
+     * 测试到controller的线程是否每次新建，不是，就是http-nio-***
+     */
+    ThreadLocal<String> localVar  = new ThreadLocal<>();
+
     @RequestMapping(value = "test")
     @ResponseBody
     public Object test(){
+        localVar.set("HelloWorld");
         return new HashMap(){{put("code",1000);put("desc","SUCCESS");}};
     }
 
@@ -34,7 +40,9 @@ public class TestController {
     @RequestMapping(value = "aop")
     @ResponseBody
     public Object aop(){
-        Object test = itestAop.test();
+        System.out.println(localVar.get());
+        Object test = null;
+        //Object test = itestAop.test();
         return new HashMap(){{put("code",1000);put("desc",test);}};
     }
 

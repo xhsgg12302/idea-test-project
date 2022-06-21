@@ -14,7 +14,7 @@ import java.net.Socket;
  */
 public class TestClientSocket {
     public static void main(String[] args) throws IOException, InterruptedException {
-        Socket socket = new Socket("127.0.0.1", 12345);
+        Socket socket = new Socket("wtfu.site", 14307);
         System.out.println(socket);
         socket.setSendBufferSize(8192);
         socket.setReceiveBufferSize(8192);

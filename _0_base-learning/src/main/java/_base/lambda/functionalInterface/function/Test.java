@@ -81,10 +81,7 @@ public class Test {
         Person person = new Person();
 
         Function<HashMap, String> getAddress = person::getAddress;
-        Function<HashMap, String> getAddress2 = map -> {
-            String address = person.getAddress(map);
-            return address;
-        };
+        Function<HashMap, String> getAddress2 = map -> person.getAddress(map);
         Function<HashMap, String> getAddress3 = new Function<HashMap, String>() {
             @Override
             public String apply(HashMap hashMap) {

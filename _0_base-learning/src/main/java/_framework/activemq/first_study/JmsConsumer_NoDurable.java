@@ -31,7 +31,7 @@ public class JmsConsumer_NoDurable {
 
         session = connection.createSession(Boolean.FALSE, Session.AUTO_ACKNOWLEDGE); // 创建Session
 
-        destination = session.createTopic("request_anft");
+        destination = session.createTopic("69");
         messageConsumer = session.createConsumer(destination); //持久订阅
 
         messageConsumer.setMessageListener(new MessageListener() {
