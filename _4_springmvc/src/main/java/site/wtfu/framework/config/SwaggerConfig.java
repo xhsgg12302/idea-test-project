@@ -1,0 +1,39 @@
+package site.wtfu.framework.config;
+
+import com.google.common.base.Predicates;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+/**
+ *
+ * Copyright https://wtfu.site Inc. All Rights Reserved.
+ * 
+ * @date 2022/7/19
+ *                          @since  1.0
+ *                          @author 12302
+ * 
+ */
+@Configuration
+@EnableSwagger2
+public class SwaggerConfig extends WebMvcConfigurerAdapter {
+
+    @Bean
+    public Docket api() {
+        return new Docket(DocumentationType.SWAGGER_2).select()
+                .apis(Predicates.not(RequestHandlerSelectors.basePackage("org.springframework.boot")))
+                .build();
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry)
+    {
+        registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
+        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+    }
+}

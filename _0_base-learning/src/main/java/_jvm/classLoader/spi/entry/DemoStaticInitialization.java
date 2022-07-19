@@ -1,4 +1,4 @@
-package _base.spi.entry;
+package _jvm.classLoader.spi.entry;
 
 /**
  * 调用静态方法的时候会初始化

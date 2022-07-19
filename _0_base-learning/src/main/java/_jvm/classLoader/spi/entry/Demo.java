@@ -1,6 +1,6 @@
-package _base.spi.entry;
+package _jvm.classLoader.spi.entry;
 
-import _base.spi.ISpiTest;
+import _jvm.classLoader.spi.ISpiTest;
 import org.junit.Test;
 
 import java.util.Iterator;

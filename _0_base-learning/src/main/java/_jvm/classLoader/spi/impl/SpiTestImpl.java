@@ -1,6 +1,6 @@
-package _base.spi.impl;
+package _jvm.classLoader.spi.impl;
 
-import _base.spi.ISpiTest;
+import _jvm.classLoader.spi.ISpiTest;
 
 public class SpiTestImpl implements ISpiTest {
 

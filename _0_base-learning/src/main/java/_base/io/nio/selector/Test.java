@@ -8,6 +8,7 @@ import java.nio.channels.*;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 /**
  *      OPS ，SelectionKey的四个常量表示：
@@ -46,7 +47,7 @@ import java.util.Scanner;
 
 public class Test {
 
-    public static void main(String[] args) {
+    public static void main1(String[] args) {
         Test test = new Test();
         try {
             test.client();
@@ -57,7 +58,7 @@ public class Test {
     @org.junit.Test
     public void client() throws Exception{
         //获取通道
-        SocketChannel socketChannel = SocketChannel.open(new InetSocketAddress("wtfu.site",14308));
+        SocketChannel socketChannel = SocketChannel.open(new InetSocketAddress("wtfu.site",14307));
         //切换非阻塞模式
         socketChannel.configureBlocking(false);
         //分配指定大小的缓冲区
@@ -74,6 +75,46 @@ public class Test {
         }
         //关闭通道
         socketChannel.close();
+    }
+
+    public static void main(String[] args) {
+        try {
+            demo();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void demo() throws Exception{
+        SocketChannel client = SocketChannel.open();
+
+        client.configureBlocking(false);
+
+        client.connect(new InetSocketAddress("wtfu.site",14307));
+
+
+        while(!client.isConnected()){ TimeUnit.SECONDS.sleep(2);
+            System.out.println("sleep");}
+
+        System.out.println(client.finishConnect());
+
+        try{
+            for(;;){
+                ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
+                int read = client.read(byteBuffer);
+                if(read > -1){
+                    byteBuffer.flip();
+                    byte[] dst = new byte[byteBuffer.limit()];
+                    byteBuffer.get(dst,0,dst.length);
+                    System.out.println(new String(dst));
+                }
+                System.out.println("do else something");
+                TimeUnit.SECONDS.sleep(2);
+            }
+        }catch (Exception e){ e.printStackTrace();}
+        finally {
+            client.close();
+        }
     }
 
     @org.junit.Test
