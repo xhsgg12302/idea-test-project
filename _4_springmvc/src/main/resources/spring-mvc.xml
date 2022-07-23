@@ -110,6 +110,8 @@
     <!--现在是生效的。  加.do 是让它经过dispatchservlet，再由ParameterizableViewController处理-->
     <mvc:view-controller path="/startup.do" view-name="startup"/>
 
+    <!--<mvc:resources mapping="swagger-ui.html" location="classpath*:/META-INF/resources/"/>
+    <mvc:resources mapping="/webjars/**" location="classpath*:/META-INF/resources/webjars/"/>-->
 
     <!--配置view-Controller 必须配置下面的，不然注解controller 就不生效了-->
     <mvc:annotation-driven>
