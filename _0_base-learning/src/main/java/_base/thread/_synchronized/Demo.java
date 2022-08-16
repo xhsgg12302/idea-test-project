@@ -18,6 +18,14 @@ public class Demo {
         System.out.println(Thread.currentThread().getName() + " m1 end");
     }
 
+    public synchronized void m111(){
+        System.out.println(Thread.currentThread().getName() + " m111 start....");
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {e.printStackTrace();}
+        System.out.println(Thread.currentThread().getName() + " m111 end");
+    }
+
     /**
      * 测试两个线程同时进入synchronized 方法
      */
@@ -84,7 +92,7 @@ public class Demo {
 
     }
 
-    public static void main(String args[]){
+    public static void main3(String args[]){
         Demo demo = new Demo();
         //new Thread(demo::m4).start();
         //new Thread(demo::m2).start();
@@ -94,6 +102,10 @@ public class Demo {
         new Thread(demo::normal).start();
     }
 
-
-
+    public static void main(String args[]){
+        Demo demo = new Demo();
+        new Thread(demo::m1).start();
+        new Thread(demo::m111).start();
+        new Thread(demo::m3).start();
+    }
 }
