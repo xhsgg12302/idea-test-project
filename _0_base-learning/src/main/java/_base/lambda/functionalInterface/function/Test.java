@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * Copyright 2018 ...com Inc. All Rights Reserved.
@@ -82,6 +83,8 @@ public class Test {
 
         Function<HashMap, String> getAddress = person::getAddress;
         Function<HashMap, String> getAddress2 = map -> person.getAddress(map);
+        Supplier<String>          getAddress00 = person::getAddress;
+        Supplier<String>          getAddress22 = () -> person.getAddress();
         Function<HashMap, String> getAddress3 = new Function<HashMap, String>() {
             @Override
             public String apply(HashMap hashMap) {

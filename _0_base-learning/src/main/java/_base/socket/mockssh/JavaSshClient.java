@@ -1,14 +1,9 @@
 package _base.socket.mockssh;
 
-import _utils.thread.ThreadUtil;
-import jdk.net.ExtendedSocketOptions;
-
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -22,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 public class JavaSshClient {
 
     private static void test() throws Exception {
-        Socket socket = new Socket("wtfu.site", 14308);
+        Socket socket = new Socket("127.0.0.1", 14408);
 
         /*System.out.println(socket.getKeepAlive());
         socket.setKeepAlive(true);
@@ -32,6 +27,7 @@ public class JavaSshClient {
 
         System.out.println(socket);
         //ThreadUtil.keepRunning();
+/*
         new Thread(() -> {
             try{
                 InputStream tempStream = socket.getInputStream();
@@ -45,6 +41,7 @@ public class JavaSshClient {
                 }
             }catch (Exception e){ e.printStackTrace();}
         }).start();
+*/
         OutputStream outputStream = socket.getOutputStream();
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNext()) {

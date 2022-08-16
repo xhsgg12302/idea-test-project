@@ -303,6 +303,7 @@
                     <include>**/*.html</include>
                     <include>**/*.mmdb</include>
                     <include>**/*.vm</include>
+                    <include>**/*.js</include>
                 </includes>
             </resource>
             <resource>

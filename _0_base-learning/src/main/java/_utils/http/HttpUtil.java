@@ -5,6 +5,7 @@ import io.netty.buffer.ByteBufUtil;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
+import org.apache.http.StatusLine;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGet;
@@ -130,6 +131,26 @@ public class HttpUtil {
             return inputStream;
         });
         return future;
+    }
+
+
+    public static String requestGetBak(String requestUrl) {
+        HttpClient httpClient = HttpClients.createDefault();
+
+        HttpGet httpRequest = new HttpGet(requestUrl);
+
+        InputStream inputStream = null;
+        HttpResponse httpResponse;
+        try {
+            httpResponse = httpClient.execute(httpRequest);
+
+            StatusLine statusLine = httpResponse.getStatusLine();
+            String result = statusLine.toString();
+            return statusLine.getStatusCode() != 200 ? result : null;
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return null;
     }
 
     /**
