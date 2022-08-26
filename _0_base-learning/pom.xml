@@ -270,6 +270,12 @@
             <version>5.0.4</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot</artifactId>
+            <version>1.5.13.RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
 
 
     </dependencies>
