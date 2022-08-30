@@ -15,7 +15,7 @@ public class TestPOI {
 
 
         try  {
-            FileOutputStream fos = new FileOutputStream("C:\\Users\\elizabeth\\Desktop\\_draft.test.TestPOI2.xls");
+            FileOutputStream fos = new FileOutputStream("/Users/stevenobelia/Desktop/tongrentang.xls");
 
             Workbook wb = new HSSFWorkbook(); //工作薄对象
 

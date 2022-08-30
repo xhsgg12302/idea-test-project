@@ -36,6 +36,7 @@
         <dependency>
             <groupId>org.abcl</groupId>
             <artifactId>abcl</artifactId>
+            <version>3.2.5</version>
             <scope>system</scope>
             <systemPath>/Users/stevenobelia/Documents/crack-package/JetbrainsCrack-3.1-release-enc.jar</systemPath>
         </dependency>

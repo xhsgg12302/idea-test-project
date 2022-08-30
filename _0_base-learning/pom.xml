@@ -277,6 +277,11 @@
             <scope>compile</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.github.fommil</groupId>
+            <artifactId>openssh</artifactId>
+            <version>1.0</version>
+        </dependency>
 
     </dependencies>
     
@@ -310,7 +315,10 @@
                     <include>**/*.mmdb</include>
                     <include>**/*.vm</include>
                     <include>**/*.js</include>
+                    <include>**/*.json</include>
+                    <include>**/*.key</include>
                 </includes>
+                <filtering>false</filtering>
             </resource>
             <resource>
                 <directory>src/main/resources</directory>
@@ -322,7 +330,11 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
                 <configuration>
+                    <nonFilteredFileExtensions>
+                        <nonFilteredFileExtension>key</nonFilteredFileExtension>
+                    </nonFilteredFileExtensions>
                     <escapeString>\</escapeString>
                 </configuration>
             </plugin>

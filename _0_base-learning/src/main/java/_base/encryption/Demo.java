@@ -1,7 +1,12 @@
 package _base.encryption;
 
-import com.sun.org.apache.xml.internal.security.utils.Base64;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.xmlbeans.impl.util.Base64;
+import org.junit.Test;
+
+import java.io.File;
+import java.io.IOException;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 
@@ -15,35 +20,75 @@ import java.security.interfaces.RSAPublicKey;
 public class Demo {
 
     public static void main(String[] args) {
-        try {
-            String publicKey = System.getProperty("user.dir") + "/_0_base-learning/src/main/resources/pub.key";
-            String privateKey = System.getProperty("user.dir") + "/_0_base-learning/src/main/resources/pri.key";
-
-            java.security.Security.addProvider(
-                    new org.bouncycastle.jce.provider.BouncyCastleProvider()
-            );
-
-            System.out.println("--------------公钥加密私钥解密过程-------------------");
-            String plainText = "13156568985^233332222";
-            String publicKeyStr = RSA.loadPublicKeyByFile(publicKey);
-            RSAPublicKey rpubkey = RSA.loadPublicKeyByStr(publicKeyStr);
-
-            // 公钥加密过程
-            byte[] cipherData = RSA.encrypt(rpubkey, plainText.getBytes());
-            
-            // 私钥解密过程
-            String privateKeyStr = RSA.loadPrivateKeyByFile(privateKey);
-            RSAPrivateKey rprikey = RSA.loadPrivateKeyByStr(privateKeyStr,false);
-            byte[] res = RSA.decrypt(rprikey,cipherData);
-            String restr = new String(res);
-            System.out.println("原文：" + plainText);
-            System.out.println("密文：" + Base64.encode(cipherData));
-            System.out.println("解密：" + restr);
-            System.out.println();
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        java.security.Security.addProvider( new org.bouncycastle.jce.provider.BouncyCastleProvider());
     }
+
+
+    public static void showInfo(RSAPublicKey pub, RSAPrivateKey pri) throws Exception {
+        // 公匙加密，私匙解密
+        String plainText = "13156568985^233332222";
+        byte[] cipherData = RSA.encrypt(pub, plainText.getBytes());
+        byte[] res = RSA.decrypt(pri,cipherData);
+
+        String restr = new String(res);
+        System.out.println("原文：" + plainText);
+        System.out.println("密文：" + new String(Base64.encode(cipherData)));
+        System.out.println("解密：" + restr);
+
+        System.out.println();
+
+        // 私匙加密，公匙解密
+        byte[] revdata = RSA.encrypt(pri,plainText.getBytes());
+        System.out.println("原文：" + plainText);
+        System.out.println("密文：" + new String(Base64.encode(revdata)));
+        System.out.println("解密：" + new String(RSA.decrypt(pub,revdata)));
+    }
+
+    public static String getPathFileString(String path) throws IOException {
+        return FileUtils.readFileToString(new File(Demo.class.getResource(path).getFile()),"UTF-8");
+    }
+
+    @Test
+    public void genKeyPair(){
+        RSA.genKeyPair();
+    }
+
+    @Test
+    public void testDemoPath(){
+        try {
+            String pubPath = "res/demo/token_public.key";
+            String priPath = "res/demo/token_private.key";
+            RSAPublicKey pubKey = RSA.loadPublicKeyByStr(getPathFileString(pubPath));
+            RSAPrivateKey priKey = RSA.loadPrivateKeyByStr(getPathFileString(priPath));
+            showInfo(pubKey,priKey);
+        } catch (Exception ex) { ex.printStackTrace();}
+    }
+
+    @Test
+    public void testGenKeyPairPath(){
+        try {
+            String pubPath = "res/genKeyPair/pub.key";
+            String priPath = "res/genKeyPair/pri.key";
+            RSAPublicKey pubKey = RSA.loadPublicKeyByStr(getPathFileString(pubPath));
+            RSAPrivateKey priKey = RSA.loadPrivateKeyByStr(getPathFileString(priPath));
+            showInfo(pubKey,priKey);
+        } catch (Exception ex) { ex.printStackTrace();}
+    }
+
+
+    @Test
+    public void testSsh_keygen(){
+        try {
+            String pubPath = "res/t_rsa_b_2048_m_pem/pub.key";
+            String priPath = "res/t_rsa_b_2048_m_pem/pri.key";
+            RSAPublicKey pubKey = RSA.loadPublicKeyByStr(getPathFileString(pubPath));
+            RSAPrivateKey priKey = RSA.loadPrivateKeyByStr(getPathFileString(priPath));
+            showInfo(pubKey,priKey);
+        } catch (Exception ex) { ex.printStackTrace();}
+    }
+
+
+
+
 
 }
