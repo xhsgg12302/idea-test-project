@@ -19,6 +19,8 @@ public class Demo {
 
         String path2 = "DDUUUUDD";
 
+        String ab = "䶵";
+
 
         System.out.println(count(path2));
         System.out.println(countingValleys(path2));
