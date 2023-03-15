@@ -1,4 +1,4 @@
-package _base.encryption;
+package _base.encryption.rsa;
 
 import javax.crypto.Cipher;
 import java.security.*;

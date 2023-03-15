@@ -284,7 +284,7 @@
         </dependency>
 
     </dependencies>
-    
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -318,6 +318,7 @@
                     <include>**/*.json</include>
                     <include>**/*.key</include>
                     <include>**/*.cer</include>
+                    <include>**/*.so</include>
                 </includes>
                 <filtering>false</filtering>
             </resource>

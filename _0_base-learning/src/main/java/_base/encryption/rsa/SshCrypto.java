@@ -1,4 +1,4 @@
-package _base.encryption;
+package _base.encryption.rsa;
 
 import com.github.fommil.ssh.SshRsaCrypto;
 import org.apache.commons.io.FileUtils;
@@ -16,11 +16,11 @@ import java.security.PublicKey;
 /**
  *
  * Copyright https://wtfu.site Inc. All Rights Reserved.
- * 
+ *
  * @date 2022/8/31
  *                          @since  1.0
  *                          @author 12302
- * 
+ *
  */
 public class SshCrypto {
 
