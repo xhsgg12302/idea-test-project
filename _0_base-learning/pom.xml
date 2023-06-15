@@ -283,6 +283,13 @@
             <version>1.0</version>
         </dependency>
 
+        <!-- https://github.com/tomlj/tomlj -->
+        <dependency>
+            <groupId>org.tomlj</groupId>
+            <artifactId>tomlj</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+
     </dependencies>
 
     <dependencyManagement>
@@ -319,6 +326,7 @@
                     <include>**/*.key</include>
                     <include>**/*.cer</include>
                     <include>**/*.so</include>
+                    <include>**/*.toml</include>
                 </includes>
                 <filtering>false</filtering>
             </resource>
