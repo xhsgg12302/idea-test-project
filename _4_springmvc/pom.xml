@@ -268,7 +268,7 @@
                 <configuration>
                     <url>http://test.wtfu.site/manager/text</url>
                     <server>tomcat7</server>
-                    <path>/test##2.1</path>
+                    <path>/test##2.3</path>
                     <charset>utf8</charset>
                     <update>true</update>
                 </configuration>

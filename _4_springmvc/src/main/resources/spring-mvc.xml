@@ -18,6 +18,10 @@
 
 
     <bean id="EObjectMapper" class="site.wtfu.framework.config.EObjectMapper"></bean>
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+        <!-- 配置 RestTemplate 的属性 -->
+    </bean>
+
 
 
     <!-- ========================================消息转换器配置 1========origin begin================================= -->
