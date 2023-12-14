@@ -9,8 +9,10 @@ import site.wtfu.framework.utils.HttpUtil;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.nio.charset.StandardCharsets;
+import java.util.Enumeration;
 import java.util.HashMap;
 
 @RestController
@@ -23,7 +25,13 @@ public class WrapperRequestController {
     private RestTemplate restTemplate;
 
     @GetMapping(value = "/set")
-    public Object setUrl(String url){
+    public Object setUrl(String url, HttpServletRequest request){
+        Enumeration<String> headerNames = request.getHeaderNames();
+        while (headerNames.hasMoreElements()) {
+            String headerName = headerNames.nextElement();
+            String headerValue = request.getHeader(headerName);
+            System.out.println(headerName + ": " + headerValue);
+        }
         this.currentUrl = url;
         return new HashMap(){{ put("code", 200); put("desc","success");}};
     }
