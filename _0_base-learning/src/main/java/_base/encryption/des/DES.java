@@ -1,14 +1,17 @@
 package _base.encryption.des;
 
 import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+import java.security.AlgorithmParameters;
 import java.security.Key;
 import java.util.Base64;
 
 /**
- * see: https://blog.csdn.net/gs12software/article/details/83899389v
+ * see: https://blog.csdn.net/gs12software/article/details/83899389
  */
 public class DES {
 
@@ -32,70 +35,66 @@ public class DES {
     /**
      * 生成key
      *
-     * @param password
+     * @param key
      * @return
      * @throws Exception
      */
-    private static Key generateKey(String password) throws Exception {
-        DESKeySpec dks = new DESKeySpec(password.getBytes(CHARSET));
+    private static SecretKey generateKey(String key) throws Exception {
+        DESKeySpec dks = new DESKeySpec(key.getBytes(CHARSET));
         SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(ALGORITHM);
         return keyFactory.generateSecret(dks);
+    }
+
+    public static AlgorithmParameters generateIV(byte[] iv) throws Exception {
+        AlgorithmParameters params = AlgorithmParameters.getInstance(ALGORITHM);
+        params.init(new IvParameterSpec(iv));
+        return params;
     }
 
 
     /**
      * DES加密字符串
      *
-     * @param password 加密密码，长度不能够小于8位
+     * @param key 加密密码，长度不能够小于8位
      * @param data 待加密字符串
      * @return 加密后内容
      */
-    public static String encrypt(String password, String data) {
-        if (password== null || password.length() < 8) {
+    public static String encrypt(String data, byte[] key, byte[] iv) {
+        if (key == null || key.length < 8) {
             throw new RuntimeException("加密失败，key不能小于8位");
         }
         if (data == null)
             return null;
         try {
-            Key secretKey = generateKey(password);
+            SecretKey secretKey = generateKey(new String(key));
             Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
-            IvParameterSpec iv = new IvParameterSpec(IV_PARAMETER.getBytes(CHARSET));
-            cipher.init(Cipher.ENCRYPT_MODE, secretKey, iv);
+            IvParameterSpec ivParameterSpec = new IvParameterSpec(iv);
+            cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivParameterSpec);
             byte[] bytes = cipher.doFinal(data.getBytes(CHARSET));
-
-            //JDK1.8及以上可直接使用Base64，JDK1.7及以下可以使用BASE64Encoder
-            //Android平台可以使用android.util.Base64
             return new String(Base64.getEncoder().encode(bytes));
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            return data;
-        }
+        } catch (Exception e) {  e.printStackTrace(); return data;}
     }
 
     /**
      * DES解密字符串
      *
-     * @param password 解密密码，长度不能够小于8位
+     * @param key 解密密码，长度不能够小于8位
      * @param data 待解密字符串
      * @return 解密后内容
      */
-    public static String decrypt(String password, String data) {
-        if (password== null || password.length() < 8) {
+    public static String decrypt(String data, byte[] key, byte[] iv) {
+        if (key== null || key.length < 8) {
             throw new RuntimeException("加密失败，key不能小于8位");
         }
         if (data == null)
             return null;
         try {
-            Key secretKey = generateKey(password);
+            SecretKey secretKey = generateKey(new String(key));
             Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
-            IvParameterSpec iv = new IvParameterSpec(IV_PARAMETER.getBytes(CHARSET));
-            //cipher.init(Cipher.DECRYPT_MODE, secretKey, iv);
-            cipher.init(Cipher.DECRYPT_MODE, secretKey);
+            IvParameterSpec ivParameterSpec = new IvParameterSpec(iv);
+            cipher.init(Cipher.DECRYPT_MODE, secretKey, ivParameterSpec);
             return new String(cipher.doFinal(Base64.getDecoder().decode(data.getBytes(CHARSET))), CHARSET);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return data;
-        }
+        } catch (Exception e) { e.printStackTrace(); return data;}
     }
 }

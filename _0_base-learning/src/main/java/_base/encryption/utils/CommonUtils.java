@@ -2,6 +2,8 @@ package _base.encryption.utils;
 
 import org.junit.Test;
 
+import java.util.Random;
+
 public class CommonUtils {
 
     /**
@@ -39,5 +41,15 @@ public class CommonUtils {
 
         // 68 65 6C 6C 6F 20 77 6F 72 6C 64
         System.out.println(hex);
+    }
+
+    public static byte[] getRandomKey(){
+        int len = 16; // 128 ->16  256->32
+        byte[] keys = new byte[len];
+        Random random = new Random();
+        for (int i = 0; i < len; i++) {
+            keys[i] = (byte) (random.nextInt(126-34) +34);
+        }
+        return keys;
     }
 }
