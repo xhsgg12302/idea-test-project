@@ -6,7 +6,7 @@
 
     <parent>
         <groupId>site.wtfu</groupId>
-        <artifactId>my-test</artifactId>
+        <artifactId>idea-test-project</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>_4_springmvc</artifactId>
@@ -197,6 +197,13 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>jsr250-api</artifactId>
+            <version>1.0</version>
+        </dependency>
+
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
@@ -235,6 +242,12 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.9.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.14</version>
+            <scope>compile</scope>
+        </dependency>
 
     </dependencies>
     <build>
@@ -261,6 +274,7 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
@@ -268,7 +282,7 @@
                 <configuration>
                     <url>http://test.wtfu.site/manager/text</url>
                     <server>tomcat7</server>
-                    <path>/test##2.1</path>
+                    <path>/test##2.4</path>
                     <charset>utf8</charset>
                     <update>true</update>
                 </configuration>

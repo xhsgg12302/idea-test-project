@@ -28,6 +28,7 @@ public class TimerTaskTest {
         try {
             Thread.sleep(20*1000L);
             timer.cancel();
+            Thread.sleep(20*1000L);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

@@ -40,6 +40,7 @@ public class TestRandomAccessFile {
     public void test() throws Exception{
         RandomAccessFile raf = TestRandomAccessFile.getRAFWithModelRW();
         String word = "hello";
+        raf.skipBytes(4);
         raf.write(word.getBytes());
         raf.close();
     }

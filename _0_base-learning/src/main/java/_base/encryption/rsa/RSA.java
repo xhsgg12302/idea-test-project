@@ -1,4 +1,4 @@
-package _base.encryption;
+package _base.encryption.rsa;
 
 /**
  * Copyright 2018 ...com Inc. All Rights Reserved.
@@ -9,6 +9,7 @@ package _base.encryption;
  */
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.io.FileUtils;
 import org.bouncycastle.asn1.*;
 import org.bouncycastle.asn1.pkcs.PKCSObjectIdentifiers;
 
@@ -25,16 +26,11 @@ import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 
 public class RSA {
-    /**
-     * 字节数据转字符串专用集合
-     */
-    private static final char[] HEX_CHAR = {'0', '1', '2', '3', '4', '5', '6',
-            '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
     /**
      * 随机生成密钥对
      */
-    public static void genKeyPair(String filePath) {
+    public static void genKeyPair() {
         // KeyPairGenerator类用于生成公钥和私钥对，基于RSA算法生成对象
         KeyPairGenerator keyPairGen = null;
         try {
@@ -56,19 +52,17 @@ public class RSA {
             String publicKeyString = new String(base64.encode(publicKey.getEncoded()));
             // 得到私钥字符串
             String privateKeyString = new String(base64.encode(privateKey.getEncoded()));
+
+
             // 将密钥对写入到文件
-            FileWriter pubfw = new FileWriter(filePath + "/publicKey.keystore");
-            FileWriter prifw = new FileWriter(filePath + "/privateKey.keystore");
-            BufferedWriter pubbw = new BufferedWriter(pubfw);
-            BufferedWriter pribw = new BufferedWriter(prifw);
-            pubbw.write(publicKeyString);
-            pribw.write(privateKeyString);
-            pubbw.flush();
-            pubbw.close();
-            pubfw.close();
-            pribw.flush();
-            pribw.close();
-            prifw.close();
+            String dir = System.getProperty("user.dir") + "/src/main/java/_base/encryption/res/genKeyPair/";
+            FileUtils.writeStringToFile(
+                    new File(dir + "pub.key"),
+                    publicKeyString,"UTF-8");
+            FileUtils.writeStringToFile(
+                    new File(dir + "pri.jsk"),
+                    privateKeyString,"UTF-8");
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -80,7 +74,7 @@ public class RSA {
      * @param path 公钥输入流
      * @throws Exception 加载公钥时产生的异常
      */
-    public static String loadPublicKeyByFile(String path) throws Exception {
+    /*public static String loadPublicKeyByFile(String path) throws Exception {
         try {
             BufferedReader br = new BufferedReader(new FileReader(path));
             String readLine = null;
@@ -95,7 +89,7 @@ public class RSA {
         } catch (NullPointerException e) {
             throw new Exception("公钥输入流为空");
         }
-    }
+    }*/
 
     /**
      * 从字符串中加载公钥
@@ -114,6 +108,7 @@ public class RSA {
         } catch (NoSuchAlgorithmException e) {
             throw new Exception("无此算法");
         } catch (InvalidKeySpecException e) {
+            e.printStackTrace();
             throw new Exception("公钥非法");
         } catch (NullPointerException e) {
             throw new Exception("公钥数据为空");
@@ -128,7 +123,7 @@ public class RSA {
      * @throws Exception
      */
     public static String loadPrivateKeyByFile(String path) throws Exception {
-        try {
+        /*try {
             BufferedReader br = new BufferedReader(new FileReader(path));
             String readLine = null;
             StringBuilder sb = new StringBuilder();
@@ -141,7 +136,8 @@ public class RSA {
             throw new Exception("私钥数据读取错误");
         } catch (NullPointerException e) {
             throw new Exception("私钥输入流为空");
-        }
+        }*/
+        return null;
     }
 
     public static RSAPrivateKey loadPrivateKeyByStr(String privateKeyStr)
@@ -155,12 +151,13 @@ public class RSA {
         } catch (NoSuchAlgorithmException e) {
             throw new Exception("无此算法");
         } catch (InvalidKeySpecException e) {
+            e.printStackTrace();
             throw new Exception("私钥非法");
         } catch (NullPointerException e) {
             throw new Exception("私钥数据为空");
         }
     }
-    
+
     public static RSAPrivateKey loadPrivateKeyByStr(String privateKeyStr, boolean isPkcs8) throws Exception{
         try {
             /*// Loads a privte key from the specified key file name
@@ -185,7 +182,7 @@ public class RSA {
             return (RSAPrivateKey)privateKey;
         } catch (NullPointerException e) {
             throw new Exception("私钥数据为空");
-        } 
+        }
     }
 
     public static RSAPrivateKey loadPrivateKeyByStr(String privateKeyStr, boolean isPkcs8, boolean example) throws Exception{
@@ -204,7 +201,7 @@ public class RSA {
         } catch (NullPointerException e) {
             throw new Exception("私钥数据为空");
         }
-        
+
         return null;
     }
 
@@ -345,25 +342,5 @@ public class RSA {
         } catch (BadPaddingException e) {
             throw new Exception("密文数据已损坏");
         }
-    }
-
-    /**
-     * 字节数据转十六进制字符串
-     *
-     * @param data 输入数据
-     * @return 十六进制内容
-     */
-    public static String byteArrayToString(byte[] data) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < data.length; i++) {
-            // 取出字节的高四位 作为索引得到相应的十六进制标识符 注意无符号右移
-            stringBuilder.append(HEX_CHAR[(data[i] & 0xf0) >>> 4]);
-            // 取出字节的低四位 作为索引得到相应的十六进制标识符
-            stringBuilder.append(HEX_CHAR[(data[i] & 0x0f)]);
-            if (i < data.length - 1) {
-                stringBuilder.append(' ');
-            }
-        }
-        return stringBuilder.toString();
     }
 }

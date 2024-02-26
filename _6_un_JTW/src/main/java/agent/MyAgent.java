@@ -1,4 +1,4 @@
-package demo;
+package agent;
 
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.Instrumentation;

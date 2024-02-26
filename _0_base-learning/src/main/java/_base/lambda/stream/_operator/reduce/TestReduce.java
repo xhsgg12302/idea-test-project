@@ -30,6 +30,7 @@ public class TestReduce {
         System.out.println(b.setScale(2,BigDecimal.ROUND_HALF_UP));
 
 
+        //IntStream.range(0, list.size()).forEach(i -> list.set(i, "new value"));
     }
     public static BigDecimal testcall(BigDecimal b1){
         System.out.println(b1);
