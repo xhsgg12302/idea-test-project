@@ -1,4 +1,4 @@
-package _jvm.classLoader.spi;
+package _jvm.classLoader.spi.service;
 
 public interface ISpiTest {
 

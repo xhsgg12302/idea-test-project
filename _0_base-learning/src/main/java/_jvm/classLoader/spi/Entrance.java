@@ -1,20 +1,19 @@
-package _jvm.classLoader.spi.entry;
+package _jvm.classLoader.spi;
 
-import _jvm.classLoader.spi.ISpiTest;
-import org.junit.Test;
+import _jvm.classLoader.spi.service.ISpiTest;
 
 import java.util.Iterator;
 import java.util.ServiceLoader;
 
-public class Demo {
+public class Entrance {
 
-    @Test
-    public void test(){
-        DemoStaticInitialization.test();
+    public static void main(String[] args) {
         ServiceLoader<ISpiTest> serviceLoader = ServiceLoader.load(ISpiTest.class);
         Iterator<ISpiTest> iterator = serviceLoader.iterator();
+
         while(iterator.hasNext()){
-            iterator.next().saySpi();
+            ISpiTest next = iterator.next();
+            next.saySpi();
         }
     }
 }
