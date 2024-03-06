@@ -13,7 +13,11 @@ public class Entrance {
     public static void main(String[] args) {
         ClassLoader classLoader = new MyClassLoader();
         try {
-            Object o = classLoader.loadClass("_jvm.classLoader.load_reference.TestClass").newInstance();
-        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) { throw new RuntimeException(e);}
+            Class<?> clazz = classLoader.loadClass("_jvm.classLoader.load_reference.TestClass");
+
+            // 如果不需要实例化的情况，ClassLoader只会加载当前类。Reference not resolve。
+            // 放开下面的注释，resolve并且初始化。
+            //Object o = clazz.newInstance();
+        } catch (Exception e) { throw new RuntimeException(e);}
     }
 }
