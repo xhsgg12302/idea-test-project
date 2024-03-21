@@ -1,4 +1,4 @@
-package site.wtfu.framework.test;
+package site.wtfu.framework.web.test;
 
 /**
  * Copyright 2018 ...com Inc. All Rights Reserved.

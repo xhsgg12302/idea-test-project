@@ -1,4 +1,4 @@
-package site.wtfu.framework.pluing;
+package site.wtfu.framework.web.plugin;
 
 import org.apache.ibatis.executor.statement.StatementHandler;
 import org.apache.ibatis.plugin.Interceptor;

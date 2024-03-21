@@ -1,4 +1,4 @@
-package site.wtfu.framework.test;
+package site.wtfu.framework.web.test;
 
 import org.springframework.beans.MutablePropertyValues;
 import org.springframework.validation.BindException;

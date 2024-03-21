@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 /**
  * @className LoginController
@@ -32,6 +33,7 @@ public class LoginController {
 	@RequestMapping("/login")
 	public String toIndex(HttpServletRequest request, Model model) {
 		User user = loginService.getUser();
+		user.setName(user.getName() + ": " + new Date());
 		model.addAttribute("user", user);
 		return "content";
 	}

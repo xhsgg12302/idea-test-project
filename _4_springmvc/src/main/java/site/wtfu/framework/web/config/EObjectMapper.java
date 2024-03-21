@@ -1,4 +1,4 @@
-package site.wtfu.framework.config;
+package site.wtfu.framework.web.config;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;

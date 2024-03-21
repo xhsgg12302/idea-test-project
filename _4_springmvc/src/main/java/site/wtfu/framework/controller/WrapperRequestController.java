@@ -1,8 +1,8 @@
 package site.wtfu.framework.controller;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import site.wtfu.framework.utils.HttpUtil;
@@ -24,7 +24,7 @@ public class WrapperRequestController {
     @Resource
     private RestTemplate restTemplate;
 
-    @GetMapping(value = "/set")
+    @RequestMapping(value = "/set", method = RequestMethod.GET)
     public Object setUrl(String url, HttpServletRequest request){
         Enumeration<String> headerNames = request.getHeaderNames();
         while (headerNames.hasMoreElements()) {
@@ -36,7 +36,7 @@ public class WrapperRequestController {
         return new HashMap(){{ put("code", 200); put("desc","success");}};
     }
 
-    @GetMapping(value = "/config")
+    @RequestMapping(value = "/config", method = RequestMethod.GET)
     public void getContent(HttpServletResponse response){
         try{
             if(StringUtils.isEmpty(currentUrl)){response.setStatus(200);return;}

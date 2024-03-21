@@ -1,4 +1,4 @@
-package site.wtfu.framework.glbExceptionHandler;
+package site.wtfu.framework.web.glbExceptionHandler;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

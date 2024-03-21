@@ -1,4 +1,4 @@
-package site.wtfu.framework.config;
+package site.wtfu.framework.web.config;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
@@ -6,16 +6,26 @@ import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import site.wtfu.framework.web.filter.TestFilter;
+import site.wtfu.framework.web.interceptor.TestInterceptor;
 
+import javax.servlet.DispatcherType;
+import javax.servlet.FilterRegistration;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.EnumSet;
 import java.util.List;
 
 /**
@@ -26,7 +36,7 @@ import java.util.List;
  * @Desc:
  */
 @Configuration
-public class WebConfig extends WebMvcConfigurerAdapter {
+public class WebConfig extends WebMvcConfigurerAdapter  {
 
     /*@Value("${global.equipment.camera-trigger-save-pic-path}")
     private String picPath;
@@ -82,6 +92,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         }
     }
 
+
     private static class LocalDateTimeSerializer extends JsonSerializer<LocalDateTime> {
 
         private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -109,4 +120,24 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
 
+    /**
+     * see: https://blog.csdn.net/zzuhkp/article/details/121288762/
+     *      https://blog.csdn.net/qiaohao0206/article/details/125655989/
+     * @param servletContext
+     * @throws ServletException
+     */
+    //@Override
+    public void onStartup(ServletContext servletContext) {
+        FilterRegistration.Dynamic myFilter = servletContext.addFilter("testFilter", TestFilter.class);
+        myFilter.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST), true, "/*");
+    }
+
+    /**
+     * https://www.cnblogs.com/tiancai/p/17175803.html/
+     * @param registry
+     */
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new TestInterceptor()).addPathPatterns("/**").excludePathPatterns("/log");
+    }
 }

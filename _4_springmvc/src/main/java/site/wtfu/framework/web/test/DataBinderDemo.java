@@ -1,4 +1,4 @@
-package site.wtfu.framework.test;
+package site.wtfu.framework.web.test;
 
 import site.wtfu.framework.entity.Employee;
 import org.springframework.beans.MutablePropertyValues;
