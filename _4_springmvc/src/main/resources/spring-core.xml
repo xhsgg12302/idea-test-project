@@ -12,8 +12,10 @@
 
     <!-- 自动扫描 -->
     <context:component-scan base-package="site.wtfu.framework">
-        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
-        <context:exclude-filter type="assignable" expression="site.wtfu.framework.web.config.WebConfig"/>
+        <context:exclude-filter type="regex" expression="site\.wtfu\.framework\.controller\..*"/>
+        <!--<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />-->
+        <!--<context:exclude-filter type="assignable" expression="site.wtfu.framework.web.config.WebConfig" />
+        <context:exclude-filter type="assignable" expression="site.wtfu.framework.web.glbExceptionHandler.MyHandlerExceptionResolver" />-->
     </context:component-scan>
     
     <!-- 加载配置文件 -->
@@ -62,5 +64,10 @@
     
     <!--热部署工具-->
     <!--<bean id="mapperHotDeploy" class="site.wtfu.framework._utils.utils.MapperHotDeployPlugin"/>-->
+
+    <bean id="EObjectMapper" class="site.wtfu.framework.web.config.EObjectMapper"></bean>
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+        <!-- 配置 RestTemplate 的属性 -->
+    </bean>
 
 </beans>

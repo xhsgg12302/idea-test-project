@@ -6,11 +6,8 @@ import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -35,7 +32,8 @@ import java.util.List;
  * @Date: 2019-11-04
  * @Desc:
  */
-@Configuration
+//@Configuration
+//@EnableWebMvc
 public class WebConfig extends WebMvcConfigurerAdapter  {
 
     /*@Value("${global.equipment.camera-trigger-save-pic-path}")
