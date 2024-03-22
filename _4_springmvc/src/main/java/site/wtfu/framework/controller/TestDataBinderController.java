@@ -1,5 +1,10 @@
 package site.wtfu.framework.controller;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+import site.wtfu.framework.entity.Employee;
+
 /**
  *
  * Copyright https://wtfu.site Inc. All Rights Reserved.
@@ -9,5 +14,25 @@ package site.wtfu.framework.controller;
  *                          @author 12302
  * 
  */
+@Controller
+@RequestMapping(value = "/bind")
 public class TestDataBinderController {
+
+    @RequestMapping("/simple")
+    public ModelAndView simple(boolean b, ModelAndView view) {
+        view.setViewName("databind");
+        if(b) {
+            view.addObject("attr", "b is true");
+        } else {
+            view.addObject("attr", "b is false");
+        }
+        return view;
+    }
+
+    @RequestMapping("/obj")
+    public ModelAndView testObj(Employee e, ModelAndView view) {
+        view.setViewName("databind");
+        view.addObject("attr", e.toString());
+        return view;
+    }
 }
