@@ -1,19 +1,21 @@
 package site.wtfu.framework.entity;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
+import lombok.Data;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * @XmlRootElement xml序列化
+ * @Data json序列化
+ */
 @XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
+@Data
 public class XMLReturnObject {
-    Integer code;
-    String desc;
-    Employee employee;
+    private Integer code;
+    private String desc;
+    private Employee employee;
 
-    public XMLReturnObject(){
-
-    }
+    public XMLReturnObject(){}
 
     public XMLReturnObject(Integer code, String desc, Employee employee){
         this.code = code;

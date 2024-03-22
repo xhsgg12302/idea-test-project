@@ -15,18 +15,17 @@
 
     <!-- ========================================消息转换器配置 1========origin begin================================= -->
     <!--避免IE执行AJAX时，返回JSON出现下载文件 -->
-    <bean id="mappingJacksonHttpMessageConverter"
+    <!--<bean id="mappingJacksonHttpMessageConverter"
           class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter">
         <property name="supportedMediaTypes">
             <list>
                 <value>application/xml;charset=UTF-8</value>
-                <value>application/*+xml;charset=UTF-8</value>
             </list>
         </property>
-        <!--<property name="objectMapper">
+        &lt;!&ndash;<property name="objectMapper">
             <ref bean="EObjectMapper" />
-        </property>-->
-    </bean>
+        </property>&ndash;&gt;
+    </bean>-->
 
     <!-- 启动SpringMVC的注解功能，完成请求和注解POJO的映射 -->
     <!-- <bean
@@ -107,13 +106,14 @@
     <mvc:resources mapping="/webjars/**" location="classpath*:/META-INF/resources/webjars/"/>-->
 
     <!--配置view-Controller 必须配置下面的，不然注解controller 就不生效了-->
-    <mvc:annotation-driven>
+    <!--<mvc:annotation-driven>
         <mvc:message-converters>
             <ref bean="mappingJacksonHttpMessageConverter" />
-            <!--<ref bean="jsonMessageConverters" />
-            <ref bean="fastJsonHttpMessageConverter" />-->
+            &lt;!&ndash;<ref bean="jsonMessageConverters" />
+            <ref bean="fastJsonHttpMessageConverter" />&ndash;&gt;
         </mvc:message-converters>
-    </mvc:annotation-driven>
+    </mvc:annotation-driven>-->
+    <mvc:annotation-driven />
 
     <!-- 拦截器 -->
     <mvc:interceptors>

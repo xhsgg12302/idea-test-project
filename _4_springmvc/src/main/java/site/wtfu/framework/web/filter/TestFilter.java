@@ -1,6 +1,5 @@
 package site.wtfu.framework.web.filter;
 
-import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -20,8 +19,13 @@ import java.io.IOException;
  *                          @author 12302
  *
  */
-@Component
+//@Component
 //@WebFilter
+
+/**
+ * org.apache.catalina.startup.ContextConfig#processClass
+ * @WebFilter 和spring没有关系，是tomcat自己解析的。
+ */
 @WebFilter(urlPatterns = "/*", initParams = {@WebInitParam(name = "allowedMethods", value = "GET,POST")})
 public class TestFilter extends OncePerRequestFilter {
 

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping(value = "/data")
-public class TestDataBaseController {
+public class TestDBController {
 
     //@Resource
     private IUserService userServiceImpl;

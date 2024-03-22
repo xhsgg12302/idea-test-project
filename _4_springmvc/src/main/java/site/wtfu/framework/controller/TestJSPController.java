@@ -26,7 +26,7 @@ import java.util.Date;
  */
 @Controller
 @RequestMapping("/user")
-public class LoginController {
+public class TestJSPController {
 	@Resource
 	private LoginService loginService;
 

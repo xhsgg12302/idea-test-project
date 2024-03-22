@@ -3,6 +3,7 @@ package site.wtfu.framework.controller;
 import site.wtfu.framework.entity.Employee;
 import site.wtfu.framework.entity.TestObject;
 import site.wtfu.framework.entity.User;
+import site.wtfu.framework.entity.XMLReturnObject;
 import site.wtfu.framework.services.ITest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +12,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
+import java.util.HashMap;
 import java.util.UUID;
 
 /**
@@ -23,31 +24,29 @@ import java.util.UUID;
  */
 @Controller
 @RequestMapping(value = "/test")
-public class TestController {
+public class TestOtherController {
 
-    @RequestMapping("/testRb")
+    @RequestMapping("/hello")
     @ResponseBody
-    public Employee testRb(@RequestBody Employee e) {
-        return e;
+    public Object helloWorld(){
+        return new HashMap(){{put("code", 200); put("desc", "success");}};
     }
 
-    @RequestMapping("/testCustomObj")
+    /**
+     * 根据 Accept: "application/xml" | "application/json",
+     * 返回对应的数据类型。
+     *
+     * @return
+     */
+    @RequestMapping(value = "/helloxml")
     @ResponseBody
-    public Employee testCustomObj(Employee e) {
-        return e;
+    public XMLReturnObject helloWorldXml(){
+        return new XMLReturnObject(200,"success",new Employee(12,"wang"));
     }
 
-    @RequestMapping("/testCustomObjWithRp")
-    @ResponseBody
-    public Employee testCustomObjWithRp(@RequestParam Employee e) {
-        return e;
-    }
 
-    @RequestMapping("/testDate")
-    @ResponseBody
-    public Date testDate(Date date) {
-        return date;
-    }
+
+
     @RequestMapping("/sync")
     @ResponseBody
     public Object testSynchronized(){

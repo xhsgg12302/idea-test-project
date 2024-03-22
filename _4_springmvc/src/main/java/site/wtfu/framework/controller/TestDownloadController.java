@@ -15,7 +15,7 @@ import java.io.*;
  */
 @Controller
 @RequestMapping(value = "/down")
-public class DownloadController {
+public class TestDownloadController {
 
 
     @RequestMapping(value = "/excelTemplate")
