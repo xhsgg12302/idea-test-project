@@ -35,6 +35,9 @@ public class TestOtherController {
     /**
      * 根据 Accept: "application/xml" | "application/json",
      * 返回对应的数据类型。
+     * example:
+     *      curl -H 'Accept: application/json' http://localhost:8080/test/helloxml
+     *      curl -H 'Accept: application/xml' http://localhost:8080/test/helloxml
      *
      * @return
      */
