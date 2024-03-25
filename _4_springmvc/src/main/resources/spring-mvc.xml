@@ -113,7 +113,11 @@
             <ref bean="fastJsonHttpMessageConverter" />&ndash;&gt;
         </mvc:message-converters>
     </mvc:annotation-driven>-->
-    <mvc:annotation-driven />
+    <mvc:annotation-driven>
+        <mvc:argument-resolvers>
+            <bean class="site.wtfu.framework.web.resolver.FormObjArgumentResolver" />
+        </mvc:argument-resolvers>
+    </mvc:annotation-driven>
 
     <!-- 拦截器 -->
     <mvc:interceptors>
@@ -126,5 +130,14 @@
         <!-- 当设置多个拦截器时，先按顺序调用preHandle方法，然后逆序调用每个拦截器的postHandle和afterCompletion方法 -->
     </mvc:interceptors>
 
+    <!-- 这种方式会导致一些转换器未加载。使用mvc 提供的 annotation-driven 注册
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="order" value="2147483646" />
+        <property name="customArgumentResolvers">
+            <list>
+                <bean class="site.wtfu.framework.web.resolver.FormObjArgumentResolver" />
+            </list>
+        </property>
+    </bean>-->
 
 </beans>

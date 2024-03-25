@@ -1,6 +1,8 @@
 package site.wtfu.framework.entity;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import lombok.Data;
+import lombok.ToString;
+
 
 /**
  * Copyright 2018 ...com Inc. All Rights Reserved.
@@ -9,38 +11,21 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @Date: 2019-07-14
  * @Desc:
  */
+@Data
+@ToString
 public class Employee {
 
+    private Integer id;
+
     private String name;
+
     private int age;
+
+    private Dept dept;
 
     public Employee(){};
     public Employee(int age,String name){
         this.age = age;
         this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                '}';
     }
 }

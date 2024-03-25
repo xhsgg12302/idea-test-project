@@ -1,9 +1,13 @@
 package site.wtfu.framework.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import site.wtfu.framework.entity.Dept;
 import site.wtfu.framework.entity.Employee;
+import site.wtfu.framework.web.test.CustomDeptEditor;
 
 /**
  *
@@ -34,5 +38,11 @@ public class TestDataBinderController {
         view.setViewName("databind");
         view.addObject("attr", e.toString());
         return view;
+    }
+
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(Dept.class, new CustomDeptEditor());
     }
 }
