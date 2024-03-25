@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans    
+                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                        http://www.springframework.org/schema/context    
+                        http://www.springframework.org/schema/context/spring-context-3.1.xsd
+                        http://www.springframework.org/schema/tx
+                        http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+    <!-- 自动扫描 -->
+    <context:component-scan base-package="site.wtfu.framework">
+        <context:exclude-filter type="regex" expression="site\.wtfu\.framework\.controller\..*"/>
+        <!--<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />-->
+        <!--<context:exclude-filter type="assignable" expression="site.wtfu.framework.web.config.WebConfig" />
+        <context:exclude-filter type="assignable" expression="site.wtfu.framework.web.glbExceptionHandler.MyHandlerExceptionResolver" />-->
+    </context:component-scan>
+    
+    <!-- 加载配置文件 -->
+    <!-- 引入配置文件 -->
+    <bean id="propertyConfigurer"
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <!--<property name="location" value="classpath:jdbc.properties" />-->
+        <property name="location" value="file://${home}/.jdbc.properties" />
+    </bean>
+
+    <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+        <property name="driverClassName" value="${driver}" />
+        <property name="jdbcUrl" value="${url}" />
+        <property name="username" value="${username}" />
+        <property name="password" value="${password}" />
+    </bean>
+
+    <!-- spring和mybatis完美整合，不需要mybatis的配置映射文件 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="configLocation"  value="classpath:mybatis-config.xml"/>
+        <property name="dataSource" ref="dataSource" />
+        <!-- 自动扫描mapping.xml文件 -->
+        <property name="mapperLocations" value="classpath:site/wtfu/framework/mapper/*.xml"></property>
+    </bean>
+
+    <!-- DAO接口所在的包名，spring会自动查找其下的类，！注意这句 value="sqlSessionFactory"，不是ref而是value -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="site.wtfu.framework.dao" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+    </bean>
+
+    <!-- 事务管理transaction manager, use JtaTransactionManager for global tx -->
+    <bean id="transactionManager"
+        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+
+    <!--事务参考:
+        https://blog.csdn.net/jiadajing267/article/details/81056057
+        https://www.iteye.com/blog/bugyun-2434939
+        https://www.jianshu.com/p/5687e2a38fbc
+    -->
+    <!-- 启用支持annotation注解方式事务管理 -->
+    <tx:annotation-driven/>
+    
+    <!--热部署工具-->
+    <!--<bean id="mapperHotDeploy" class="site.wtfu.framework._utils.utils.MapperHotDeployPlugin"/>-->
+
+    <bean id="EObjectMapper" class="site.wtfu.framework.web.config.EObjectMapper"></bean>
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+        <!-- 配置 RestTemplate 的属性 -->
+    </bean>
+
+</beans>
