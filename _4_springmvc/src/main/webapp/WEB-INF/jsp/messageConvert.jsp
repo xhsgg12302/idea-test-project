@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AJAX Form Submission</title>
+    <title>MessageConverter</title>
 
     <style>
         body {
