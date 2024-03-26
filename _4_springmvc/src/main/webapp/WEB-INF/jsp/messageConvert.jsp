@@ -46,7 +46,7 @@
         }
     </style>
 
-    <script src="<%= request.getContextPath() %>/js/jquery.min.js"></script>
+    <script src="<%= request.getContextPath() %>/static/js/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
             $('#submitBtn').click(function() {
@@ -72,7 +72,7 @@
     </script>
 </head>
 <body>
-<h2>Submit Form Using AJAX</h2>
+<h2>Request</h2>
 <div class="form-container">
     <form id="myForm">
         <label for="name">Name:</label><input type="text" id="name" name="name"><br>
@@ -83,6 +83,8 @@
         <input type="button" value="Submit" id="submitBtn">
     </form>
 </div>
+
+<h2 style="margin-top: 50px">Response</h2>
 <hr>
 <div id="response"></div>
 </body>
