@@ -1,6 +1,9 @@
 package site.wtfu.framework.web.filter;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.web.filter.OncePerRequestFilter;
+import site.wtfu.framework.web.interceptor.TestInterceptor;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -29,10 +32,12 @@ import java.io.IOException;
 @WebFilter(urlPatterns = "/*", initParams = {@WebInitParam(name = "allowedMethods", value = "GET,POST")})
 public class TestFilter extends OncePerRequestFilter {
 
+    protected final Log logger = LogFactory.getLog(TestFilter.class);
+
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
 
-        System.out.println("pass by filter");
+        logger.info("pass by filter");
         filterChain.doFilter(httpServletRequest, httpServletResponse);
     }
 }

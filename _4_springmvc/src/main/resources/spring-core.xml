@@ -38,7 +38,7 @@
         <property name="configLocation"  value="classpath:mybatis-config.xml"/>
         <property name="dataSource" ref="dataSource" />
         <!-- 自动扫描mapping.xml文件 -->
-        <property name="mapperLocations" value="classpath:site/wtfu/framework/mapper/*.xml"></property>
+        <property name="mapperLocations" value="classpath:site/wtfu/framework/mapper/*.xml" />
     </bean>
 
     <!-- DAO接口所在的包名，spring会自动查找其下的类，！注意这句 value="sqlSessionFactory"，不是ref而是value -->
@@ -65,9 +65,6 @@
     <!--热部署工具-->
     <!--<bean id="mapperHotDeploy" class="site.wtfu.framework._utils.utils.MapperHotDeployPlugin"/>-->
 
-    <bean id="EObjectMapper" class="site.wtfu.framework.web.config.EObjectMapper"></bean>
-    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
-        <!-- 配置 RestTemplate 的属性 -->
-    </bean>
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate" />
 
 </beans>

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.core.util.VersionUtil;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import site.wtfu.framework.entity.User;
 
 import java.io.IOException;
@@ -19,29 +20,32 @@ import java.time.format.DateTimeFormatter;
  * @Date: 2019-11-06
  * @Desc:
  */
-public class EObjectMapper extends ObjectMapper {
-    public EObjectMapper(){
+public class ExObjectMapper extends ObjectMapper {
+
+    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+    public ExObjectMapper(){
         super();
-        SimpleModule simpleModule = new SimpleModule("User", VersionUtil.versionFor(EObjectMapper.class));
+        Jackson2ObjectMapperBuilder.json().configure(this);
+
+        SimpleModule simpleModule = new SimpleModule("custom", VersionUtil.versionFor(ExObjectMapper.class));
         simpleModule.addSerializer(User.class, new UserSerializer());
         simpleModule.addDeserializer(User.class, new UserDeserializer());
+
+        simpleModule.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer());
+        simpleModule.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer());
         this.registerModule(simpleModule);
     }
 
     private static class LocalDateTimeSerializer extends JsonSerializer<LocalDateTime> {
-
-        private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-
         @Override
         public void serialize(LocalDateTime value, JsonGenerator jgen, SerializerProvider provider)
                 throws IOException {
             jgen.writeString(dateTimeFormatter.format(value));
         }
-
     }
 
     private static class LocalDateTimeDeserializer extends JsonDeserializer<LocalDateTime> {
-
         @Override
         public LocalDateTime deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
             String result = "";
@@ -60,20 +64,13 @@ public class EObjectMapper extends ObjectMapper {
         public void serialize(User value, JsonGenerator jsonGenerator, SerializerProvider provider)
                 throws IOException {
 
-            /**
-             * _12302_2019-11-06
-             * private String name;
-             * 	private Integer age;
-             * 	private String account;
-             * 	private String password;
-             * 	private LocalDateTime time;
-             */
             jsonGenerator.writeStartObject();
-            jsonGenerator.writeStringField("name", value.getName());
+            jsonGenerator.writeStringField("name", value.getName() + "_serialized");
             jsonGenerator.writeNumberField("age",value.getAge());
             jsonGenerator.writeStringField("account",value.getAccount());
             jsonGenerator.writeStringField("password", value.getPassword());
-            jsonGenerator.writeStringField("time",value.getTime().toString().replaceAll("T",""));
+            jsonGenerator.writeStringField("time", value.getTime() != null ? value.getTime().toString() : null);
+            jsonGenerator.writeStringField("now", value.getNow() != null ? value.getNow().toString() : null);
             jsonGenerator.writeEndObject();
         }
 
@@ -87,15 +84,23 @@ public class EObjectMapper extends ObjectMapper {
             User user = new User();
             JsonNode jsonNode = jsonParser.readValueAsTree();
 
-            String name = jsonNode.get("name").asText();
-            int age = jsonNode.get("age").asInt();
-            String account = jsonNode.get("account").asText();
-            String password = jsonNode.get("password").asText();
-            LocalDateTime time = LocalDateTime.parse(jsonNode.get("time").asText());
-            user.setName(name);
-            user.setAge(age);
-            user.setAccount(account);
-            user.setPassword(password);
+            JsonNode name = jsonNode.get("name");
+            JsonNode age = jsonNode.get("age");
+            JsonNode account = jsonNode.get("account");
+            JsonNode pass = jsonNode.get("password");
+            JsonNode time = jsonNode.get("time");
+            user.setName(name != null ? name.asText() + "_deserialized" : null);
+            user.setAge(age != null ? age.asInt() : 0);
+            user.setAccount(account != null ? account.asText() : null);
+            user.setPassword(pass != null ? pass.asText() : null);
+
+            LocalDateTime ldt = null;
+            try{
+                if(time != null){ldt = LocalDateTime.parse(time.asText());}
+            }catch (Exception ignored){}
+
+            user.setTime(ldt);
+            user.setNow(LocalDateTime.now());
             return user;
         }
     }

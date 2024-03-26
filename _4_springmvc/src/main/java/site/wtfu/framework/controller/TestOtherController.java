@@ -58,11 +58,7 @@ public class TestOtherController {
         return null;
     }
 
-    @RequestMapping(value = "/ldt")
-    @ResponseBody
-    public User testLocalDateTime(@RequestBody User user){
-        return user;
-    }
+
 
     @RequestMapping("exception")
     @ResponseBody
