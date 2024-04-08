@@ -299,12 +299,12 @@
             <scope>system</scope>
         </dependency>
 
-        <dependency>
+        <!--<dependency>
             <groupId>org.ow2.asm</groupId>
             <artifactId>asm</artifactId>
-            <!--<version>7.1</version>-->
+            &lt;!&ndash;<version>7.1</version>&ndash;&gt;
             <version>5.0.3</version>
-        </dependency>
+        </dependency>-->
 
     </dependencies>
 
@@ -363,6 +363,20 @@
                     </nonFilteredFileExtensions>
                     <escapeString>\</escapeString>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
 
