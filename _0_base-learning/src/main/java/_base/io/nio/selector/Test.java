@@ -140,7 +140,9 @@ public class Test {
                 //判断类型 ，处理之，
                 if(next.isAcceptable()){
                     //若接受就绪，获取客户端连接
-                    SocketChannel tempSocket = serverSocketChannel.accept();
+                    //SocketChannel tempSocket = serverSocketChannel.accept();
+                    ServerSocketChannel temp = (ServerSocketChannel) next.channel();
+                    SocketChannel tempSocket = temp.accept();
                     //设置非阻塞
                     tempSocket.configureBlocking(false);
                     //将该通道注册到选择器上面，监听读事件
