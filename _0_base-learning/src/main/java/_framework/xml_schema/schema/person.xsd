@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://docs.wtfu.site/person.xsd"
+        elementFormDefault="qualified">
+    <element name="persons">
+        <complexType>
+            <sequence>
+                <element name="person" minOccurs="1" maxOccurs="unbounded">
+                    <complexType>
+                        <sequence>
+                            <element name="name" type="string"/>
+                            <element name="age" type="int"/>
+                        </sequence>
+                        <attribute name="name" type="string" use="required" />
+                    </complexType>
+                </element>
+            </sequence>
+        </complexType>
+    </element>
+</schema>
