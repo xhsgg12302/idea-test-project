@@ -27,11 +27,11 @@ public class HttpUtil {
 
         HttpGet httpRequest = new HttpGet(requestUrl);
 
-        httpRequest.setConfig(
+        /*httpRequest.setConfig(
                 RequestConfig.custom()
                         .setProxy(new HttpHost("wtfu.site", 13391, "HTTP"))
                         .build()
-        );
+        );*/
 
         HttpResponse httpResponse;
         try {

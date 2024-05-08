@@ -17,12 +17,10 @@ import java.util.HashMap;
 
 @RestController
 @RequestMapping(value = "/clash")
-public class WrapperRequestController {
+public class BisWrapperRequestController {
 
     private String currentUrl = "https://raw.githubusercontent.com/xhsgg12302/gradle-test-project/master/origin.txt";
 
-    @Resource
-    private RestTemplate restTemplate;
 
     @RequestMapping(value = "/set", method = RequestMethod.GET)
     public Object setUrl(String url, HttpServletRequest request){
