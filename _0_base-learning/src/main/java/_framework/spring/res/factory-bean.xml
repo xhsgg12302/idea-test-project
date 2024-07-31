@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- FactoryBean work process -->
+    <bean id="toolFB" class="_framework.spring.factory_bean.beans.ToolFactory">
+        <property name="factoryId" value="9090" />
+        <property name="toolId" value="2" />
+    </bean>
+
+</beans>
