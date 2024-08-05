@@ -14,7 +14,8 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <slf4j.version>1.7.7</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
-        <org.springframework.version>4.3.7.RELEASE</org.springframework.version>
+        <!--<org.springframework.version>4.3.7.RELEASE</org.springframework.version>-->
+        <org.springframework.version>4.3.30.RELEASE</org.springframework.version>
         <!--<org.springframework.version>4.0.2.RELEASE</org.springframework.version>-->
 
     </properties>
@@ -366,6 +367,12 @@
                <version>2.14.2</version>
            </dependency>
 
+           <dependency>
+               <groupId>javax.inject</groupId>
+               <artifactId>javax.inject</artifactId>
+               <version>1</version>
+           </dependency>
+
        </dependencies>
    </dependencyManagement>
 
@@ -414,14 +421,6 @@
     </distributionManagement>
 
     <modules>
-        <module>_0_base-learning</module>
-        <module>_1_aspectJ-Test</module>
-        <module>_2_getter</module>
-        <module>_3_springboot</module>
         <module>_4_springmvc</module>
-        <module>_5_ss-ssr-url-parse</module>
-        <module>_6_un_JTW</module>
-        <module>_7_unzip-and-zip</module>
-        <module>_8_wechat-image-conversion</module>
     </modules>
 </project>
