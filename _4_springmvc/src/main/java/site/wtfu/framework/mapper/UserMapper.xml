@@ -29,7 +29,7 @@
     </sql>
 
     <sql id="getListFromUser">
-        name,age,account,password
+        name,age,account,password,time
     </sql>
     <!-- 增删改查标签里的id:一定要和接口里对应的方法名一致，
          resultMap输出类型里写映射标签里的id 

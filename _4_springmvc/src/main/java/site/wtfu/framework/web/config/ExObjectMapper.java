@@ -70,7 +70,7 @@ public class ExObjectMapper extends ObjectMapper {
             jsonGenerator.writeStringField("account",value.getAccount());
             jsonGenerator.writeStringField("password", value.getPassword());
             jsonGenerator.writeStringField("time", value.getTime() != null ? value.getTime().toString() : null);
-            jsonGenerator.writeStringField("now", value.getNow() != null ? value.getNow().toString() : null);
+            jsonGenerator.writeStringField("now", LocalDateTime.now().toString());
             jsonGenerator.writeEndObject();
         }
 

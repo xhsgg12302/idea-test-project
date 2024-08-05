@@ -1,5 +1,6 @@
 package site.wtfu.framework.controller;
 
+import org.springframework.web.servlet.ModelAndView;
 import site.wtfu.framework.entity.Employee;
 import site.wtfu.framework.entity.TestObject;
 import site.wtfu.framework.entity.User;
@@ -7,11 +8,15 @@ import site.wtfu.framework.entity.XMLReturnObject;
 import site.wtfu.framework.services.ITest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import site.wtfu.framework.web.AcceptHeaderHttpServletRequestWrapper;
 
 import javax.annotation.Resource;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -48,6 +53,16 @@ public class TestOtherController {
     }
 
 
+    @RequestMapping(value = "/xmlOrJson")
+    public void xmlOrJson(HttpServletRequest request, HttpServletResponse response, String accept) throws IOException, ServletException {
+        if (accept == null) { accept = "application/json";}
+        // 创建包装类实例，修改 'Accept' 请求头
+        HttpServletRequest wrappedRequest = new AcceptHeaderHttpServletRequestWrapper(request, accept);
+
+        // 使用修改后的请求头进行转发
+        RequestDispatcher dispatcher = wrappedRequest.getRequestDispatcher("/test/helloxml");
+        dispatcher.forward(wrappedRequest, response);
+    }
 
 
     @RequestMapping("/sync")
