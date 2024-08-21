@@ -17,6 +17,7 @@ public class MyHandlerExceptionResolver implements HandlerExceptionResolver {
                                          HttpServletResponse response,
                                          Object handler,
                                          Exception ex) {
+        ex.printStackTrace();
         PrintWriter writer = null;
         try {
             writer = response.getWriter();

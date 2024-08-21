@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- 在xml文件内部嵌入 -->
+<!DOCTYPE persons [
+    <!ELEMENT persons (person*)>
+    <!ELEMENT person (name,age)>
+    <!ELEMENT name (#PCDATA)>
+    <!ELEMENT age (#PCDATA)>
+    <!ATTLIST person name CDATA #REQUIRED>
+]>
+
+<persons>
+    <person name="pOne">
+        <name>张三</name>
+        <age>18</age>
+    </person>
+
+    <person name="pOne">
+        <name>张三</name>
+        <age>18</age>
+    </person>
+</persons>

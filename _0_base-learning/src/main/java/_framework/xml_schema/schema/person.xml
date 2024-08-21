@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- 引入 -->
+<persons
+        xmlns="http://docs.wtfu.site/person.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://docs.wtfu.site/person.xsd person.xsd">
+
+    <person name="pOne">
+        <name>张三</name>
+        <age>18</age>
+    </person>
+
+    <person name="pOne">
+        <name>张三</name>
+        <age>18</age>
+    </person>
+</persons>
