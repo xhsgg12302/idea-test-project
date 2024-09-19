@@ -295,7 +295,7 @@
             <groupId>java.home</groupId>
             <artifactId>lib</artifactId>
             <version>1.0</version>
-            <systemPath>${env.JAVA_HOME}/lib/tools.jar</systemPath>
+            <systemPath>${env.JAVA_HOME_8}/lib/tools.jar</systemPath>
             <scope>system</scope>
         </dependency>
 
