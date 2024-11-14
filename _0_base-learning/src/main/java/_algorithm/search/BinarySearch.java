@@ -17,6 +17,7 @@ public class BinarySearch {
     public void testBinarySearch(){
         int[] arr = new int[]{4,8,10, 16,18,20,50,100};
 
+        Assert.assertEquals("", binarySearch(arr, 0, arr.length - 1, 2), -1);
         Assert.assertEquals("", binarySearch(arr, 0, arr.length - 1, 4), 0);
         Assert.assertEquals("", binarySearch(arr, 0, arr.length - 1, 16), 3);
         Assert.assertEquals("", binarySearch(arr, 0, arr.length - 1, 100), 7);
@@ -30,7 +31,7 @@ public class BinarySearch {
         int midKey = arr[mid];
 
         if(key > midKey){ return binarySearch(arr, mid + 1, right, key); }
-        if(key < midKey){ return binarySearch(arr, left, mid, key); }
+        if(key < midKey){ return binarySearch(arr, left, mid - 1, key); }
         return mid;
     }
 }

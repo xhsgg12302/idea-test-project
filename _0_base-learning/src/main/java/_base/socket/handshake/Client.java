@@ -14,9 +14,14 @@ import java.util.UUID;
  */
 public class Client {
     public static void main(String[] args) {
+
+        // not use proxy
+        System.setProperty("socksProxyHost","");
+
         Socket socket = null;
         OutputStream outputStream = null;
         try {
+
             socket = new Socket("192.168.0.100", 12302);
             socket.setKeepAlive(true);
             System.out.println(socket);
