@@ -337,9 +337,11 @@
         <resources>
             <resource>
                 <directory>src/main/java</directory>
+                <excludes>
+                    <exclude>**/*.properties</exclude>
+                </excludes>
                 <includes>
                     <include>**/*.xml</include>
-                    <include>**/*.properties</include>
                     <include>**/*.html</include>
                     <include>**/*.mmdb</include>
                     <include>**/*.vm</include>
@@ -354,6 +356,13 @@
             </resource>
             <resource>
                 <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                </includes>
                 <filtering>true</filtering>
             </resource>
         </resources>

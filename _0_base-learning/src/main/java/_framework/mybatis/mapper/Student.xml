@@ -21,4 +21,7 @@
         select * from student where name = #{name}
     </select>
 
+    <select id="selectAll" resultMap="BaseResultMap">
+        select * from student
+    </select>
 </mapper>

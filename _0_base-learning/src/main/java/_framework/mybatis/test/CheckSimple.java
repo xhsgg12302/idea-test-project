@@ -39,11 +39,15 @@ public class CheckSimple {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         System.out.println(sqlSession);
         StudentMapper userMapper = sqlSession.getMapper(StudentMapper.class);
-        List<Student> students = userMapper.selectByName("王");
 
+        Student wang = userMapper.selectByName("王");
+        System.out.println(wang);
+
+        List<Student> students = userMapper.selectAll();
         for (Student student : students) {
             System.out.println(student);
         }
+
         sqlSession.close();
     }
 }

@@ -14,5 +14,7 @@ import java.util.List;
  */
 public interface StudentMapper {
 
-    List<Student> selectByName(String name);
+    Student selectByName(String name);
+
+    List<Student> selectAll();
 }
