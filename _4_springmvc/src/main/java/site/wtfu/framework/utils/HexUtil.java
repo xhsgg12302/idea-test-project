@@ -1,7 +1,9 @@
 package site.wtfu.framework.utils;
 
-import java.util.Arrays;
-import java.util.UUID;
+import org.junit.jupiter.api.Test;
+import org.springframework.test.context.TestExecutionListeners;
+
+import java.util.*;
 
 /**
  *
@@ -15,6 +17,15 @@ import java.util.UUID;
 
 public class HexUtil {
 
+
+    // Declaring ANSI_RESET so that we can reset the color
+    public static final String ANSI_RESET = "\u001B[0m";
+
+    // Declaring the color
+    // Custom declaration
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
     /**
      * 将十六进制字符串转换为字节数组。
      *
@@ -33,6 +44,25 @@ public class HexUtil {
             bytes[i / 2] = (byte) Integer.parseInt(hexPair, 16);
         }
         return bytes;
+    }
+
+    public static void printHex(String color,byte[] bytes, int off, int len) {
+        StringBuilder hexString = new StringBuilder(color);
+        int count = 0;
+
+        for (int i = off; i < len && i < bytes.length; i++) {
+            // 将每个字节转换为两位的十六进制字符串并追加到 StringBuilder 中
+            hexString.append(String.format("%02x ", bytes[i]));
+            count++;
+
+            // 每 16 个字节后换行
+            if (count % 16 == 0) {
+                hexString.append("\n");
+            }
+        }
+
+        hexString.append(ANSI_RESET);
+        System.out.println(hexString);
     }
 
     public static byte[] hexToByteArray(String inHex){
@@ -75,7 +105,8 @@ public class HexUtil {
     }
 
     // 测试方法
-    public static void main(String[] args) {
+    @Test
+    public void testUUID(){
         UUID uuid = UUID.fromString("5f968565-cfe2-49c5-b13f-e540f8e002dc0");
         try {
             byte[] uuidBytes = toBytes(uuid);
@@ -83,6 +114,28 @@ public class HexUtil {
         } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
         }
+    }
+
+    @Test
+    public void testPrintByte(){
+        byte[] target = new byte[]{0x03, 0x04, 0x05};
+        printHex(ANSI_RED, target, 0, target.length);
+    }
+
+    @Test
+    public void testLambda(){
+        List<String> lists = new ArrayList<String>();
+        lists.add("Bob");
+        lists.add("Alice");
+        lists.add("Casmtons");
+
+        Collections.sort(lists, (o1, o2) -> o1.compareTo(o2));
+
+        Comparator<String> stringComparator = String::compareTo;
+
+        Collections.sort(lists, String::compareTo);
+
+
     }
 }
 

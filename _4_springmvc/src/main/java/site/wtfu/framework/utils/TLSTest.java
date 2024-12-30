@@ -5,6 +5,7 @@ import org.bouncycastle.tls.TlsClientProtocol;
 import org.bouncycastle.tls.TlsNoCloseNotifyException;
 import org.bouncycastle.tls.crypto.TlsCrypto;
 import org.bouncycastle.tls.crypto.impl.bc.BcTlsCrypto;
+import org.junit.jupiter.api.Test;
 import org.springframework.util.StringUtils;
 import site.wtfu.framework.utils.bc.SocketInputStreamAdaptor;
 import site.wtfu.framework.utils.bc.SocketOutputStreamAdaptor;
@@ -17,6 +18,7 @@ import java.net.Socket;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
+import java.util.Formatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,8 +34,8 @@ import java.util.Map;
 public class TLSTest {
     public static void main(String[] args) throws IOException {
 
-        //plainSocketTLSTest();
-        plainWssTLSTest();
+        plainSocketTLSTest();
+        //plainWssTLSTest();
     }
 
     public static void plainWssTLSTest() throws IOException {
@@ -94,13 +96,13 @@ public class TLSTest {
             URI
                     //target = new URI("https://www.baidu.com/"); // ✓
                     //target = new URI("https://www.sina.com.cn/"); // ✓
-                    target = new URI("https://www.qq.com/");
+                    //target = new URI("https://www.qq.com/");
 
                     //target = new URI("https://mp.weixin.qq.com/s/JRsbK1Un2av9GKmJ8DK7IQ");
                     //target = new URI("https://www.google.com/");
                     //target = new URI("https://beian.mps.gov.cn/#/query/webSearch/");
                     //target = new URI("https://test.wtfu.site/robots.txt");
-                    //target = new URI("https://wtfu.site/");
+                    target = new URI("https://wtfu.site/");
                     //target = new URI("https://login.yfjc.xyz/api/v1/client/subscribe?token=xxxxx");
 
             socket = new Socket(target.getHost(), 443);
@@ -168,5 +170,21 @@ public class TLSTest {
         byte[] requestBytes = requestBuilder.toString().getBytes(StandardCharsets.UTF_8);
 
         return requestBytes;
+    }
+
+
+    @Test
+    public void test(){
+        byte[] bytes = new byte[]{(byte) 0x01,(byte)0x02,(byte) 0x03};
+        System.out.println(bytesToHex(bytes));
+
+    }
+
+    public static String bytesToHex(byte[] bytes) {
+        Formatter formatter = new Formatter();
+        for (byte b : bytes) {
+            formatter.format("%02x ", b);
+        }
+        return formatter.toString();
     }
 }
