@@ -130,7 +130,7 @@ public class DecryptDemo {
         //TlsKeyExchange keyExchange = factory.createECDHEKeyExchangeClient(KeyExchangeAlgorithm.ECDHE_ECDSA);
         //keyExchange.init(clientContext);
 
-        //TlsSecret preMasterSecret = keyExchange.generatePreMasterSecret(); // 主要通过本地的私匙，和 远端的私匙 来生成一个预主密匙。
+        //TlsSecret preMasterSecret = keyExchange.generatePreMasterSecret(); // 主要通过本地的私匙，和 远端的公匙 来生成一个预主密匙。
         //TlsSecret tlsSecret = agreement.calculateSecret();
 
         // extendedMasterSecret = false
