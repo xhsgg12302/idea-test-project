@@ -242,6 +242,42 @@ public class DecryptDemo {
         System.out.println(TLSTest.bytesToHex(ciphertext));
     }
 
+
+    @Test
+    public void testDecodeCipherForAlert() throws IOException {
+        TlsAEADCipher tlsAEADCipher = testCreateConstructor();
+        TlsAEADCipherImpl decryptCipher = tlsAEADCipher.decryptCipher;
+        byte[] decryptNonce = tlsAEADCipher.decryptNonce;
+        int record_iv_length = tlsAEADCipher.record_iv_length;
+        int macSize = tlsAEADCipher.macSize;
+
+        /*
+         * decodeCipherText
+         *
+         * params:
+         *      byte[] ciphertext,
+         *      int ciphertextOffset,
+         *      int ciphertextLength
+         */
+        byte[] alert = hexStringToByteArray("15 03 03 00 1a 84 ef 8c ec 32 b4 9f db a9 11 e8 \n" +
+                "3f 18 d6 fe 11 34 13 20 11 ce a3 c8 ca 1f 77");
+        byte[] ciphertext = alert;
+        int ciphertextOffset = 5;
+        int ciphertextLength = ciphertext.length - ciphertextOffset;
+        byte[] nonce = new byte[decryptNonce.length + record_iv_length];
+        System.arraycopy(decryptNonce, 0, nonce, 0, decryptNonce.length);
+        System.arraycopy(ciphertext, ciphertextOffset, nonce, nonce.length - record_iv_length, record_iv_length);
+        decryptCipher.init(nonce, macSize);
+
+        int encryptionOffset = ciphertextOffset + record_iv_length;
+        int encryptionLength = ciphertextLength - record_iv_length;
+        int innerPlaintextLength = decryptCipher.getOutputSize(encryptionLength);
+
+        byte[] additionalData = additionalData(2L,(short)0x15, ProtocolVersion.TLSv12, 0, innerPlaintextLength, null);
+        decryptCipher.doFinal(additionalData, ciphertext, encryptionOffset, encryptionLength, ciphertext, encryptionOffset);
+        System.out.println(TLSTest.bytesToHex(ciphertext));
+    }
+
     @Test
     public  void testDecodeCipherForResponse() throws IOException {
 
