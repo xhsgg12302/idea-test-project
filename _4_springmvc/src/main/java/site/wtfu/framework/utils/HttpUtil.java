@@ -21,6 +21,11 @@ public class HttpUtil {
     public final static HttpHost DEFAULT_PROXY = new HttpHost("127.0.0.1", 8889, "HTTP");
 
 
+    public static void main(String[] args) {
+        //System.setProperty("javax.net.debug","all");
+        String s = requestGetBak("https://yifen.996.buzz/gengxin");
+        System.out.println(s);
+    }
 
     public static String requestGetBak(String requestUrl) {
         HttpClient httpClient = HttpClients.createDefault();

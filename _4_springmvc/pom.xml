@@ -233,7 +233,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.16.22</version>
+            <version>1.18.30</version>
         </dependency>
 
         <!--<dependency>
@@ -265,11 +265,11 @@
             <version>1.5.3</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.bouncycastle</groupId>
-            <artifactId>bcprov-jdk15to18</artifactId>
-            <version>1.78</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.bouncycastle</groupId>-->
+<!--            <artifactId>bcprov-jdk15to18</artifactId>-->
+<!--            <version>1.78</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>org.bouncycastle</groupId>

@@ -14,6 +14,7 @@ import site.wtfu.framework.utils.bc.tls.CusDefaultTlsClient;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
@@ -99,13 +100,16 @@ public class TLSTest {
                     //target = new URI("https://www.qq.com/");
 
                     //target = new URI("https://mp.weixin.qq.com/s/JRsbK1Un2av9GKmJ8DK7IQ");
-                    //target = new URI("https://www.google.com/");
+                    target = new URI("https://www.google.com/");
                     //target = new URI("https://beian.mps.gov.cn/#/query/webSearch/");
                     //target = new URI("https://test.wtfu.site/robots.txt");
                     target = new URI("https://wtfu.site/");
-                    //target = new URI("https://login.yfjc.xyz/api/v1/client/subscribe?token=xxxxx");
+                    //target = new URI("https://music.163.com");
+                    target = new URI("https://yifen.996.buzz/gengxin");
 
-            socket = new Socket(target.getHost(), 443);
+            socket = new Socket();
+            socket.connect(InetSocketAddress.createUnresolved(target.getHost(), 443));
+
             byte[] request = buildReq(target);
 
 
@@ -150,7 +154,7 @@ public class TLSTest {
         // 构建请求头
         Map<String, String> headers = new HashMap<>();
         headers.put("Host", target.getHost());
-        headers.put("Connection", "close");
+        //headers.put("Connection", "close");
         headers.put("User-Agent", "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.2623.112 Safari/537.36");
         headers.put("Accept", "*/*");
         headers.put("Cache-Control", "no-cache");

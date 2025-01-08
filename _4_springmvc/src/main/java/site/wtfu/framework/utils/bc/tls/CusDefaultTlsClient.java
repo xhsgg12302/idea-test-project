@@ -4,6 +4,7 @@ import org.bouncycastle.tls.*;
 import org.bouncycastle.tls.crypto.TlsCrypto;
 
 import java.io.IOException;
+import java.util.Vector;
 
 /**
  *
@@ -33,5 +34,10 @@ public class CusDefaultTlsClient extends DefaultTlsClient {
                 return null;
             }
         };
+    }
+
+    @Override
+    protected Vector<ServerName> getSNIServerNames() {
+        return super.getSNIServerNames();
     }
 }
